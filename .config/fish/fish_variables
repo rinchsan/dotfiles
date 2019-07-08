@@ -5,7 +5,7 @@ SETUVAR __fish_init_2_3_0:\x1d
 SETUVAR __fish_init_3_x:\x1d
 SETUVAR fish_color_autosuggestion:969896
 SETUVAR fish_color_cancel:normal
-SETUVAR fish_color_command:ffff5f
+SETUVAR fish_color_command:5fffaf
 SETUVAR fish_color_comment:c5c8c6
 SETUVAR fish_color_cwd:008000
 SETUVAR fish_color_cwd_root:800000
@@ -17,7 +17,7 @@ SETUVAR fish_color_host:normal
 SETUVAR fish_color_match:normal
 SETUVAR fish_color_normal:normal
 SETUVAR fish_color_operator:00a6b2
-SETUVAR fish_color_param:00d7ff
+SETUVAR fish_color_param:d7ff87
 SETUVAR fish_color_quote:ff5f00
 SETUVAR fish_color_redirection:5fffaf
 SETUVAR fish_color_search_match:ffff00
