@@ -1,5 +1,11 @@
 # dotfiles
 
+## Installation
+
+```bash
+bash -c "$(curl https://raw.githubusercontent.com/snowman-mh/dotfiles/master/scripts/install.sh)"
+```
+
 ## Dvorak Japanese Keymapping
 
 1. Get Google Japanese Input from [here](https://www.google.co.jp/ime/).
