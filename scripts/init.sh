@@ -5,7 +5,7 @@ if ! type brew >/dev/null 2>&1; then
 fi
 
 # misc
-brew install peco the_silver_searcher tree
+brew install peco the_silver_searcher tree jq
 
 # development
 brew install pre-commit wget
