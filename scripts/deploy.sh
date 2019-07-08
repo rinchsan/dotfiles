@@ -11,5 +11,7 @@ do
     [ "${FILE}" = ".git" ] && continue
 
     echo "Symlinking ${FILE}..."
-    ln -snfv ${FILE} ${HOME}/${FILE}
+
+    SRC=$(cd $(dirname ${FILE}) && pwd)/$(basename ${FILE})
+    ln -snfv ${SRC} ${HOME}/${FILE}
 done
