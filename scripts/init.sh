@@ -18,3 +18,4 @@ brew install goenv pyenv rbenv tfenv
 brew install fish
 echo 'Changing default shell to fish'
 echo "$(which fish)" | sudo tee -a /etc/shells
+chsh -s "$(which fish)"
