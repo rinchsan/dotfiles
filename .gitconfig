@@ -1,0 +1,25 @@
+[user]
+	email = mcdonalds.only@gmail.com
+	name = Masaya Hayashi
+	username = snowman-mh
+[color]
+	ui = true
+[alias]
+	gr = log --graph --date=short --decorate=short --pretty=format:'%Cgreen%h %Creset%cd %C(yellow)%cn %Cred%d %Creset%s'
+	st = status
+	co = checkout
+	br = branch
+	ci = commit
+	pu = push
+	diw = diff --color-words --word-diff-regex='\\w+|[^[:space:]]'
+[core]
+	excludesfile = ~/.gitignore_global
+	editor = vim
+[push]
+	default = nothing
+[merge]
+	ff = false
+[pull]
+	ff = only
+[init]
+	templatedir = ~/.git-template

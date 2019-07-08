@@ -1,0 +1,95 @@
+######################
+# complied source
+######################
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+
+######################
+# Packages
+######################
+# it's better to unpack these files and commit the raw source
+# git has its own built in compression methods
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+######################
+# Logs and databases
+######################
+*.log
+*.sqlite
+
+######################
+# OS generated files
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+######################
+# Laravel
+######################
+.env
+
+######################
+# iOS
+######################
+UserInterfaceState.xcuserstate
+xcuserdata
+Carthage
+
+######################
+# Octave
+######################
+octave-workspace
+token.mat
+
+######################
+# LaTeX
+######################
+*.aux
+*.dvi
+*.fdb_latexmk
+*.fls
+
+######################
+# byebug
+######################
+.byebug_history
+
+######################
+# fastlane
+######################
+fastlane
+
+######################
+# cpan
+######################
+cpanfile.snapshot
+
+######################
+# IntelliJ IDEA
+######################
+.idea
+
+######################
+# fish shell
+######################
+fisherman
+
+gcloud
+gocode
+gin-bin
