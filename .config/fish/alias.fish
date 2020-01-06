@@ -66,6 +66,8 @@ alias dis='git diff --stat'
 alias a='atom'
 alias cb='bd'
 alias curls='curl -w "%{http_code}\n"'
+alias gq='ghq'
+alias gp='ghq_peco_repo'
 
 ###############
 # docker

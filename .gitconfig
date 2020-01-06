@@ -23,3 +23,5 @@
 	ff = only
 [init]
 	templatedir = ~/.git-template
+[ghq]
+	root = ~/go/src
