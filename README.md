@@ -3,7 +3,7 @@
 ## Installation
 
 ```bash
-bash -c "$(curl https://raw.githubusercontent.com/snowman-mh/dotfiles/master/scripts/install.sh)"
+bash -c "$(curl https://raw.githubusercontent.com/rinchsan/dotfiles/master/scripts/install.sh)"
 ```
 
 ## Dvorak Japanese Keymapping
