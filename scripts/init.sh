@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if ! type brew >/dev/null 2>&1; then
-    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 fi
 
 # misc
@@ -13,6 +13,7 @@ brew install git gibo mysql
 brew install node yarn
 brew install awscli ansible
 brew install goenv pyenv rbenv tfenv
+brew install go
 
 # fish
 brew install fish
