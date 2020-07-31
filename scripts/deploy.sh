@@ -10,7 +10,7 @@ for FILE in .??*
 do
     [ "${FILE}" = ".git" ] && continue
 
-    echo "Symlinking ${FILE}..."
+    echo "symlinking ${FILE}..."
 
     SRC=$(cd $(dirname ${FILE}) && pwd)/$(basename ${FILE})
     ln -snfv ${SRC} ${HOME}/${FILE}
