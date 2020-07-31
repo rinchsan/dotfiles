@@ -1,11 +1,11 @@
 .PHONY: deploy
 deploy:
-	@echo 'Start deploying dotfiles...'
+	@echo 'deploying dotfiles...'
 	@bash scripts/deploy.sh
-	@echo 'Finish deploying dotfiles!!!'
+	@echo 'deploy finished'
 
 .PHONY: init
 init:
-	@echo 'Start initializing...'
+	@echo 'initializing dotfiles...'
 	@bash scripts/init.sh
-	@echo 'Finish initializing!!!'
+	@echo 'initialize finished'
