@@ -68,6 +68,7 @@ alias cb='bd'
 alias curls='curl -w "%{http_code}\n"'
 alias gq='ghq'
 alias gp='ghq_peco_repo'
+alias ip='curl https://checkip.amazonaws.com/'
 
 ###############
 # docker
