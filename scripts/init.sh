@@ -14,6 +14,7 @@ brew install node yarn
 brew install awscli ansible
 brew install goenv pyenv rbenv tfenv
 brew install go
+brew install docker-clean
 
 # fish
 brew install fish
