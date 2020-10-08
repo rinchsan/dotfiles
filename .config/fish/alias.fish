@@ -58,7 +58,7 @@ alias diw='git diw'
 alias gpom='git push origin master'
 alias gri='git rebase -i'
 alias dis='git diff --stat'
-
+alias g='gh'
 
 ###############
 # misc
