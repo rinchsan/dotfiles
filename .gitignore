@@ -1,2 +1,3 @@
 *.backup
 configstore
+.config/gh/*
