@@ -14,7 +14,7 @@
 	diw = diff --color-words --word-diff-regex='\\w+|[^[:space:]]'
 [core]
 	excludesfile = ~/.gitignore_global
-	editor = vim
+	editor = nano
 [push]
 	default = nothing
 [merge]
