@@ -10,3 +10,4 @@ pager: !!null less
 aliases:
     crp: '!gh pr create && gh pr view --web'
     oi: '!gh issue view --web $(gh issue list | grep OPEN | peco | cut -f 1)'
+    or: repo view --web
