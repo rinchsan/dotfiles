@@ -48,22 +48,17 @@ end
 alias st='git status'
 alias ad='git add'
 alias ci='git commit'
-alias pu='git push'
 alias di='git diff'
 alias gr='git gr'
 alias b='git branch'
 alias co='git checkout'
 alias dic='git diff --cached'
 alias diw='git diw'
-alias gpom='git push origin master'
-alias gri='git rebase -i'
-alias dis='git diff --stat'
 alias g='gh'
 
 ###############
 # misc
 ###############
-alias a='atom'
 alias cb='bd'
 alias curls='curl -w "%{http_code}\n"'
 alias gq='ghq'
