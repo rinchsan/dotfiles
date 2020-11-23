@@ -69,3 +69,8 @@ alias ip='curl https://checkip.amazonaws.com/'
 # docker
 ###############
 alias dps='docker ps --format "table {{.Names}}\t{{.Command}}\t{{.Ports}}\t{{.Image}}"'
+
+###############
+# k8s
+###############
+alias k='kubectl'
