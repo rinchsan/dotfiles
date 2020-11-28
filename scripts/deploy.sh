@@ -2,7 +2,7 @@
 
 set -eu
 
-DOTFILES=$(dirname $(cd $(dirname $0) && pwd))
+DOTFILES=$(dirname "$(cd "$(dirname $0)" && pwd)")
 
 cd ${DOTFILES}
 
@@ -10,8 +10,6 @@ for FILE in .??*
 do
     [ "${FILE}" = ".git" ] && continue
 
-    echo "symlinking ${FILE}..."
-
-    SRC=$(cd $(dirname ${FILE}) && pwd)/$(basename ${FILE})
+    SRC=$(cd "$(dirname ${FILE})" && pwd)/$(basename ${FILE})
     ln -snfv ${SRC} ${HOME}/${FILE}
 done
