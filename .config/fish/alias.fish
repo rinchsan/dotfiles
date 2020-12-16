@@ -43,7 +43,7 @@ end
 
 
 ###############
-# github
+# git / github
 ###############
 alias st='git status'
 alias ad='git add'
