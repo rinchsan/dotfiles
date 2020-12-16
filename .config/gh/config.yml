@@ -7,7 +7,4 @@ prompt: enabled
 # A pager program to send command output to, e.g. "less". Set the value to "cat" to disable the pager.
 pager: !!null less
 # Aliases allow you to create nicknames for gh commands
-aliases:
-    crp: '!gh pr create && gh pr view --web'
-    oi: '!gh issue view --web $(gh issue list | grep OPEN | peco | cut -f 1)'
-    or: repo view --web
+aliases: {}
