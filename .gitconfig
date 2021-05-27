@@ -10,7 +10,6 @@
 	co = checkout
 	br = branch
 	ci = commit
-	pu = push
 	diw = diff --color-words --word-diff-regex='\\w+|[^[:space:]]'
 	push-f = push --force-with-lease
 [core]
