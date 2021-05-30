@@ -13,7 +13,6 @@
 	diw = diff --color-words --word-diff-regex='\\w+|[^[:space:]]'
 	push-f = push --force-with-lease
 [core]
-	excludesfile = ~/.gitignore_global
 	editor = nano
 	hooksPath = /dev/null
 [push]
