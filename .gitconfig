@@ -12,7 +12,7 @@
 	ci = commit
 	diw = diff --color-words --word-diff-regex='\\w+|[^[:space:]]'
 	push-f = push --force-with-lease
-	sync = !BRANCH=$(git remote show origin | grep 'HEAD branch' | awk '{print $NF}') git checkout ${BRANCH} && git pull origin ${BRANCH} && git fetch --prune && git branch -d $(git branch --merged | grep -v '*')
+	sync = !git checkout $(git remote show origin | grep 'HEAD branch' | awk '{print $NF}') && git pull origin $(git remote show origin | grep 'HEAD branch' | awk '{print $NF}') && git fetch --prune && git branch -d $(git branch --merged | grep -v '*')
 	tags = !git tag --sort=-creatordate | head -n 10
 [core]
 	editor = nano
