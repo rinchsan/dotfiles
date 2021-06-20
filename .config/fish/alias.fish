@@ -2,10 +2,10 @@
 # general
 ###############
 alias cat='bat'
-alias ls='ls -F'
-alias l='ls -F'
-alias ll='ls -la'
-alias la='ls -a'
+alias ls='exa -F'
+alias l='exa -F'
+alias ll='exa -la'
+alias la='exa -a'
 alias o='open'
 
 function cd
