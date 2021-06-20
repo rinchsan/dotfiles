@@ -7,6 +7,7 @@ alias l='exa -F'
 alias ll='exa -la'
 alias la='exa -a'
 alias o='open'
+alias f='fd --hidden'
 
 function cd
     if test (count $argv) -gt 1
