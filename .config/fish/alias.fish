@@ -1,6 +1,7 @@
 ###############
 # general
 ###############
+alias cat='bat'
 alias ls='ls -F'
 alias l='ls -F'
 alias ll='ls -la'

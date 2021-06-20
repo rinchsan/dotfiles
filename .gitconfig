@@ -6,10 +6,6 @@
 	ui = true
 [alias]
 	gr = log --graph --date=short --decorate=short --pretty=format:'%Cgreen%h %Creset%cd %C(yellow)%cn %Cred%d %Creset%s'
-	st = status
-	co = checkout
-	br = branch
-	ci = commit
 	diw = diff --color-words --word-diff-regex='\\w+|[^[:space:]]'
 	push-f = push --force-with-lease
 	sync = !git checkout $(git remote show origin | grep 'HEAD branch' | awk '{print $NF}') && git pull origin $(git remote show origin | grep 'HEAD branch' | awk '{print $NF}') && git fetch --prune && git branch -d $(git branch --merged | grep -v '*')

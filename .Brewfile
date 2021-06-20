@@ -7,6 +7,7 @@ tap "weaveworks/tap"
 
 brew "ansible"
 brew "awscli"
+brew "bat"
 brew "python@3.8"
 brew "circleci"
 brew "coreutils"
