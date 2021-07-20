@@ -65,6 +65,7 @@ alias cb='bd'
 alias curls='curl -w "%{http_code}\n"'
 alias gq='ghq'
 alias gp='ghq_peco_repo'
+alias bcp='git_peco_branch'
 alias rei='restart_eikana'
 alias ip='curl https://checkip.amazonaws.com/'
 
