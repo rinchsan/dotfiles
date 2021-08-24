@@ -217,7 +217,6 @@ pno	ぴょ
 pnu	ぴゅ
 po	ぽ
 pu	ぷ
-px	ぴん
 pya	ぴゃ
 pye	ぴぇ
 pyi	ぴぃ
@@ -287,7 +286,6 @@ twe	とぇ
 twi	とぃ
 two	とぉ
 twu	とぅ
-tx	ちん
 tya	ちゃ
 tye	ちぇ
 tyi	ちぃ
