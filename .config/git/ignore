@@ -40,3 +40,4 @@ gocode
 gin-bin
 cover.out
 cover.html
+temp.go
