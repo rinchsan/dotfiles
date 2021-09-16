@@ -59,6 +59,7 @@ cask "google-japanese-ime"
 cask "iterm2"
 cask "notion"
 cask "pycharm-ce"
+cask "the-unarchiver"
 cask "zoomus"
 
 mas "Bitwarden", id: 1352778147
