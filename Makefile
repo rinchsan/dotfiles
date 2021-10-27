@@ -1,7 +1,7 @@
 .PHONY: deploy
 deploy:
-	bash scripts/deploy.sh
+	bash etc/scripts/deploy.sh
 
 .PHONY: init
 init:
-	bash scripts/init.sh
+	bash etc/scripts/init.sh
