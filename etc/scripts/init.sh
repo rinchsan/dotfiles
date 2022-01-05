@@ -2,7 +2,7 @@
 
 set -eu
 
-brew bundle --global
+brew bundle install --file=.Brewfile
 
 echo 'Changing default shell to fish'
 echo "$(which fish)" | sudo tee -a /etc/shells
