@@ -4,7 +4,7 @@ tap "homebrew/bundle"
 tap "homebrew/cask"
 tap "homebrew/core"
 tap "qmk/qmk"
-tap "rhysd/hgrep" "https://github.com/rhysd/hgrep"
+tap "rhysd/hgrep"
 
 brew "ansible"
 brew "awscli"
@@ -67,7 +67,7 @@ cask "iterm2"
 cask "notion"
 cask "pycharm-ce"
 cask "the-unarchiver"
-cask "zoomus"
+cask "zoom"
 
 mas "Bitwarden", id: 1352778147
 mas "Keynote", id: 409183694
