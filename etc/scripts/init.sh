@@ -2,7 +2,7 @@
 
 set -eu
 
-brew bundle install --file=~/dotfiles/.Brewfile
+brew bundle install --file=${HOME}/dotfiles/.Brewfile
 
 echo 'Changing default shell to fish'
 echo "$(which fish)" | sudo tee -a /etc/shells
