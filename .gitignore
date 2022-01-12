@@ -2,3 +2,4 @@
 configstore
 .config/gh/hosts.yml
 .config/iterm2
+.Brewfile.lock.json
