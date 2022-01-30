@@ -1,0 +1,14 @@
+{
+    "default_path": "/usr/local/bin",
+    "bins": {
+        "/usr/local/bin/hgrep": {
+            "path": "/usr/local/bin/hgrep",
+            "remote_name": "hgrep",
+            "version": "v0.2.2",
+            "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "url": "github.com/rhysd/hgrep",
+            "provider": "github",
+            "package_path": "hgrep-v0.2.2-x86_64-apple-darwin/hgrep"
+        }
+    }
+}
