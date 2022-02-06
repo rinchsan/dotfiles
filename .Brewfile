@@ -7,6 +7,7 @@ tap "qmk/qmk"
 tap "rinchsan/tap"
 
 brew "ansible"
+brew "avrdude"
 brew "awscli"
 brew "bat"
 brew "choose-rust"
