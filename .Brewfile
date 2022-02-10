@@ -68,6 +68,7 @@ cask "iterm2"
 cask "notion"
 cask "postman"
 cask "pycharm-ce"
+cask "rectangle"
 cask "the-unarchiver"
 cask "zoom"
 
