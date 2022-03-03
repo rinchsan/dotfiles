@@ -1,5 +1,6 @@
 *.backup
 configstore
+.Brewfile.lock.json
 .config/gh/hosts.yml
 .config/iterm2
-.Brewfile.lock.json
+.config/raycast
