@@ -58,7 +58,6 @@ brew "weaveworks/tap/eksctl"
 brew "yarn"
 
 cask "alfred"
-cask "clipy"
 cask "cmd-eikana"
 cask "discord"
 cask "docker"
