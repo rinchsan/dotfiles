@@ -71,6 +71,7 @@ cask "postman"
 cask "pycharm-ce"
 cask "raycast"
 cask "the-unarchiver"
+cask "visual-studio-code"
 cask "zoom"
 
 mas "Bitwarden", id: 1352778147
