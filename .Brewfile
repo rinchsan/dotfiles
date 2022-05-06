@@ -7,7 +7,6 @@ tap "qmk/qmk"
 tap "rinchsan/tap"
 tap "Songmu/tap"
 
-brew "ansible"
 brew "avrdude"
 brew "awscli"
 brew "bat"
