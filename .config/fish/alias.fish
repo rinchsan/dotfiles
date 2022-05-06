@@ -7,7 +7,7 @@ alias l='exa -F'
 alias ll='exa -la'
 alias la='exa -a'
 alias o='open'
-alias f='fd --hidden'
+alias fd='fd --hidden'
 
 function cd
     if test (count $argv) -gt 1
@@ -53,7 +53,7 @@ alias ci='git commit'
 alias di='git diff'
 alias gr='git gr'
 alias b='git branch'
-alias co='git checkout'
+alias co='git switch'
 alias dic='git diff --cached'
 alias diw='git diw'
 alias g='gh'
