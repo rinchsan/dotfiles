@@ -21,5 +21,6 @@
 	ff = only
 [init]
 	templatedir = ~/.git-template
+	defaultBranch = main
 [ghq]
 	root = ~/go/src
