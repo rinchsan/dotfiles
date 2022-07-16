@@ -42,3 +42,4 @@ cover.out
 cover.html
 temp*.go
 temp*.sh
+*.pem
