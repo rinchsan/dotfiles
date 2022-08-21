@@ -19,3 +19,6 @@ defaults write -g KeyRepeat -int 1 # normal minimum is 2 (30 ms)
 defaults write com.apple.PowerChime ChimeOnNoHardware -bool true
 defaults write com.apple.finder ShowPathbar -bool true
 defaults write com.apple.finder ShowStatusBar -bool true
+defaults write -g AppleShowScrollBars -string "Always"
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadThreeFingerDrag -bool true
+defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerDrag -bool true
