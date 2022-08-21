@@ -29,5 +29,6 @@ networksetup -setdnsservers Wi-Fi 2001:4860:4860::8844 2001:4860:4860::8888 8.8.
 defaults write com.apple.finder AppleShowAllFiles -bool YES
 defaults write -g AppleShowAllExtensions -bool true
 defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool TRUE
+defaults write com.apple.dock autohide -bool true
 
 sudo shutdownn -r now
