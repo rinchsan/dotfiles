@@ -8,6 +8,7 @@ alias ll='exa -la'
 alias la='exa -a'
 alias o='open'
 alias fd='fd --hidden'
+alias diff='colordiff'
 
 function cd
     if test (count $argv) -gt 1
