@@ -14,7 +14,7 @@ echo 'Changing default shell to fish'
 echo "$(which fish)" | sudo tee -a /etc/shells
 chsh -s "$(which fish)"
 
-echo 'Changing Mac OS settings'
+echo 'Changing MacOS settings'
 defaults write -g InitialKeyRepeat -int 12 # normal minimum is 15 (225 ms)
 defaults write -g KeyRepeat -int 1 # normal minimum is 2 (30 ms)
 defaults write -g AppleShowScrollBars -string "Always"
