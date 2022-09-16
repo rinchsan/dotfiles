@@ -24,3 +24,5 @@
 	defaultBranch = main
 [ghq]
 	root = ~/go/src
+[diff]
+	external = difft
