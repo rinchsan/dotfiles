@@ -33,6 +33,7 @@ defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool TRUE
 defaults write com.apple.dock autohide -bool true
 
 networksetup -SetDNSServers Wi-Fi 8.8.8.8 8.8.4.4
+networksetup -SetV6Off Wi-Fi
 
 echo 'Rebooting to reflect settings'
 sudo shutdownn -r now
