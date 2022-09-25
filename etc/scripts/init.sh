@@ -32,7 +32,7 @@ defaults write com.apple.finder AppleShowAllFiles -bool YES
 defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool TRUE
 defaults write com.apple.dock autohide -bool true
 
-networksetup -setdnsservers Wi-Fi 2001:4860:4860::8844 2001:4860:4860::8888 8.8.4.4 8.8.8.8
+networksetup -SetDNSServers Wi-Fi 8.8.8.8 8.8.4.4
 
 echo 'Rebooting to reflect settings'
 sudo shutdownn -r now
