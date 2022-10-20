@@ -31,6 +31,7 @@ defaults write com.apple.SoftwareUpdate ConfigDataInstall -int 1
 defaults write com.apple.finder AppleShowAllFiles -bool YES
 defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool TRUE
 defaults write com.apple.dock autohide -bool true
+defaults write com.apple.symbolichotkeys.plist AppleSymbolicHotKeys -dict-add 27 "<dict><key>enabled</key><false/></dict>"
 
 networksetup -SetDNSServers Wi-Fi 8.8.8.8 8.8.4.4
 networksetup -SetV6Off Wi-Fi
