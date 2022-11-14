@@ -36,5 +36,7 @@ defaults write com.apple.symbolichotkeys.plist AppleSymbolicHotKeys -dict-add 27
 networksetup -SetDNSServers Wi-Fi 8.8.8.8 8.8.4.4
 networksetup -SetV6Off Wi-Fi
 
+sudo mdutil -a -i off
+
 echo 'Rebooting to reflect settings'
 sudo shutdownn -r now
