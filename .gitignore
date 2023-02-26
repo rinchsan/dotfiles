@@ -4,3 +4,4 @@ configstore
 .config/gh/hosts.yml
 .config/iterm2
 .config/raycast
+.config/fish/ignored.fish
