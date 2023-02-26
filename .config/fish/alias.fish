@@ -1,15 +1,43 @@
-###############
-# general
-###############
+######################
+###  git / github  ###
+######################
+alias st='git status'
+alias ad='git add'
+alias ci='git commit'
+alias di='git diff'
+alias gr='git gr'
+alias b='git branch'
+alias co='git switch'
+alias dic='git diff --cached'
+alias diw='git diw'
+alias g='gh'
+
+################
+###  docker  ###
+################
+alias dps='docker ps --format "table {{.Names}}\t{{.Command}}\t{{.Ports}}\t{{.Image}}"'
+
+##############
+###  misc  ###
+##############
 alias cat='bat'
-alias ls='exa -F'
-alias l='exa -F'
-alias ll='exa -la'
-alias la='exa -a'
-alias tree='exa -F --tree'
+alias ls='exa -F --icons'
+alias l='exa -F --icons'
+alias ll='exa -la --icons'
+alias la='exa -a --icons'
+alias tree='exa -F --tree --icons'
 alias o='open'
 alias fd='fd --hidden'
+alias rg='rg --hidden'
 alias diff='colordiff'
+alias cb='bd'
+alias curls='curl -w "%{http_code}\n"'
+alias gq='ghq'
+alias gp='ghq_peco_repo'
+alias bcp='git_peco_branch'
+alias rei='restart_eikana'
+alias ip='curl https://checkip.amazonaws.com/'
+alias k='kubectl'
 
 function cd
     if test (count $argv) -gt 1
@@ -44,39 +72,3 @@ function cd
     ls
     return $status
 end
-
-
-###############
-# git / github
-###############
-alias st='git status'
-alias ad='git add'
-alias ci='git commit'
-alias di='git diff'
-alias gr='git gr'
-alias b='git branch'
-alias co='git switch'
-alias dic='git diff --cached'
-alias diw='git diw'
-alias g='gh'
-
-###############
-# misc
-###############
-alias cb='bd'
-alias curls='curl -w "%{http_code}\n"'
-alias gq='ghq'
-alias gp='ghq_peco_repo'
-alias bcp='git_peco_branch'
-alias rei='restart_eikana'
-alias ip='curl https://checkip.amazonaws.com/'
-
-###############
-# docker
-###############
-alias dps='docker ps --format "table {{.Names}}\t{{.Command}}\t{{.Ports}}\t{{.Image}}"'
-
-###############
-# k8s
-###############
-alias k='kubectl'
