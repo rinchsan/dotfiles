@@ -1,5 +1,5 @@
-function git_peco_branch
-  set branch (git branch | peco --query "$LBUFFER")
+function git_fzf_branch
+  set branch (git branch | fzf --query "$LBUFFER")
   if [ -n "$branch" ]
     echo -n (string replace '* ' '' $branch) | pbcopy
     commandline -f repaint
