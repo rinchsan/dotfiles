@@ -13,10 +13,14 @@
 [core]
 	editor = nano
 	hooksPath = /dev/null
+	pager = delta
+[diff]
+	colorMoved = default
 [push]
 	default = nothing
 [merge]
 	ff = false
+	conflictstyle = diff3
 [pull]
 	ff = only
 [init]
@@ -24,3 +28,10 @@
 	defaultBranch = main
 [ghq]
 	root = ~/go/src
+[interactive]
+	diffFilter = delta --color-only
+[delta]
+	navigate = true
+	light = false
+	line-numbers = true
+	side-by-side = true
