@@ -1,5 +1,11 @@
 env:
   TERM: alacritty
+shell:
+  program: /usr/local/bin/fish
+  args:
+    - -l
+    - -c
+    - 'tmux a -t default || tmux new -s default\; source ~/.config/tmux/default.session.conf'
 window:
   startup_mode: Maximized
   title: Alacritty
