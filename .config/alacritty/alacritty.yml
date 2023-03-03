@@ -1,0 +1,65 @@
+env:
+  TERM: alacritty
+window:
+  startup_mode: Maximized
+  title: Alacritty
+  dynamic_title: true
+  decorations_theme_variant: None
+  option_as_alt: Both
+scrolling:
+  history: 10000
+  multiplier: 3
+font:
+  normal:
+    family: HackGen35 Console NF
+    style: Regular
+  bold:
+    family: HackGen35 Console NF
+    style: Bold
+  italic:
+    family: HackGen35 Console NF
+    style: Italic
+  bold_italic:
+    family: HackGen35 Console NF
+    style: Bold Italic
+  size: 13.0
+  offset:
+    x: 1
+    y: 1
+colors:
+  primary:
+    background: '#000000'
+    foreground: '#c7c7c7'
+  cursor:
+    text: CellBackground
+    cursor: CellForeground
+  vi_mode_cursor:
+    text: CellBackground
+    cursor: CellForeground
+  selection:
+    text: CellBackground
+    background: CellForeground
+  normal:
+    black:   '#1d1f21'
+    red:     '#cc6666'
+    green:   '#b5bd68'
+    yellow:  '#f0c674'
+    blue:    '#81a2be'
+    magenta: '#b294bb'
+    cyan:    '#8abeb7'
+    white:   '#c5c8c6'
+  bright:
+    black:   '#666666'
+    red:     '#d54e53'
+    green:   '#b9ca4a'
+    yellow:  '#e7c547'
+    blue:    '#7aa6da'
+    magenta: '#c397d8'
+    cyan:    '#70c0b1'
+    white:   '#eaeaea'
+cursor:
+  style:
+    shape: Beam
+    blinking: Off
+  vi_mode_style: None
+live_config_reload: true
