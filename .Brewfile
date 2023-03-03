@@ -11,6 +11,7 @@ tap "qmk/qmk"
 tap "rinchsan/tap"
 tap "Songmu/tap"
 
+brew "alacritty"
 brew "avrdude"
 brew "awscli"
 brew "bat"
