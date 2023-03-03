@@ -38,6 +38,7 @@ alias bcp='git_fzf_branch'
 alias rei='restart_eikana'
 alias ip='curl https://checkip.amazonaws.com/'
 alias k='kubectl'
+alias tmux='tmux -u'
 
 function cd
     if test (count $argv) -gt 1
