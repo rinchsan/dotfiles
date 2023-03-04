@@ -115,5 +115,5 @@ Plug 'projekt0n/github-nvim-theme', { 'tag': 'v0.0.7' }
 
 call plug#end()
 
-colorscheme github_dark_default
+colorscheme github_dimmed
 
