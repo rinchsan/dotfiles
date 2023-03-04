@@ -21,6 +21,7 @@ alias dps='docker ps --format "table {{.Names}}\t{{.Command}}\t{{.Ports}}\t{{.Im
 ###  misc  ###
 ##############
 alias cat='bat'
+alias c='cat'
 alias ls='exa -F --icons'
 alias l='exa -F --icons'
 alias ll='exa -la --icons'
