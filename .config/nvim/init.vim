@@ -121,6 +121,7 @@ augroup nerdtree
 augroup END
 nnoremap <C-y> :NERDTreeToggle<CR>
 Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'ryanoasis/vim-devicons'
 
 call plug#end()
 
