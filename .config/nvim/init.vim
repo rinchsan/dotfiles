@@ -44,7 +44,7 @@ set nostartofline
 set cmdheight=2
 set laststatus=2
 
-noremap s :source $HOME/.config/nvim/init.vim<CR>
+noremap s :source $XDG_CONFIG_HOME/nvim/init.vim<CR>
 noremap ; :
 noremap <C-p> <Up>
 noremap <C-n> <Down>
@@ -92,7 +92,7 @@ endfunction
 
 function! s:install_vim_plug() abort
   let l:plug_url = 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-  let l:autoload_dir = expand('$HOME/.local/share/nvim/site/autoload')
+  let l:autoload_dir = expand('$XDG_DATA_HOME/nvim/site/autoload')
   if !isdirectory(l:autoload_dir) | call mkdir(l:autoload_dir, 'p', 0700) | endif
   let l:plug_path = expand(l:autoload_dir . '/plug.vim')
   call system('curl -fLo ' . l:plug_path . ' ' . l:plug_url)
@@ -102,7 +102,7 @@ if empty(globpath(&runtimepath, '*/plug.vim'))
   call s:install_vim_plug()
 endif
 
-call plug#begin(expand('$HOME/.local/share/nvim/plugged'))
+call plug#begin(expand('$XDG_DATA_HOME/nvim/plugged'))
 
 Plug 'projekt0n/github-nvim-theme', { 'tag': 'v0.0.7' }
 
