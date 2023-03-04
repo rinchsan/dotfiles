@@ -9,4 +9,3 @@ init:
 .PHONY: lint
 lint:
 	bash etc/scripts/lint.sh
-
