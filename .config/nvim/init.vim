@@ -13,6 +13,7 @@ set clipboard+=unnamed,unnamedplus
 set wildmode=longest,full
 set ruler
 set cursorline
+set guicursor=
 
 noremap <Space>s :source $HOME/.config/nvim/init.vim<CR>
 noremap <C-p> <Up>
