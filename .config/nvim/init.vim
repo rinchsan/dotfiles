@@ -113,7 +113,15 @@ call plug#begin(expand('$XDG_DATA_HOME/nvim/plugged'))
 
 Plug 'projekt0n/github-nvim-theme', { 'tag': 'v0.0.7' }
 
+Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
+let g:NERDTreeShowHidden = 1
+augroup nerdtree
+  autocmd!
+  autocmd FileType nerdtree setlocal signcolumn=auto
+augroup END
+nnoremap <C-y> :NERDTreeToggle<CR>
+Plug 'Xuyuanp/nerdtree-git-plugin'
+
 call plug#end()
 
 colorscheme github_dimmed
-
