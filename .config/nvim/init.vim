@@ -41,9 +41,15 @@ set smartcase
 set wrapscan
 set infercase
 set nostartofline
+set nowritebackup
+set nobackup
 set cmdheight=2
 set laststatus=2
 set updatetime=300
+set autoread
+set visualbell t_vb=
+set noerrorbells
+set foldmethod=manual
 
 noremap s :source $XDG_CONFIG_HOME/nvim/init.vim<CR>
 noremap ; :
