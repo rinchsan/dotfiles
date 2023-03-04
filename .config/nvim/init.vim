@@ -62,7 +62,7 @@ noremap <C-e> <End>
 noremap <C-h> <BS>
 noremap <C-d> <Del>
 
-inoremap <silent> <ESC> <ESC>:<C-u>
+inoremap <silent> <ESC> <ESC>:
 inoremap <silent> <C-p> <Up>
 inoremap <silent> <C-n> <Down>
 inoremap <silent> <C-f> <Right>
@@ -110,30 +110,28 @@ if empty(globpath(&runtimepath, '*/plug.vim'))
 endif
 
 call plug#begin(expand('$XDG_DATA_HOME/nvim/plugged'))
-
 Plug 'projekt0n/github-nvim-theme', { 'tag': 'v0.0.7' }
-
 Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'ryanoasis/vim-devicons'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'neoclide/coc.nvim', { 'branch': 'release' }
+Plug 'cohama/lexima.vim'
+Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
+call plug#end()
+
 let g:NERDTreeShowHidden = 1
 augroup nerdtree
   autocmd!
   autocmd FileType nerdtree setlocal signcolumn=auto
 augroup END
 nnoremap <C-y> :NERDTreeToggle<CR>
-Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'ryanoasis/vim-devicons'
 
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
-noremap <C-t> :bnext<CR> 
+noremap <C-t> :bnext<CR>~
 noremap <C-w> :bdelete<CR>
-
-Plug 'neoclide/coc.nvim', { 'branch': 'release' }
-Plug 'cohama/lexima.vim'
-Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
-call plug#end()
 
 inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<C-r>=coc#on_enter()\<CR>"
 let g:coc_global_extensions = [
