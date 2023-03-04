@@ -4,11 +4,10 @@
   "diagnostic.virtualText": true,
   "signature.target": "echo",
   "notification.disabledProgressSources": ["*"],
-  "coc.preferences.formatOnSaveFiletypes": ["go"],
   "languageserver": {
-    "golang": {
+    "go": {
       "command": "gopls",
-      "rootPatterns": ["go.work", "go.mod", ".vim/", ".git/", ".hg/"],
+      "rootPatterns": ["go.work", "go.mod", ".git/"],
       "filetypes": ["go"],
       "initializationOptions": {
         "directoryFilters": [
