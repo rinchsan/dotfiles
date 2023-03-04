@@ -5,3 +5,7 @@ deploy:
 .PHONY: init
 init:
 	bash etc/scripts/init.sh
+
+.PHONY: lint
+lint:
+	bash etc/scripts/lint.sh

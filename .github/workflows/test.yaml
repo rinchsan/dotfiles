@@ -14,13 +14,4 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Lint
-        run: |
-          files=(
-            etc/scripts/deploy.sh
-            etc/scripts/init.sh
-            etc/scripts/install.sh
-          )
-          for file in "${files[@]}"
-          do
-            shellcheck "$file"
-          done
+        run: make lint
