@@ -1,0 +1,42 @@
+{
+  "suggest.detailField": "abbr",
+  "diagnostic.messageTarget": "echo",
+  "diagnostic.virtualText": true,
+  "signature.target": "echo",
+  "notification.disabledProgressSources": ["*"],
+  "coc.preferences.formatOnSaveFiletypes": ["go"],
+  "languageserver": {
+    "golang": {
+      "command": "gopls",
+      "rootPatterns": ["go.work", "go.mod", ".vim/", ".git/", ".hg/"],
+      "filetypes": ["go"],
+      "initializationOptions": {
+        "directoryFilters": [
+          "-**/node_modules"
+        ],
+        "templateExtensions": ["html", "tmpl", "tpl"],
+        "ui.completion.usePlaceholders": true
+      }
+    },
+    "dockerfile": {
+      "command": "docker-langserver",
+      "filetypes": ["dockerfile"],
+      "args": ["--stdio"]
+    },
+    "terraform": {
+      "command": "terraform-ls",
+      "args": ["serve"],
+      "filetypes": [
+        "terraform",
+        "tf"
+      ],
+      "initializationOptions": {},
+      "settings": {}
+    },
+    "efm": {
+      "command": "efm-langserver",
+      "args": [],
+      "filetypes": ["markdown"]
+    }
+  }
+}

@@ -130,6 +130,24 @@ let g:airline#extensions#tabline#enabled = 1
 noremap <C-t> :bnext<CR> 
 noremap <C-w> :bdelete<CR>
 
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+let g:coc_global_extensions = [
+  \ 'coc-json',
+  \ 'coc-yaml',
+  \ 'coc-tsserver',
+  \ 'coc-prettier',
+  \ 'coc-eslint',
+  \ 'coc-deno',
+  \ 'coc-python',
+  \ 'coc-tailwindcss',
+  \ 'coc-sh',
+  \ 'coc-diagnostic',
+  \ 'coc-vimlsp',
+  \ 'coc-go',
+  \ 'coc-markdownlint',
+  \ 'coc-spell-checker',
+  \ ]
+
 call plug#end()
 
 colorscheme github_dimmed
