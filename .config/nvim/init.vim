@@ -130,9 +130,12 @@ let g:airline#extensions#tabline#enabled = 1
 noremap <C-t> :bnext<CR> 
 noremap <C-w> :bdelete<CR>
 
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
-                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+Plug 'neoclide/coc.nvim', { 'branch': 'release' }
+Plug 'cohama/lexima.vim'
+Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
+call plug#end()
+
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<C-r>=coc#on_enter()\<CR>"
 let g:coc_global_extensions = [
   \ 'coc-json',
   \ 'coc-yaml',
@@ -149,12 +152,6 @@ let g:coc_global_extensions = [
   \ 'coc-markdownlint',
   \ 'coc-spell-checker',
   \ ]
-
-Plug 'cohama/lexima.vim'
-
-Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
-
-call plug#end()
 
 lua <<EOF
 require('nvim-treesitter.configs').setup {
