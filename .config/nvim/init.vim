@@ -152,6 +152,16 @@ let g:coc_global_extensions = [
 
 Plug 'cohama/lexima.vim'
 
+Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
+
 call plug#end()
+
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  highlight = {
+    enable = true,
+  }
+}
+EOF
 
 colorscheme github_dimmed
