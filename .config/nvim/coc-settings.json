@@ -38,5 +38,11 @@
       "args": [],
       "filetypes": ["markdown"]
     }
-  }
+  },
+  "cSpell.ignoreWords": [
+    "deno",
+    "gopls",
+    "langserver",
+    "tmpl"
+  ]
 }
