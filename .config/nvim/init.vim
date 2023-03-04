@@ -28,6 +28,7 @@ set ruler
 set cursorline
 set colorcolumn=100
 set guicursor=
+set termguicolors
 set whichwrap=b,s,h,l<,>,~,[,]
 set undodir=$HOME/.config/nvim/undo
 set undofile
@@ -88,4 +89,24 @@ function! EmacsCtrlK()
     endif
   endif
 endfunction
+
+function! s:install_vim_plug() abort
+  let l:plug_url = 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  let l:autoload_dir = expand('$HOME/.local/share/nvim/site/autoload')
+  if !isdirectory(l:autoload_dir) | call mkdir(l:autoload_dir, 'p', 0700) | endif
+  let l:plug_path = expand(l:autoload_dir . '/plug.vim')
+  call system('curl -fLo ' . l:plug_path . ' ' . l:plug_url)
+endfunction
+
+if empty(globpath(&runtimepath, '*/plug.vim'))
+  call s:install_vim_plug()
+endif
+
+call plug#begin(expand('$HOME/.local/share/nvim/plugged'))
+
+Plug 'projekt0n/github-nvim-theme', { 'tag': 'v0.0.7' }
+
+call plug#end()
+
+colorscheme github_dark_default
 
