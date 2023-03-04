@@ -123,6 +123,11 @@ nnoremap <C-y> :NERDTreeToggle<CR>
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ryanoasis/vim-devicons'
 
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
+
 call plug#end()
 
 colorscheme github_dimmed
