@@ -4,3 +4,6 @@ configstore
 .config/gh/hosts.yml
 .config/raycast
 .config/fish/ignored.fish
+.config/nvim/undo/*
+!.config/nvim/undo/.gitkeep
+

@@ -19,6 +19,8 @@ set wildmode=longest,full
 set ruler
 set cursorline
 set guicursor=
+set undodir=$HOME/.config/nvim/undo
+set undofile
 
 noremap <Space>s :source $HOME/.config/nvim/init.vim<CR>
 noremap ; :
