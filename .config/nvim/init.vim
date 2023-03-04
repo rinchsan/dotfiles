@@ -7,8 +7,14 @@ set signcolumn=yes
 set expandtab
 set tabstop=4
 set shiftwidth=2
+set shiftround
 set autoindent
 set smartindent
+set showmatch
+set matchpairs& matchpairs+=<:>
+set matchtime=3
+set backspace=indent,eol,start
+set virtualedit+=block
 set list
 set listchars=tab:»~,trail:~
 set wildmenu
@@ -20,6 +26,7 @@ set clipboard+=unnamed,unnamedplus
 set wildmode=longest,full
 set ruler
 set cursorline
+set colorcolumn=100
 set guicursor=
 set whichwrap=b,s,h,l<,>,~,[,]
 set undodir=$HOME/.config/nvim/undo
@@ -31,6 +38,10 @@ set incsearch
 set ignorecase
 set smartcase
 set wrapscan
+set infercase
+set nostartofline
+set cmdheight=2
+set laststatus=2
 
 noremap <Space>s :source $HOME/.config/nvim/init.vim<CR>
 noremap ; :
