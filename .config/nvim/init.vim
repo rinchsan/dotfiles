@@ -1,5 +1,7 @@
 let $LANG = 'en_US.UTF-8'
 
+syntax enable
+
 set number
 set signcolumn=yes
 set expandtab
@@ -19,8 +21,16 @@ set wildmode=longest,full
 set ruler
 set cursorline
 set guicursor=
+set whichwrap=b,s,h,l<,>,~,[,]
 set undodir=$HOME/.config/nvim/undo
 set undofile
+set splitbelow
+set splitright
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
+set wrapscan
 
 noremap <Space>s :source $HOME/.config/nvim/init.vim<CR>
 noremap ; :
