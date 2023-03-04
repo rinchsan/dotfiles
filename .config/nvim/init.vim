@@ -30,7 +30,7 @@ set colorcolumn=100
 set guicursor=
 set termguicolors
 set whichwrap=b,s,h,l<,>,~,[,]
-set undodir=$HOME/.config/nvim/undo
+set undodir=$XDG_CONFIG_HOME/nvim/undo
 set undofile
 set splitbelow
 set splitright
@@ -43,6 +43,7 @@ set infercase
 set nostartofline
 set cmdheight=2
 set laststatus=2
+set updatetime=300
 
 noremap s :source $XDG_CONFIG_HOME/nvim/init.vim<CR>
 noremap ; :
