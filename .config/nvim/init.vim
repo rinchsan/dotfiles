@@ -43,7 +43,7 @@ set nostartofline
 set cmdheight=2
 set laststatus=2
 
-noremap <Space>s :source $HOME/.config/nvim/init.vim<CR>
+noremap s :source $HOME/.config/nvim/init.vim<CR>
 noremap ; :
 noremap <C-p> <Up>
 noremap <C-n> <Down>
