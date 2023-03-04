@@ -8,7 +8,7 @@ set shiftwidth=2
 set autoindent
 set smartindent
 set list
-set listchars=tab:»-,trail:-
+set listchars=tab:»~,trail:~
 set wildmenu
 set encoding=utf-8
 set fileencoding=utf-8
@@ -21,6 +21,7 @@ set cursorline
 set guicursor=
 
 noremap <Space>s :source $HOME/.config/nvim/init.vim<CR>
+noremap ; :
 noremap <C-p> <Up>
 noremap <C-n> <Down>
 noremap <C-f> <Right>
