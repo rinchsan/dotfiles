@@ -131,6 +131,8 @@ noremap <C-t> :bnext<CR>
 noremap <C-w> :bdelete<CR>
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 let g:coc_global_extensions = [
   \ 'coc-json',
   \ 'coc-yaml',
