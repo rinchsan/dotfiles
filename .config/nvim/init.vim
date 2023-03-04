@@ -150,6 +150,8 @@ let g:coc_global_extensions = [
   \ 'coc-spell-checker',
   \ ]
 
+Plug 'cohama/lexima.vim'
+
 call plug#end()
 
 colorscheme github_dimmed
