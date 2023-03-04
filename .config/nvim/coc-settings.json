@@ -31,11 +31,6 @@
       ],
       "initializationOptions": {},
       "settings": {}
-    },
-    "efm": {
-      "command": "efm-langserver",
-      "args": [],
-      "filetypes": ["markdown"]
     }
   },
   "cSpell.ignoreWords": [
