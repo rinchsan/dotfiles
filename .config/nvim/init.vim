@@ -5,7 +5,10 @@ set signcolumn=yes
 set expandtab
 set tabstop=4
 set shiftwidth=2
+set autoindent
 set smartindent
+set list
+set listchars=tab:»-,trail:-
 set wildmenu
 set encoding=utf-8
 set fileencoding=utf-8
