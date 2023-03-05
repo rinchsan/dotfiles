@@ -122,6 +122,8 @@ Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 call plug#end()
 
+colorscheme github_dimmed
+
 let g:NERDTreeShowHidden = 1
 augroup nerdtree
   autocmd!
@@ -164,4 +166,7 @@ EOF
 
 nnoremap <C-e> :<C-u>Files<CR>
 
-colorscheme github_dimmed
+nnoremap <C-g> :terminal<CR>
+tnoremap <ESC> <C-\><C-n>
+autocmd TermOpen * startinsert
+autocmd TermClose * execute 'bdelete! ' . expand('<abuf>>')

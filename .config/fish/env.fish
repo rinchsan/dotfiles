@@ -5,4 +5,5 @@ set -gx PATH $PATH /flutter/bin
 set -gx PATH $PATH $HOME/google-cloud-sdk/bin
 set -gx XDG_CONFIG_HOME $HOME/.config
 set -gx XDG_DATA_HOME $HOME/.local/share
+set -gx FZF_DEFAULT_COMMAND 'rg --hidden --no-ignore --files'
 
