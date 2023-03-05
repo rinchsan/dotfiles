@@ -62,7 +62,7 @@ noremap <C-e> <End>
 noremap <C-h> <BS>
 noremap <C-d> <Del>
 
-inoremap <silent> <ESC> <ESC>:
+inoremap <ESC> <ESC>:
 inoremap <silent> <C-p> <Up>
 inoremap <silent> <C-n> <Down>
 inoremap <silent> <C-f> <Right>
