@@ -1,4 +1,5 @@
 let $LANG = 'en_US.UTF-8'
+let g:mapleader = "\<Space>"
 
 syntax enable
 
@@ -62,7 +63,7 @@ noremap <C-e> <End>
 noremap <C-h> <BS>
 noremap <C-d> <Del>
 
-inoremap <ESC> <ESC>:call system('fcittx-remote -c')<CR>:
+inoremap <silent> <ESC> <ESC>:
 inoremap <silent> <C-p> <Up>
 inoremap <silent> <C-n> <Down>
 inoremap <silent> <C-f> <Right>
