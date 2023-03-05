@@ -129,14 +129,10 @@ augroup nerdtree
   autocmd!
   autocmd FileType nerdtree setlocal signcolumn=auto
 augroup END
-nnoremap <C-y> :NERDTreeToggle<CR>
 
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
-noremap <silent> <C-t> :bnext<CR>
-noremap <silent> <C-w> :bdelete<CR>
 
-inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<C-r>=coc#on_enter()\<CR>"
 let g:coc_global_extensions = [
   \ 'coc-json',
   \ 'coc-yaml',
@@ -155,6 +151,13 @@ let g:coc_global_extensions = [
   \ ]
 
 call lexima#add_rule({'char': '<', 'input_after': '>'})
+
+nnoremap <C-y> :NERDTreeToggle<CR>
+
+noremap <silent> <C-w> :bdelete<CR>
+noremap <silent> <C-t> :bnext<CR>
+
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<C-r>=coc#on_enter()\<CR>"
 
 lua <<EOF
 require('nvim-treesitter.configs').setup {
