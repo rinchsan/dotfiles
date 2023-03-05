@@ -51,28 +51,6 @@ set visualbell t_vb=
 set noerrorbells
 set foldmethod=manual
 
-noremap s :source $XDG_CONFIG_HOME/nvim/init.vim<CR>
-noremap ; :
-noremap <C-p> <Up>
-noremap <C-n> <Down>
-noremap <C-f> <Right>
-noremap <C-b> <Left>
-noremap <C-a> <Home>
-noremap <C-e> <End>
-noremap <C-h> <BS>
-noremap <C-d> <Del>
-
-inoremap <silent> <ESC> <ESC>:<C-u>
-inoremap <silent> <C-p> <Up>
-inoremap <silent> <C-n> <Down>
-inoremap <silent> <C-f> <Right>
-inoremap <silent> <C-b> <Left>
-inoremap <silent> <C-a> <Home>
-inoremap <silent> <C-e> <End>
-inoremap <silent> <C-h> <BS>
-inoremap <silent> <C-d> <Del>
-inoremap <silent> <C-k> <ESC>:call EmacsCtrlK()<CR>i
-
 function! EmacsCtrlK()
   let s:currentLine = getline('.')
   let s:nextLine = getline(line('.')+1)
@@ -174,3 +152,25 @@ nnoremap <C-g> :terminal<CR>
 tnoremap <ESC> <C-\><C-n>
 autocmd TermOpen * startinsert
 autocmd TermClose * execute 'bdelete! ' . expand('<abuf>>')
+
+noremap s :source $XDG_CONFIG_HOME/nvim/init.vim<CR>
+noremap ; :
+noremap <C-p> <Up>
+noremap <C-n> <Down>
+noremap <C-f> <Right>
+noremap <C-b> <Left>
+noremap <C-a> <Home>
+noremap <C-e> <End>
+noremap <C-h> <BS>
+noremap <C-d> <Del>
+
+inoremap <silent> <ESC> <ESC>:<C-u>
+inoremap <silent> <C-p> <Up>
+inoremap <silent> <C-n> <Down>
+inoremap <silent> <C-f> <Right>
+inoremap <silent> <C-b> <Left>
+inoremap <silent> <C-a> <Home>
+inoremap <silent> <C-e> <End>
+inoremap <silent> <C-h> <BS>
+inoremap <silent> <C-d> <Del>
+inoremap <silent> <C-k> <ESC>:call EmacsCtrlK()<CR>i
