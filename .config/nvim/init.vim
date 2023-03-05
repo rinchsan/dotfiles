@@ -38,7 +38,6 @@ set splitright
 set hlsearch
 set incsearch
 set ignorecase
-set smartcase
 set wrapscan
 set infercase
 set nostartofline
@@ -119,6 +118,8 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'cohama/lexima.vim'
 Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
 call plug#end()
 
 let g:NERDTreeShowHidden = 1
@@ -160,5 +161,7 @@ require('nvim-treesitter.configs').setup {
   }
 }
 EOF
+
+nnoremap <C-e> :<C-u>Files<CR>
 
 colorscheme github_dimmed
