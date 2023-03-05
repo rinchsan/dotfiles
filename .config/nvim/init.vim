@@ -63,7 +63,7 @@ noremap <C-e> <End>
 noremap <C-h> <BS>
 noremap <C-d> <Del>
 
-inoremap <silent> <ESC> <ESC>:
+inoremap <silent> <ESC> <ESC>:<C-u>
 inoremap <silent> <C-p> <Up>
 inoremap <silent> <C-n> <Down>
 inoremap <silent> <C-f> <Right>
@@ -130,8 +130,8 @@ nnoremap <C-y> :NERDTreeToggle<CR>
 
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
-noremap <C-t> :bnext<CR>~
-noremap <C-w> :bdelete<CR>
+noremap <silent> <C-t> :bnext<CR>
+noremap <silent> <C-w> :bdelete<CR>
 
 inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<C-r>=coc#on_enter()\<CR>"
 let g:coc_global_extensions = [
