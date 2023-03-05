@@ -151,6 +151,8 @@ let g:coc_global_extensions = [
   \ 'coc-spell-checker',
   \ ]
 
+call lexima#add_rule({'char': '<', 'input_after': '>'})
+
 lua <<EOF
 require('nvim-treesitter.configs').setup {
   highlight = {
