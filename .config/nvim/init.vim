@@ -130,6 +130,7 @@ let g:coc_global_extensions = [
   \ ]
 
 call lexima#add_rule({'char': '<', 'input_after': '>'})
+call lexima#add_rule({'char': '<BS>', 'at': '<$#>', 'delete': 1})
 
 nnoremap <C-y> :NERDTreeToggle<CR>
 
