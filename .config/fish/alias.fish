@@ -41,7 +41,7 @@ alias rei='restart_eikana'
 alias ip='curl https://checkip.amazonaws.com/'
 alias k='kubectl'
 alias tmux='tmux -u'
-alias n='nvim'
+alias n='nvim (fzf)'
 
 function cd
     if test (count $argv) -gt 1
