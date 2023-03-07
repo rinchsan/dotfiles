@@ -128,6 +128,8 @@ let g:coc_global_extensions = [
   \ 'coc-markdownlint',
   \ 'coc-lua',
   \ ]
+noremap <silent> b :call CocActionAsync('jumpDefinition')
+autocmd CursorHold * silent call CocActionAsync('highlight')
 
 call lexima#add_rule({'char': '<', 'input_after': '>'})
 call lexima#add_rule({'char': '<BS>', 'at': '<$#>', 'delete': 1})
