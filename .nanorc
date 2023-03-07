@@ -1,4 +1,0 @@
-include "/usr/local/share/nano/*.nanorc"
-
-set autoindent
-set linenumbers

@@ -11,7 +11,7 @@
 	sync = !git switch $(git remote show origin | grep 'HEAD branch' | awk '{print $NF}') && git pull origin $(git remote show origin | grep 'HEAD branch' | awk '{print $NF}') && git fetch --prune && git branch -d $(git branch --merged | grep -v '*')
 	tags = !git tag --sort=-creatordate | head -n 10
 [core]
-	editor = nano
+	editor = nvim
 	hooksPath = /dev/null
 	pager = delta
 [diff]
