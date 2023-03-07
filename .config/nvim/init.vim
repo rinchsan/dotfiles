@@ -127,6 +127,7 @@ let g:coc_global_extensions = [
   \ 'coc-go',
   \ 'coc-markdownlint',
   \ 'coc-spell-checker',
+  \ 'coc-lua',
   \ ]
 
 call lexima#add_rule({'char': '<', 'input_after': '>'})
