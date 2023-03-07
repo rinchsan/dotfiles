@@ -7,7 +7,7 @@ set number
 set signcolumn=yes
 set expandtab
 set tabstop=4
-set shiftwidth=2
+set shiftwidth=4
 set shiftround
 set autoindent
 set smartindent
