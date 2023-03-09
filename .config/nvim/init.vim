@@ -30,7 +30,6 @@ set cursorline
 set colorcolumn=100
 set guicursor=
 set termguicolors
-set whichwrap=b,s,h,l<,>,~,[,]
 set undodir=$XDG_CONFIG_HOME/nvim/undo
 set undofile
 set splitbelow
