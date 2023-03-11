@@ -38,6 +38,7 @@ set hlsearch
 set incsearch
 set ignorecase
 set wrapscan
+set nowrap
 set infercase
 set nostartofline
 set nowritebackup
@@ -144,9 +145,13 @@ inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<C
 
 lua <<EOF
 require('nvim-treesitter.configs').setup {
+  auto_install = true,
   highlight = {
     enable = true,
-  }
+  },
+  indent = {
+    enable = true,
+  },
 }
 EOF
 
