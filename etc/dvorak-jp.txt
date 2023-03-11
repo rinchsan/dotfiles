@@ -298,8 +298,8 @@ vi	ヴィ
 vo	ヴォ
 vu	ヴ
 vv	っ	v
-w'	わい
 wa	わ
+ww	っ	w
 we	うぇ
 wha	うぁ
 whe	うぇ
