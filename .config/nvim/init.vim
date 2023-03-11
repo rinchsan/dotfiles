@@ -150,6 +150,8 @@ require('nvim-treesitter.configs').setup {
 }
 EOF
 
+nnoremap <C-[> <C-o>
+nnoremap <C-]> <C-i>
 nnoremap <C-o> :<C-u>Files<CR>
 
 nnoremap <C-g> :terminal<CR>
