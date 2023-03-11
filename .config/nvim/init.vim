@@ -127,9 +127,9 @@ let g:coc_global_extensions = [
   \ 'coc-markdownlint',
   \ 'coc-lua',
   \ ]
-noremap <silent> bb :call CocActionAsync('jumpDefinition')<CR>
-noremap <silent> bi :call CocActionAsync('jumpImplementation')<CR>
-noremap <silent> bu :call CocActionAsync('jumpReferences')<CR>
+noremap <silent> bb :call CocActionAsync('jumpDefinition')<CR>zz
+noremap <silent> bi :call CocActionAsync('jumpImplementation')<CR>zz
+noremap <silent> bu :call CocActionAsync('jumpReferences')<CR>zz
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
 call lexima#add_rule({'char': '<', 'input_after': '>'})
