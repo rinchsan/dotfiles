@@ -88,6 +88,7 @@ endif
 
 call plug#begin(expand('$XDG_DATA_HOME/nvim/plugged'))
 Plug 'projekt0n/github-nvim-theme', { 'tag': 'v0.0.7' }
+Plug 'mattn/vim-goimports'
 Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'preservim/nerdcommenter'
 Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -102,6 +103,9 @@ Plug 'junegunn/fzf.vim'
 call plug#end()
 
 colorscheme github_dimmed
+
+let g:goimports_simplify = 1
+let g:goimports_cmd = 'gosimports'
 
 let g:NERDTreeShowHidden = 1
 augroup nerdtree
