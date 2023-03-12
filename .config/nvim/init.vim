@@ -140,7 +140,7 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 call lexima#add_rule({'char': '<', 'input_after': '>'})
 call lexima#add_rule({'char': '<BS>', 'at': '<$#>', 'delete': 1})
 
-nnoremap <C-y> :NERDTreeToggle<CR>
+nnoremap <silent> <C-y> :NERDTreeToggle<CR>
 
 noremap <silent> <C-w> :bdelete<CR>
 noremap <silent> <C-t> :bnext<CR>
