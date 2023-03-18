@@ -42,6 +42,7 @@ alias ip='curl https://checkip.amazonaws.com/'
 alias k='kubectl'
 alias tmux='tmux -u'
 alias n='nvim (fzf)'
+alias cf='cat (fzf)'
 
 function cd
     if test (count $argv) -gt 1
