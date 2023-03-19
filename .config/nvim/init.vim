@@ -88,6 +88,7 @@ endif
 
 call plug#begin(expand('$XDG_DATA_HOME/nvim/plugged'))
 Plug 'projekt0n/github-nvim-theme', { 'tag': 'v0.0.7' }
+Plug 'windwp/nvim-projectconfig'
 Plug 'APZelos/blamer.nvim'
 Plug 'mattn/vim-goimports'
 Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
@@ -104,6 +105,10 @@ Plug 'junegunn/fzf.vim'
 call plug#end()
 
 colorscheme github_dimmed
+
+lua <<EOF
+require('nvim-projectconfig').setup()
+EOF
 
 let g:blamer_date_format = '%y/%m/%d %H:%M'
 let g:blamer_delay = 500

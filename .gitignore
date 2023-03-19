@@ -5,6 +5,7 @@ configstore
 .config/raycast
 .config/fish/ignored.fish
 .config/nvim/undo/*
+.config/nvim/projects/*
 .config/coc/*
 !.gitkeep
 
