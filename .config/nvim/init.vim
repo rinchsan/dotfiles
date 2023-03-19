@@ -106,6 +106,8 @@ call plug#end()
 colorscheme github_dimmed
 
 let g:blamer_date_format = '%y/%m/%d %H:%M'
+let g:blamer_delay = 500
+noremap <silent> gb :BlamerToggle<CR>
 
 let g:goimports_simplify = 1
 let g:goimports_cmd = 'gosimports'
