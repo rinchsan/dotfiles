@@ -181,8 +181,6 @@ noremap <C-a> <Home>
 noremap <C-e> <End>
 noremap <C-h> <BS>
 noremap <C-d> <Del>
-noremap de d$
-noremap da d0
 noremap dd dd<ESC>
 
 inoremap <silent> <C-p> <Up>
