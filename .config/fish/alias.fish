@@ -11,6 +11,8 @@ alias co='git switch'
 alias dic='git diff --cached'
 alias diw='git diw'
 alias g='gh'
+alias pv='gh pr view --web'
+alias gv='gh repo view --web'
 
 ################
 ###  docker  ###
