@@ -45,6 +45,7 @@ alias k='kubectl'
 alias tmux='tmux -u'
 alias n='nvim (fzf)'
 alias cf='cat (fzf)'
+alias f='fzf'
 
 function cd
     if test (count $argv) -gt 1
