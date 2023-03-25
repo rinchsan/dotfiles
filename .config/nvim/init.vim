@@ -127,6 +127,7 @@ let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 
 let g:coc_global_extensions = [
+  \ 'coc-lists',
   \ 'coc-json',
   \ 'coc-yaml',
   \ 'coc-tsserver',
