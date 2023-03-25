@@ -143,6 +143,9 @@ let g:coc_global_extensions = [
   \ 'coc-markdownlint',
   \ 'coc-lua',
   \ ]
+noremap <silent> <leader>f :CocList grep<CR>
+noremap <silent> <leader>o :CocList symbols<CR>
+noremap <silent> <leader>d :CocList diagnostics<CR>
 noremap <silent> <leader>b :call CocActionAsync('jumpDefinition')<CR>zz
 noremap <silent> <leader>i :call CocActionAsync('jumpImplementation')<CR>zz
 noremap <silent> <leader>u :call CocActionAsync('jumpReferences')<CR>zz
