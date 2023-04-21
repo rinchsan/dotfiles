@@ -34,7 +34,7 @@ font:
     y: 1
 colors:
   primary:
-    background: '#000000'
+    background: '#22272E'
     foreground: '#c7c7c7'
   cursor:
     text: CellBackground
