@@ -87,6 +87,7 @@ if empty(globpath(&runtimepath, '*/plug.vim'))
 endif
 
 call plug#begin(expand('$XDG_DATA_HOME/nvim/plugged'))
+Plug 'tonchis/vim-to-github',
 Plug 'projekt0n/github-nvim-theme', { 'tag': 'v0.0.7' }
 Plug 'windwp/nvim-projectconfig'
 Plug 'APZelos/blamer.nvim'
