@@ -92,9 +92,9 @@ cask "shottr"
 cask "slack"
 cask "the-unarchiver"
 cask "visual-studio-code"
+cask "xcodes"
 cask "zoom"
 
 mas "Keynote", id: 409183694
 mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
-mas "Xcode", id: 497799835
