@@ -5,6 +5,7 @@ set -eu
 sudo softwareupdate --install-rosetta
 brew bundle install --file="${HOME}"/dotfiles/.Brewfile
 
+gh auth login
 gh release download --repo marcosnils/bin --pattern '*Darwin_x86*'
 mv bin*Darwin_x86* bin
 chmod +x bin
