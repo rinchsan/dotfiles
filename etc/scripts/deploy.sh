@@ -2,7 +2,7 @@
 
 set -eu
 
-DOTFILES=$(dirname "$(cd "$(dirname "${0}")" && pwd)")
+DOTFILES="${HOME}"/go/src/github.com/rinchsan/dotfiles
 
 cd "${DOTFILES}"
 
