@@ -1,14 +1,14 @@
 {
-    "default_path": "/usr/local/bin",
+    "default_path": "/opt/homebrew/bin/bin",
     "bins": {
-        "/usr/local/bin/hgrep": {
-            "path": "/usr/local/bin/hgrep",
+        "/opt/homebrew/bin/hgrep": {
+            "path": "/opt/homebrew/bin/hgrep",
             "remote_name": "hgrep",
-            "version": "v0.2.2",
+            "version": "v0.3.2",
             "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
             "url": "github.com/rhysd/hgrep",
-            "provider": "github",
-            "package_path": "hgrep-v0.2.2-x86_64-apple-darwin/hgrep"
+            "provider": "",
+            "package_path": ""
         }
     }
 }

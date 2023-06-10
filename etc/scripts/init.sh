@@ -9,7 +9,7 @@ gh auth login
 gh release download --repo marcosnils/bin --pattern '*Darwin_arm64'
 mv bin*Darwin_arm64 bin
 chmod +x bin
-sudo mv bin /usr/local/bin/bin
+sudo mv bin /opt/homebrew/bin/bin
 bin ensure
 
 echo 'Changing default shell to fish'
