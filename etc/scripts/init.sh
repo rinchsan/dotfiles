@@ -6,10 +6,10 @@ sudo softwareupdate --install-rosetta
 brew bundle install --file="${HOME}"/dotfiles/.Brewfile
 
 gh auth login
-gh release download --repo marcosnils/bin --pattern '*Darwin_x86*'
-mv bin*Darwin_x86* bin
+gh release download --repo marcosnils/bin --pattern '*Darwin_arm64'
+mv bin*Darwin_arm64 bin
 chmod +x bin
-mv bin /usr/local/bin/bin
+sudo mv bin /usr/local/bin/bin
 bin ensure
 
 echo 'Changing default shell to fish'
@@ -17,8 +17,8 @@ which fish | sudo tee -a /etc/shells
 chsh -s "$(which fish)"
 
 echo 'Changing MacOS settings'
-defaults write -g InitialKeyRepeat -int 12 # normal minimum is 15 (225 ms)
-defaults write -g KeyRepeat -int 1 # normal minimum is 2 (30 ms)
+defaults write -g InitialKeyRepeat -int 12
+defaults write -g KeyRepeat -int 1
 defaults write -g AppleShowScrollBars -string "Always"
 defaults write -g NSAutomaticSpellingCorrectionEnabled -bool false
 defaults write -g AppleShowAllExtensions -bool true
@@ -34,16 +34,16 @@ defaults write com.apple.finder AppleShowAllFiles -bool YES
 defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool TRUE
 defaults write com.apple.dock autohide -bool true
 defaults write com.apple.symbolichotkeys.plist AppleSymbolicHotKeys -dict-add 27 "<dict><key>enabled</key><false/></dict>"
-defaults write com.apple.symbolichotkeys.plist AppleSymbolicHotKeys -dict-add 28 "<dict><key>enabled</key><false/></dic>"
-defaults write com.apple.symbolichotkeys.plist AppleSymbolicHotKeys -dict-add 29 "<dict><key>enabled</key><false/></dic>"
-defaults write com.apple.symbolichotkeys.plist AppleSymbolicHotKeys -dict-add 30 "<dict><key>enabled</key><false/></dic>"
-defaults write com.apple.symbolichotkeys.plist AppleSymbolicHotKeys -dict-add 31 "<dict><key>enabled</key><false/></dic>"
-defaults write com.apple.symbolichotkeys.plist AppleSymbolicHotKeys -dict-add 181 "<dict><key>enabled</key><false/></dic>"
-defaults write com.apple.symbolichotkeys.plist AppleSymbolicHotKeys -dict-add 182 "<dict><key>enabled</key><false/></dic>"
-defaults write com.apple.symbolichotkeys.plist AppleSymbolicHotKeys -dict-add 184 "<dict><key>enabled</key><false/></dic>"
+defaults write com.apple.symbolichotkeys.plist AppleSymbolicHotKeys -dict-add 28 "<dict><key>enabled</key><false/></dict>"
+defaults write com.apple.symbolichotkeys.plist AppleSymbolicHotKeys -dict-add 29 "<dict><key>enabled</key><false/></dict>"
+defaults write com.apple.symbolichotkeys.plist AppleSymbolicHotKeys -dict-add 30 "<dict><key>enabled</key><false/></dict>"
+defaults write com.apple.symbolichotkeys.plist AppleSymbolicHotKeys -dict-add 31 "<dict><key>enabled</key><false/></dict>"
+defaults write com.apple.symbolichotkeys.plist AppleSymbolicHotKeys -dict-add 181 "<dict><key>enabled</key><false/></dict>"
+defaults write com.apple.symbolichotkeys.plist AppleSymbolicHotKeys -dict-add 182 "<dict><key>enabled</key><false/></dict>"
+defaults write com.apple.symbolichotkeys.plist AppleSymbolicHotKeys -dict-add 184 "<dict><key>enabled</key><false/></dict>"
 
 networksetup -SetDNSServers Wi-Fi 1.1.1.1 1.0.0.1
 networksetup -SetV6Off Wi-Fi
 
 echo 'Rebooting to reflect settings'
-sudo shutdownn -r now
+sudo shutdown -r now
