@@ -2,6 +2,7 @@
 
 set -eu
 
+sudo softwareupdate --install-rosetta
 brew bundle install --file="${HOME}"/dotfiles/.Brewfile
 
 gh release download --repo marcosnils/bin --pattern '*Darwin_x86*'
