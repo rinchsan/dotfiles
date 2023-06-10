@@ -74,6 +74,7 @@ brew "weaveworks/tap/eksctl"
 brew "yarn"
 
 cask "alacritty"
+cask "bitwarden"
 cask "cmd-eikana"
 cask "discord"
 cask "docker"
@@ -88,13 +89,12 @@ cask "postman"
 cask "raycast"
 cask "session-manager-plugin"
 cask "shottr"
+cask "slack"
 cask "the-unarchiver"
 cask "visual-studio-code"
 cask "zoom"
 
-mas "Bitwarden", id: 1352778147
 mas "Keynote", id: 409183694
 mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
-mas "Slack", id: 803453959
 mas "Xcode", id: 497799835
