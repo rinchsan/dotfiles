@@ -51,6 +51,8 @@ defaults write com.apple.symbolichotkeys.plist AppleSymbolicHotKeys -dict-add 18
 defaults write com.apple.symbolichotkeys.plist AppleSymbolicHotKeys -dict-add 182 "<dict><key>enabled</key><false/></dict>"
 defaults write com.apple.symbolichotkeys.plist AppleSymbolicHotKeys -dict-add 184 "<dict><key>enabled</key><false/></dict>"
 
+sudo defaults write com.apple.universalaccess closeViewScrollWheelToggle -int 1
+
 networksetup -SetDNSServers Wi-Fi 1.1.1.1 1.0.0.1
 networksetup -SetV6Off Wi-Fi
 
