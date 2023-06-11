@@ -23,6 +23,7 @@ defaults write -g AppleShowScrollBars -string "Always"
 defaults write -g NSAutomaticSpellingCorrectionEnabled -bool false
 defaults write -g AppleShowAllExtensions -bool true
 
+defaults write com.apple.mouse.scaling -int 3
 defaults write com.apple.PowerChime ChimeOnNoHardware -bool true
 defaults write com.apple.finder ShowPathbar -bool true
 defaults write com.apple.finder ShowStatusBar -bool true
@@ -33,14 +34,6 @@ defaults write com.apple.SoftwareUpdate ConfigDataInstall -int 1
 defaults write com.apple.finder AppleShowAllFiles -bool YES
 defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool TRUE
 defaults write com.apple.dock autohide -bool true
-defaults write com.apple.symbolichotkeys.plist AppleSymbolicHotKeys -dict-add 27 "<dict><key>enabled</key><false/></dict>"
-defaults write com.apple.symbolichotkeys.plist AppleSymbolicHotKeys -dict-add 28 "<dict><key>enabled</key><false/></dict>"
-defaults write com.apple.symbolichotkeys.plist AppleSymbolicHotKeys -dict-add 29 "<dict><key>enabled</key><false/></dict>"
-defaults write com.apple.symbolichotkeys.plist AppleSymbolicHotKeys -dict-add 30 "<dict><key>enabled</key><false/></dict>"
-defaults write com.apple.symbolichotkeys.plist AppleSymbolicHotKeys -dict-add 31 "<dict><key>enabled</key><false/></dict>"
-defaults write com.apple.symbolichotkeys.plist AppleSymbolicHotKeys -dict-add 181 "<dict><key>enabled</key><false/></dict>"
-defaults write com.apple.symbolichotkeys.plist AppleSymbolicHotKeys -dict-add 182 "<dict><key>enabled</key><false/></dict>"
-defaults write com.apple.symbolichotkeys.plist AppleSymbolicHotKeys -dict-add 184 "<dict><key>enabled</key><false/></dict>"
 defaults write com.apple.dock wvous-tl-corner -int 2
 defaults write com.apple.dock wvous-tl-modifier -int 0
 defaults write com.apple.dock wvous-tr-corner -int 12
@@ -49,7 +42,14 @@ defaults write com.apple.dock wvous-bl-corner -int 11
 defaults write com.apple.dock wvous-bl-modifier -int 0
 defaults write com.apple.dock wvous-br-corner -int 4
 defaults write com.apple.dock wvous-br-modifier -int 0
-defaults write com.apple.mouse.scaling -int 3
+defaults write com.apple.symbolichotkeys.plist AppleSymbolicHotKeys -dict-add 27 "<dict><key>enabled</key><false/></dict>"
+defaults write com.apple.symbolichotkeys.plist AppleSymbolicHotKeys -dict-add 28 "<dict><key>enabled</key><false/></dict>"
+defaults write com.apple.symbolichotkeys.plist AppleSymbolicHotKeys -dict-add 29 "<dict><key>enabled</key><false/></dict>"
+defaults write com.apple.symbolichotkeys.plist AppleSymbolicHotKeys -dict-add 30 "<dict><key>enabled</key><false/></dict>"
+defaults write com.apple.symbolichotkeys.plist AppleSymbolicHotKeys -dict-add 31 "<dict><key>enabled</key><false/></dict>"
+defaults write com.apple.symbolichotkeys.plist AppleSymbolicHotKeys -dict-add 181 "<dict><key>enabled</key><false/></dict>"
+defaults write com.apple.symbolichotkeys.plist AppleSymbolicHotKeys -dict-add 182 "<dict><key>enabled</key><false/></dict>"
+defaults write com.apple.symbolichotkeys.plist AppleSymbolicHotKeys -dict-add 184 "<dict><key>enabled</key><false/></dict>"
 
 networksetup -SetDNSServers Wi-Fi 1.1.1.1 1.0.0.1
 networksetup -SetV6Off Wi-Fi
