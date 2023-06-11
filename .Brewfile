@@ -73,6 +73,7 @@ brew "wget"
 brew "weaveworks/tap/eksctl"
 brew "yarn"
 
+cask "1password"
 cask "alacritty"
 cask "bitwarden"
 cask "cmd-eikana"
