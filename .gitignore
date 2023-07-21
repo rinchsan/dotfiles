@@ -7,5 +7,6 @@ configstore
 .config/nvim/undo/*
 .config/nvim/projects/*
 .config/coc/*
+.config/karabiner/automatic_backups/*
 !.gitkeep
 
