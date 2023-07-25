@@ -151,7 +151,8 @@
                                         ],
                                         "optional": [
                                             "caps_lock",
-                                            "option"
+                                            "option",
+                                            "left_command"
                                         ]
                                     }
                                 },
@@ -514,7 +515,8 @@
                                         "optional": [
                                             "caps_lock",
                                             "shift",
-                                            "option"
+                                            "option",
+                                            "left_command"
                                         ]
                                     }
                                 },
@@ -586,7 +588,8 @@
                                         "optional": [
                                             "caps_lock",
                                             "shift",
-                                            "option"
+                                            "option",
+                                            "left_command"
                                         ]
                                     }
                                 },
