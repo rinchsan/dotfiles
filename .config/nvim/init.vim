@@ -128,7 +128,7 @@ nnoremap <silent> <C-y> :NERDTreeToggle<CR>
 let g:NERDCreateDefaultMappings = 0
 let g:NERDSpaceDelims = 1
 let g:NERDCommentEmptyLines = 1
-nnoremap <silent> <leader>cc :call nerdcommenter#Comment('a', 'toggle')<CR>
+nnoremap <silent> <leader>cm :call nerdcommenter#Comment('a', 'toggle')<CR>
 
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
