@@ -123,6 +123,12 @@ augroup nerdtree
   autocmd!
   autocmd FileType nerdtree setlocal signcolumn=auto
 augroup END
+nnoremap <silent> <C-y> :NERDTreeToggle<CR>
+
+let g:NERDCreateDefaultMappings = 0
+let g:NERDSpaceDelims = 1
+let g:NERDCommentEmptyLines = 1
+nnoremap <silent> <leader>cc :call nerdcommenter#Comment('a', 'toggle')<CR>
 
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
@@ -155,8 +161,6 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 
 call lexima#add_rule({'char': '<', 'input_after': '>'})
 call lexima#add_rule({'char': '<BS>', 'at': '<$#>', 'delete': 1})
-
-nnoremap <silent> <C-y> :NERDTreeToggle<CR>
 
 noremap <silent> <C-w> :bdelete<CR>
 noremap <silent> <C-t> :bnext<CR>
