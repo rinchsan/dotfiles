@@ -21,6 +21,14 @@
                         "description": "Emacs key bindings [control+keys] (rev 11)",
                         "manipulators": [
                             {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "^io\\.alacritty$",
+                                            "^org\\.alacritty$"
+                                        ]
+                                    }
+                                ],
                                 "from": {
                                     "key_code": "d",
                                     "modifiers": {
