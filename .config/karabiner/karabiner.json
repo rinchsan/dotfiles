@@ -23,6 +23,7 @@
                             {
                                 "conditions": [
                                     {
+                                        "type": "frontmost_application_unless",
                                         "bundle_identifiers": [
                                             "^io\\.alacritty$",
                                             "^org\\.alacritty$"
