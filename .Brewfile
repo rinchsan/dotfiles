@@ -11,6 +11,7 @@ tap "qmk/qmk"
 tap "rinchsan/tap"
 tap "Songmu/tap"
 
+brew "alp"
 brew "ansible"
 brew "avrdude"
 brew "awscli"
