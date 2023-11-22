@@ -7,10 +7,13 @@ shell:
     - -c
     - 'tmux a -t default || tmux new -s default\; source ~/.config/tmux/default.session.conf'
 window:
+  padding:
+    x: 5
+    y: 5
+  dynamic_padding: false
   startup_mode: Windowed
   title: Alacritty
   dynamic_title: true
-  decorations_theme_variant: None
 scrolling:
   history: 10000
   multiplier: 3
