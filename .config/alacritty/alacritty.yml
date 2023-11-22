@@ -17,6 +17,7 @@ key_bindings:
   - { key: Down,     mods: Command,         chars: "\x02j"  }
   - { key: B,        mods: Command|Control, chars: "\x02h"  }
   - { key: Space,    mods: Command,         chars: "\x02["  }
+  - { key: S,        mods: Control,         chars: "\x02"   }
 window:
   padding:
     x: 5
