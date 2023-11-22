@@ -6,6 +6,17 @@ shell:
     - -l
     - -c
     - 'tmux a -t default || tmux new -s default\; source ~/.config/tmux/tmux.conf'
+key_bindings:
+  - { key: C,        mods: Command,         chars: "\x02c"  }
+  - { key: RBracket, mods: Command,         chars: "\x02n"  }
+  - { key: LBracket, mods: Command,         chars: "\x02p"  }
+  - { key: T,        mods: Command,         chars: "\x02%"  }
+  - { key: N,        mods: Command,         chars: "\x02\"" }
+  - { key: Up,       mods: Command,         chars: "\x02k"  }
+  - { key: F,        mods: Command|Control, chars: "\x02l"  }
+  - { key: Down,     mods: Command,         chars: "\x02j"  }
+  - { key: B,        mods: Command|Control, chars: "\x02h"  }
+  - { key: Space,    mods: Command,         chars: "\x02["  }
 window:
   padding:
     x: 5
