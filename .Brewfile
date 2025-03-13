@@ -13,6 +13,7 @@ tap "Songmu/tap"
 
 brew "alp"
 brew "ansible"
+brew "asdf"
 brew "avrdude"
 brew "awscli"
 brew "bat"
