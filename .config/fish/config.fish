@@ -8,3 +8,5 @@ end
 if test -e ~/.config/fish/ignored.fish
   source ~/.config/fish/ignored.fish
 end
+
+string match -q "$TERM_PROGRAM" "kiro" and . (kiro --locate-shell-integration-path fish)
