@@ -8,5 +8,6 @@ configstore
 .config/nvim/projects/*
 .config/coc/*
 .config/karabiner/automatic_backups/*
+.config/claude
 !.gitkeep
 
