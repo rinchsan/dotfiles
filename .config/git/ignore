@@ -43,3 +43,4 @@ cover.html
 temp*.go
 temp*.sh
 *.pem
+.config/tool_state
