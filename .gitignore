@@ -9,5 +9,7 @@ configstore
 .config/coc/*
 .config/karabiner/automatic_backups/*
 .config/claude
+.config/tool_state
+.config/.android
+.config/swiftpm
 !.gitkeep
-
