@@ -18,6 +18,7 @@ configstore
 .claude/plugins/
 .claude/projects/
 .claude/sessions/
+.claude/shell-snapshots/
 .claude/history.jsonl
 .claude/mcp-needs-auth-cache.json
 .claude/policy-limits.json
