@@ -3,16 +3,6 @@
   "hooks": {
     "PreToolUse": [
       {
-        "matcher": "Bash",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "node \"$HOME/.claude/hooks/run-with-flags.js\" \"pre:bash:git-push-reminder\" \"hooks/pre-bash-git-push-reminder.js\" \"strict\""
-          }
-        ],
-        "description": "Reminder before git push to review changes"
-      },
-      {
         "matcher": "Write",
         "hooks": [
           {
