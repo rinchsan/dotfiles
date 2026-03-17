@@ -17,10 +17,10 @@ const {
   readFile,
   log,
   output
-} = require('lib/utils');
-const { getPackageManager, getSelectionPrompt } = require('lib/package-manager');
-const { listAliases } = require('lib/session-aliases');
-const { detectProjectType } = require('lib/project-detect');
+} = require('./lib/utils');
+const { getPackageManager, getSelectionPrompt } = require('./lib/package-manager');
+const { listAliases } = require('./lib/session-aliases');
+const { detectProjectType } = require('./lib/project-detect');
 
 async function main() {
   const sessionsDir = getSessionsDir();

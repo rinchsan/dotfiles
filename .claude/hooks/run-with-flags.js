@@ -11,7 +11,7 @@
 const fs = require('fs');
 const path = require('path');
 const { spawnSync } = require('child_process');
-const { isHookEnabled } = require('lib/hook-flags');
+const { isHookEnabled } = require('./lib/hook-flags');
 
 const MAX_STDIN = 1024 * 1024;
 

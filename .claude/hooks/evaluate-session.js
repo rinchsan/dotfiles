@@ -20,7 +20,7 @@ const {
   readFile,
   countInFile,
   log
-} = require('lib/utils');
+} = require('./lib/utils');
 
 // Read hook input from stdin (Claude Code provides transcript_path via stdin JSON)
 const MAX_STDIN = 1024 * 1024;

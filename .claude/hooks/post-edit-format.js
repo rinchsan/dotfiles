@@ -23,7 +23,7 @@ const path = require('path');
 // Shell metacharacters that cmd.exe interprets as command separators/operators
 const UNSAFE_PATH_CHARS = /[&|<>^%!]/;
 
-const { findProjectRoot, detectFormatter, resolveFormatterBin } = require('lib/resolve-formatter');
+const { findProjectRoot, detectFormatter, resolveFormatterBin } = require('./lib/resolve-formatter');
 
 const MAX_STDIN = 1024 * 1024; // 1MB limit
 

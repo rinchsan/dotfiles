@@ -18,7 +18,7 @@ const fs = require('fs');
 const path = require('path');
 const { spawnSync } = require('child_process');
 
-const { findProjectRoot, detectFormatter, resolveFormatterBin } = require('lib/resolve-formatter');
+const { findProjectRoot, detectFormatter, resolveFormatterBin } = require('./lib/resolve-formatter');
 
 const MAX_STDIN = 1024 * 1024;
 

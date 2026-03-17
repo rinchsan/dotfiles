@@ -12,7 +12,7 @@ const {
   ensureDir,
   appendFile,
   getClaudeDir,
-} = require('lib/utils');
+} = require('./lib/utils');
 
 const MAX_STDIN = 1024 * 1024;
 let raw = '';
