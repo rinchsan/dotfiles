@@ -13,3 +13,7 @@ configstore
 .config/.android
 .config/swiftpm
 !.gitkeep
+.claude/backups
+.claude/cache
+.claude/plugins
+.claude/projects
