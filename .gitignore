@@ -26,4 +26,4 @@ configstore
 .claude/history.jsonl
 .claude/mcp-needs-auth-cache.json
 .claude/policy-limits.json
-
+**/.claude/settings.local.json
