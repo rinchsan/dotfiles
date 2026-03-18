@@ -28,8 +28,8 @@ analyze_observations() {
 
   echo "[$(date)] Analyzing $obs_count observations for project ${PROJECT_NAME}..." >> "$LOG_FILE"
 
-  if [ "${CLV2_IS_WINDOWS:-false}" = "true" ] && [ "${ECC_OBSERVER_ALLOW_WINDOWS:-false}" != "true" ]; then
-    echo "[$(date)] Skipping claude analysis on Windows due to known non-interactive hang issue (#295). Set ECC_OBSERVER_ALLOW_WINDOWS=true to override." >> "$LOG_FILE"
+  if [ "${CLV2_IS_WINDOWS:-false}" = "true" ]; then
+    echo "[$(date)] Skipping claude analysis on Windows due to known non-interactive hang issue (#295)." >> "$LOG_FILE"
     return
   fi
 
@@ -44,7 +44,7 @@ analyze_observations() {
     return
   fi
 
-  prompt_file="$(mktemp "${TMPDIR:-/tmp}/ecc-observer-prompt.XXXXXX")"
+  prompt_file="$(mktemp "${TMPDIR:-/tmp}/observer-prompt.XXXXXX")"
   cat > "$prompt_file" <<PROMPT
 Read ${OBSERVATIONS_FILE} and identify patterns for the project ${PROJECT_NAME} (user corrections, error resolutions, repeated workflows, tool preferences).
 If you find 3+ occurrences of the same pattern, create an instinct file in ${INSTINCTS_DIR}/<id>.md.
@@ -83,22 +83,15 @@ Rules:
 - Examples of project patterns: use React functional components, follow Django REST framework conventions
 PROMPT
 
-  timeout_seconds="${ECC_OBSERVER_TIMEOUT_SECONDS:-120}"
-  max_turns="${ECC_OBSERVER_MAX_TURNS:-10}"
+  timeout_seconds=120
+  max_turns=10
   exit_code=0
 
-  case "$max_turns" in
-    ''|*[!0-9]*)
-      max_turns=10
-      ;;
-  esac
-
-  if [ "$max_turns" -lt 4 ]; then
-    max_turns=10
-  fi
-
-  # Prevent observe.sh from recording this automated Haiku session as observations
-  ECC_SKIP_OBSERVE=1 ECC_HOOK_PROFILE=minimal claude --model haiku --max-turns "$max_turns" --print < "$prompt_file" >> "$LOG_FILE" 2>&1 &
+  # Launch claude from a temp dir whose path contains "observer-sessions" so that
+  # observe.sh Layer 3 (path exclusions) skips hooks for this automated session,
+  # preventing a self-observation loop without needing env vars.
+  obs_tmpdir=$(mktemp -d "${TMPDIR:-/tmp}/observer-sessions.XXXXXX")
+  (cd "$obs_tmpdir" && claude --model haiku --max-turns "$max_turns" --print < "$prompt_file" >> "$LOG_FILE" 2>&1) &
   claude_pid=$!
 
   (
@@ -114,6 +107,7 @@ PROMPT
   exit_code=$?
   kill "$watchdog_pid" 2>/dev/null || true
   rm -f "$prompt_file"
+  rm -rf "$obs_tmpdir"
 
   if [ "$exit_code" -ne 0 ]; then
     echo "[$(date)] Claude analysis failed (exit $exit_code)" >> "$LOG_FILE"
