@@ -63,8 +63,8 @@ function maybeRunQualityGate(filePath) {
   filePath = path.resolve(filePath);
 
   const ext = path.extname(filePath).toLowerCase();
-  const fix = String(process.env.ECC_QUALITY_GATE_FIX || '').toLowerCase() === 'true';
-  const strict = String(process.env.ECC_QUALITY_GATE_STRICT || '').toLowerCase() === 'true';
+  const fix = true;
+  const strict = true;
 
   if (['.ts', '.tsx', '.js', '.jsx', '.json', '.md'].includes(ext)) {
     const projectRoot = findProjectRoot(path.dirname(filePath));
