@@ -100,6 +100,7 @@ cask "shottr"
 cask "slack"
 cask "visual-studio-code"
 cask "xcodes"
+cask "zed"
 cask "zoom"
 
 mas "Keynote", id: 409183694
