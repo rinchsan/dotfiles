@@ -7,6 +7,8 @@
       "Read",
       "Edit",
       "Bash(ls *)",
+      "Bash(grep *)",
+      "Bash(head *)",
       "Bash(git *)",
       "Bash(gh *)",
       "Bash(go *)",
