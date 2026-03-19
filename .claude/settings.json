@@ -6,6 +6,7 @@
       "WebFetch",
       "Read",
       "Edit",
+      "Write",
       "Bash(ls *)",
       "Bash(grep *)",
       "Bash(head *)",
