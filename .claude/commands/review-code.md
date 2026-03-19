@@ -1,6 +1,10 @@
+---
+description: Review code changes. Usage: /review-code <branch> [base-branch]
+---
+
 # Code Review
 
-Usage: /code-review <branch> [base-branch]
+Usage: /review-code <branch> [base-branch]
 
 - `<branch>`: Review target branch (required)
 - `[base-branch]`: Base branch for diff (optional, default: `main`)
