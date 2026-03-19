@@ -1,3 +1,7 @@
+---
+description: Run a sequential agent workflow for complex tasks. Usage: /orchestrate <feature|bugfix|refactor|security> <description>
+---
+
 # Orchestrate Command
 
 Sequential agent workflow for complex tasks.
