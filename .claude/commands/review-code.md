@@ -17,17 +17,33 @@ Extract `$BRANCH` and `$BASE` (default `main`) from `$ARGUMENTS`.
 
 ### 2. Ensure target branch is available locally
 
+Always fetch first to ensure both `$BASE` and `$BRANCH` remote refs are up to date:
+
 ```bash
-git switch $BRANCH 2>/dev/null || (git fetch -p && git switch $BRANCH)
+git fetch -p
+```
+
+Then switch to the branch (if it exists locally) or create it from the remote:
+
+```bash
+git switch $BRANCH
+```
+
+If that fails, create the local branch tracking the remote:
+
+```bash
+git switch -c $BRANCH origin/$BRANCH
 ```
 
 If switch still fails after fetch, report the error and stop.
 
 ### 3. Gather diff
 
+Use `origin/$BASE` for the base ref to avoid failures when `$BASE` has no local tracking branch:
+
 ```bash
-git diff $BASE...$BRANCH
-git diff --name-only $BASE...$BRANCH
+git diff origin/$BASE...$BRANCH
+git diff --name-only origin/$BASE...$BRANCH
 ```
 
 ### 4. Gather PR context (if a PR exists)
@@ -60,9 +76,11 @@ Use the PR description, review comments, and issue bodies as specification conte
 
 ### 5. Delegate review to the code-reviewer agent
 
+Launch the **code-reviewer** agent using the **Opus** model (`model: "opus"`).
+
 Pass all of the following to the **code-reviewer** agent:
 
-- The full diff (`git diff $BASE...$BRANCH`)
+- The full diff (`git diff origin/$BASE...$BRANCH`)
 - The list of changed files
 - PR title, description, and comments (if available)
 - Linked issue titles, bodies, and comments (if available)
