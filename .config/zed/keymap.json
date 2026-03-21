@@ -1,0 +1,58 @@
+// Zed keymap
+//
+// For information on binding keys, see the Zed
+// documentation: https://zed.dev/docs/key-bindings
+//
+// To see the default key bindings run `zed: open default keymap`
+// from the command palette.
+[
+  {
+    "use_key_equivalents": true,
+    "bindings": {
+      "cmd-o": "project_symbols::Toggle",
+      "ctrl-cmd-l": "editor::OpenPermalinkToLine",
+      "ctrl-alt-cmd-f": "pane::SplitRight",
+      "ctrl-alt-cmd-b": "pane::SplitLeft",
+    },
+  },
+  {
+    "context": "Workspace",
+    "use_key_equivalents": true,
+    "bindings": {
+      "cmd-b": null,
+      "cmd-r": null,
+      "cmd-alt-b": null,
+      "cmd-g": "go_to_line::Toggle",
+      "shift-cmd-r": ["pane::DeploySearch", { "replace_enabled": true }],
+    },
+  },
+  {
+    "context": "Editor",
+    "use_key_equivalents": true,
+    "bindings": {
+      "cmd-b": "editor::GoToDefinition",
+      "cmd-u": "editor::FindAllReferences",
+      "cmd-[": "pane::GoBack",
+      "cmd-]": "pane::GoForward",
+      "ctrl-shift-k": "editor::DeleteLine",
+      "cmd-alt-b": "editor::GoToImplementation",
+      "cmd-alt-r": "editor::Rename",
+      "cmd-r": "buffer_search::DeployReplace",
+      "shift-cmd-d": "editor::DuplicateLineDown",
+      "shift-cmd-m": "editor::MoveToEnclosingBracket",
+      "cmd-g": "go_to_line::Toggle",
+      "alt-up": "editor::AddSelectionAbove",
+      "alt-down": "editor::AddSelectionBelow",
+      "cmd-alt-up": "pane::SplitUp",
+      "cmd-alt-down": "pane::SplitDown",
+      "cmd-alt-c": "workspace::CopyRelativePath",
+    },
+  },
+  {
+    "context": "Editor && mode == full",
+    "use_key_equivalents": true,
+    "bindings": {
+      "shift-enter": "editor::NewlineBelow",
+    },
+  },
+]

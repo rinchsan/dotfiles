@@ -12,7 +12,7 @@ configstore
 .config/tool_state
 .config/.android
 .config/swiftpm
-!.gitkeep
+.config/zed/prompts/
 .claude/backups/
 .claude/cache/
 .claude/plugins/
@@ -28,3 +28,4 @@ configstore
 .claude/policy-limits.json
 .claude/remote-settings.json
 **/.claude/settings.local.json
+!.gitkeep
