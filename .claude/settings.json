@@ -112,17 +112,6 @@
           }
         ]
       }
-    ],
-    "SessionEnd": [
-      {
-        "matcher": "*",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "node \"$HOME/.claude/hooks/session-end-marker.js\""
-          }
-        ]
-      }
     ]
   }
 }
