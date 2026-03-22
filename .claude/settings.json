@@ -47,68 +47,15 @@
             "command": "node \"$HOME/.claude/hooks/doc-file-warning.js\""
           }
         ]
-      },
-      {
-        "matcher": "Edit|Write",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "node \"$HOME/.claude/hooks/suggest-compact.js\""
-          }
-        ]
-      }
-    ],
-    "PreCompact": [
-      {
-        "matcher": "*",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "node \"$HOME/.claude/hooks/pre-compact.js\""
-          }
-        ]
       }
     ],
     "PostToolUse": [
-      {
-        "matcher": "Edit|Write|MultiEdit",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "node \"$HOME/.claude/hooks/quality-gate.js\"",
-            "timeout": 30,
-            "async": true
-          }
-        ]
-      },
-      {
-        "matcher": "Edit",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "node \"$HOME/.claude/hooks/post-edit-format.js\""
-          }
-        ]
-      },
       {
         "matcher": "Edit",
         "hooks": [
           {
             "type": "command",
             "command": "node \"$HOME/.claude/hooks/post-edit-typecheck.js\""
-          }
-        ]
-      }
-    ],
-    "Stop": [
-      {
-        "matcher": "*",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "node \"$HOME/.claude/hooks/cost-tracker.js\"",
-            "timeout": 10,
-            "async": true
           }
         ]
       }
