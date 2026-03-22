@@ -15,7 +15,7 @@ Usage: /review-code <branch> [base-branch]
 
 Extract `$BRANCH` and `$BASE` (default `main`) from `$ARGUMENTS`.
 
-### 2. Ensure target branch is available locally
+### 2. Fetch latest remote state
 
 Always fetch first to ensure both `$BASE` and `$BRANCH` remote refs are up to date:
 
@@ -23,27 +23,27 @@ Always fetch first to ensure both `$BASE` and `$BRANCH` remote refs are up to da
 git fetch -p
 ```
 
-Then switch to the branch (if it exists locally) or create it from the remote:
+Verify the remote branch exists:
 
 ```bash
-git switch $BRANCH
+git ls-remote --exit-code origin $BRANCH
 ```
 
-If that fails, create the local branch tracking the remote:
-
-```bash
-git switch -c $BRANCH origin/$BRANCH
-```
-
-If switch still fails after fetch, report the error and stop.
+If the remote branch does not exist, report the error and stop.
 
 ### 3. Gather diff
 
-Use `origin/$BASE` for the base ref to avoid failures when `$BASE` has no local tracking branch:
+Use remote refs (`origin/`) for both sides so that no local checkout is required and the review always reflects the current state on the remote:
 
 ```bash
-git diff origin/$BASE...$BRANCH
-git diff --name-only origin/$BASE...$BRANCH
+git diff origin/$BASE...origin/$BRANCH
+git diff --name-only origin/$BASE...origin/$BRANCH
+```
+
+Also capture recent commit history on the branch for context:
+
+```bash
+git log origin/$BASE..origin/$BRANCH --oneline
 ```
 
 ### 4. Gather PR context (if a PR exists)
@@ -78,10 +78,13 @@ Use the PR description, review comments, and issue bodies as specification conte
 
 Launch the **code-reviewer** agent using the **Opus** model (`model: "opus"`).
 
+**CRITICAL: Always pass raw command output verbatim. Never manually transcribe, summarize, or paraphrase the diff or any other command output. Copy-paste the exact stdout from each command.**
+
 Pass all of the following to the **code-reviewer** agent:
 
-- The full diff (`git diff origin/$BASE...$BRANCH`)
-- The list of changed files
+- The full diff — copy the **exact raw output** of `git diff origin/$BASE...origin/$BRANCH` without any modification
+- The list of changed files — copy the **exact raw output** of `git diff --name-only origin/$BASE...origin/$BRANCH`
+- Commit history — copy the **exact raw output** of `git log origin/$BASE..origin/$BRANCH --oneline`
 - PR title, description, and comments (if available)
 - Linked issue titles, bodies, and comments (if available)
 
