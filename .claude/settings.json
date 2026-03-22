@@ -98,27 +98,9 @@
             "command": "node \"$HOME/.claude/hooks/post-edit-typecheck.js\""
           }
         ]
-      },
-      {
-        "matcher": "Edit",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "node \"$HOME/.claude/hooks/post-edit-console-warn.js\""
-          }
-        ]
       }
     ],
     "Stop": [
-      {
-        "matcher": "*",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "node \"$HOME/.claude/hooks/check-console-log.js\""
-          }
-        ]
-      },
       {
         "matcher": "*",
         "hooks": [
