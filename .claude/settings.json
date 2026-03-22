@@ -21,7 +21,9 @@
       "Bash(rg *)",
       "Bash(make *)",
       "Bash(npm *)",
-      "Bash(echo *)"
+      "Bash(echo *)",
+      "Bash(cat *)",
+      "Bash(find *)"
     ],
     "deny": [
       "Read(~/.ssh/**)",
