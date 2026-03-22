@@ -56,17 +56,6 @@
             "command": "node \"$HOME/.claude/hooks/suggest-compact.js\""
           }
         ]
-      },
-      {
-        "matcher": "*",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "bash \"$HOME/.claude/skills/continuous-learning-v2/hooks/observe.sh\" \"pre\"",
-            "timeout": 10,
-            "async": true
-          }
-        ]
       }
     ],
     "PreCompact": [
@@ -76,17 +65,6 @@
           {
             "type": "command",
             "command": "node \"$HOME/.claude/hooks/pre-compact.js\""
-          }
-        ]
-      }
-    ],
-    "SessionStart": [
-      {
-        "matcher": "*",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "node \"$HOME/.claude/hooks/session-start.js\""
           }
         ]
       }
@@ -129,17 +107,6 @@
             "command": "node \"$HOME/.claude/hooks/post-edit-console-warn.js\""
           }
         ]
-      },
-      {
-        "matcher": "*",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "bash \"$HOME/.claude/skills/continuous-learning-v2/hooks/observe.sh\" \"post\"",
-            "timeout": 10,
-            "async": true
-          }
-        ]
       }
     ],
     "Stop": [
@@ -149,28 +116,6 @@
           {
             "type": "command",
             "command": "node \"$HOME/.claude/hooks/check-console-log.js\""
-          }
-        ]
-      },
-      {
-        "matcher": "*",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "node \"$HOME/.claude/hooks/session-end.js\"",
-            "timeout": 10,
-            "async": true
-          }
-        ]
-      },
-      {
-        "matcher": "*",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "node \"$HOME/.claude/hooks/evaluate-session.js\"",
-            "timeout": 10,
-            "async": true
           }
         ]
       },
