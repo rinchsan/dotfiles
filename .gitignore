@@ -28,5 +28,6 @@ configstore
 .claude/mcp-needs-auth-cache.json
 .claude/policy-limits.json
 .claude/remote-settings.json
+.claude/stats-cache.json
 **/.claude/settings.local.json
 !.gitkeep
