@@ -36,3 +36,35 @@ The Feature Implementation Workflow describes the development pipeline: research
    - Detailed commit messages
    - Follow conventional commits format
    - See [git-workflow.md](./git-workflow.md) for commit message format and PR process
+
+## Automated Workflow with /ship
+
+Use `/ship <description> [--docs <path>]` to automate the full development lifecycle.
+The optional `--docs` flag sets the directory where design docs, ADRs, and plans are saved (default: `.claude/docs`).
+
+```
+1. Pre-flight    — recommend whether design phase is needed, get user confirmation
+2. Design        — /design (optional, creates design doc + ADR via architect agent)
+3. Plan          — /plan (creates work plan with risk assessment via architect agent)
+4. Worktree      — creates isolated git worktree for the branch
+5. Implement     — /implement (executes planned tasks, commits)
+6. Self-review   — code-reviewer agent reviews git diff main...HEAD
+7. Fix + Push    — fixes Critical/High issues, pushes branch
+8. PR            — creates draft PR via gh
+```
+
+Individual phase commands can also be run standalone:
+
+| Command | Purpose |
+| --- | --- |
+| `/design` | Requirements analysis and design doc creation (architect agent for docs/ADRs) |
+| `/plan` | Work plan creation from design docs (architect agent for risk assessment) |
+| `/implement` | Implementation from a work plan |
+
+Document templates are located in `.claude/docs/templates/`:
+- `design.md` — design document
+- `adr.md` — architecture decision record
+- `plan.md` — work plan
+
+Actual docs are saved under the docs directory (`<docs-dir>/design/`, `<docs-dir>/adr/`, `<docs-dir>/plans/`).
+Add these to your project's `.gitignore` if you don't want to commit them to version control.
