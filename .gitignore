@@ -23,7 +23,6 @@ configstore
 .claude/sessions/
 .claude/shell-snapshots/
 .claude/plans/
-.claude/metrics/
 .claude/file-history/
 .claude/telemetry/
 .claude/statsig/
