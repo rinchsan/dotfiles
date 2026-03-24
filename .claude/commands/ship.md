@@ -192,5 +192,35 @@ PR URL   : $PR_URL
 Branch   : $BRANCH_NAME
 Worktree : $WORKTREE_DIR
 
-To remove the worktree when done: git worktree remove "$WORKTREE_DIR"
+To address review comments, use /address-review.
+Once the PR is merged, say "merged" and cleanup will run automatically.
+```
+
+---
+
+## Phase 9: Post-merge cleanup (run when user reports the PR is merged)
+
+Run the following in order:
+
+```bash
+# Fetch remote state and confirm the branch is deleted
+git fetch origin --prune
+
+# Confirm the remote branch is gone (if it still exists, abort — merge may not be complete)
+git ls-remote --heads origin "$BRANCH_NAME"
+
+# Remove the worktree and local branch
+git worktree remove "$WORKTREE_DIR"
+git branch -d "$BRANCH_NAME"
+```
+
+If `git ls-remote` returns a non-empty result (remote branch still exists), the merge may not be complete — ask the user to confirm before proceeding.
+
+After cleanup, display:
+
+```
+✅ Cleanup complete.
+
+Removed worktree : $WORKTREE_DIR
+Removed branch   : $BRANCH_NAME
 ```
