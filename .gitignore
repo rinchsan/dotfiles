@@ -21,6 +21,7 @@ configstore
 .claude/plugins/
 .claude/projects/
 .claude/sessions/
+.claude/save-sessions/
 .claude/shell-snapshots/
 .claude/plans/
 .claude/file-history/
