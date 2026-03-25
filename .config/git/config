@@ -37,3 +37,5 @@
 	side-by-side = true
 [submodule]
 	recurse = true
+[coderabbit]
+	machineId = cli/97946752b09e4f97bf4f3f398921a9f8
