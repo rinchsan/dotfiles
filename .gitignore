@@ -27,6 +27,7 @@ configstore
 .claude/file-history/
 .claude/telemetry/
 .claude/statsig/
+.claude/usage-data/
 .claude/history.jsonl
 .claude/mcp-needs-auth-cache.json
 .claude/policy-limits.json
