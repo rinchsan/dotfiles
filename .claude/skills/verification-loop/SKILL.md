@@ -19,10 +19,13 @@ Invoke this skill:
 
 ### Phase 1: Build Verification
 ```bash
-# Check if project builds
+# Node.js / TypeScript
 npm run build 2>&1 | tail -20
 # OR
 pnpm build 2>&1 | tail -20
+
+# Go
+go build ./... 2>&1 | head -20
 ```
 
 If build fails, STOP and fix before continuing.
@@ -34,6 +37,9 @@ npx tsc --noEmit 2>&1 | head -30
 
 # Python projects
 pyright . 2>&1 | head -30
+
+# Go (vet catches type-level issues)
+go vet ./... 2>&1 | head -30
 ```
 
 Report all type errors. Fix critical ones before continuing.
@@ -45,15 +51,20 @@ npm run lint 2>&1 | head -30
 
 # Python
 ruff check . 2>&1 | head -30
+
+# Go
+golangci-lint run ./... 2>&1 | head -30
 ```
 
 ### Phase 4: Test Suite
 ```bash
-# Run tests with coverage
+# Node.js — run tests with coverage
 npm run test -- --coverage 2>&1 | tail -50
 
-# Check coverage threshold
-# Target: 80% minimum
+# Go — run tests with coverage
+go test -cover ./... 2>&1 | tail -30
+
+# Target: 80% minimum coverage
 ```
 
 Report:
@@ -63,14 +74,18 @@ Report:
 - Coverage: X%
 
 ### Phase 5: Security Scan
-```bash
-# Check for secrets
-grep -rn "sk-" --include="*.ts" --include="*.js" . 2>/dev/null | head -10
-grep -rn "api_key" --include="*.ts" --include="*.js" . 2>/dev/null | head -10
 
-# Check for console.log
+Run the `security-scan` skill for a comprehensive check of secrets, misconfigurations, and injection risks in Claude configuration files. For application code:
+
+```bash
+# Quick check: console.log left in source
 grep -rn "console.log" --include="*.ts" --include="*.tsx" src/ 2>/dev/null | head -10
+
+# Go: debug prints
+grep -rn "fmt.Print" --include="*.go" . 2>/dev/null | head -10
 ```
+
+For deeper secret scanning, use the `security-scan` skill (AgentShield-based).
 
 ### Phase 6: Diff Review
 ```bash
