@@ -9,7 +9,7 @@ Suggests manual `/compact` at strategic points in your workflow rather than rely
 
 ## When to Activate
 
-- Running long sessions that approach context limits (200K+ tokens)
+- Running long sessions that approach context limits (100K+ tokens used)
 - Working on multi-phase tasks (research → plan → implement → test)
 - Switching between unrelated tasks within the same session
 - After completing a major milestone and starting new work
@@ -29,15 +29,21 @@ Strategic compaction at logical boundaries:
 
 ## How It Works
 
-The `suggest-compact.js` script runs on PreToolUse (Edit/Write) and:
+The `suggest-compact.sh` script runs on PreToolUse (Edit/Write) and:
 
-1. **Tracks tool calls** — Counts tool invocations in session
+1. **Tracks Edit/Write calls** — Counts Edit and Write tool invocations in session (hook fires on these tools only)
 2. **Threshold detection** — Suggests at configurable threshold (default: 50 calls)
 3. **Periodic reminders** — Reminds every 25 calls after threshold
 
 ## Hook Setup
 
-Add to your `~/.claude/settings.json`:
+First, make the script executable:
+
+```bash
+chmod +x $HOME/.claude/skills/strategic-compact/suggest-compact.sh
+```
+
+Then add the following to the `hooks` section in `~/.claude/settings.json` (merge with existing hooks, do not replace):
 
 ```json
 {
@@ -45,11 +51,11 @@ Add to your `~/.claude/settings.json`:
     "PreToolUse": [
       {
         "matcher": "Edit",
-        "hooks": [{ "type": "command", "command": "node ~/.claude/skills/strategic-compact/suggest-compact.js" }]
+        "hooks": [{ "type": "command", "command": "bash \"$HOME/.claude/skills/strategic-compact/suggest-compact.sh\"" }]
       },
       {
         "matcher": "Write",
-        "hooks": [{ "type": "command", "command": "node ~/.claude/skills/strategic-compact/suggest-compact.js" }]
+        "hooks": [{ "type": "command", "command": "bash \"$HOME/.claude/skills/strategic-compact/suggest-compact.sh\"" }]
       }
     ]
   }
@@ -59,7 +65,7 @@ Add to your `~/.claude/settings.json`:
 ## Configuration
 
 Environment variables:
-- `COMPACT_THRESHOLD` — Tool calls before first suggestion (default: 50)
+- `COMPACT_THRESHOLD` — Edit/Write calls before first suggestion (default: 50)
 
 ## Compaction Decision Guide
 
@@ -82,31 +88,21 @@ Understanding what persists helps you compact with confidence:
 |----------|------|
 | CLAUDE.md instructions | Intermediate reasoning and analysis |
 | TodoWrite task list | File contents you previously read |
-| Memory files (`~/.claude/memory/`) | Multi-step conversation context |
+| Memory files (`.claude/projects/<project>/memory/`) | Multi-step conversation context |
 | Git state (commits, branches) | Tool call history and counts |
 | Files on disk | Nuanced user preferences stated verbally |
 
 ## Best Practices
 
-1. **Compact after planning** — Once plan is finalized in TodoWrite, compact to start fresh
-2. **Compact after debugging** — Clear error-resolution context before continuing
-3. **Don't compact mid-implementation** — Preserve context for related changes
-4. **Read the suggestion** — The hook tells you *when*, you decide *if*
-5. **Write before compacting** — Save important context to files or memory before compacting
+1. **Save session before compacting** — Run `/save-session` to persist current context to a file before compacting; resume later with `/resume-session`
+2. **Compact after planning** — Once plan is finalized in TodoWrite, compact to start fresh
+3. **Compact after debugging** — Clear error-resolution context before continuing
+4. **Don't compact mid-implementation** — Preserve context for related changes
+5. **Read the suggestion** — The hook tells you *when*, you decide *if*
 6. **Use `/compact` with a summary** — Add a custom message: `/compact Focus on implementing auth middleware next`
 
-## Token Optimization Patterns
+## Context Composition Awareness
 
-### Trigger-Table Lazy Loading
-Instead of loading full skill content at session start, use a trigger table that maps keywords to skill paths. Skills load only when triggered, reducing baseline context by 50%+:
-
-| Trigger | Skill | Load When |
-|---------|-------|-----------|
-| "test", "tdd", "coverage" | tdd-workflow | User mentions testing |
-| "security", "auth", "xss" | security-review | Security-related work |
-| "deploy", "ci/cd" | deployment-patterns | Deployment context |
-
-### Context Composition Awareness
 Monitor what's consuming your context window:
 - **CLAUDE.md files** — Always loaded, keep lean
 - **Loaded skills** — Each skill adds 1-5K tokens
@@ -114,17 +110,12 @@ Monitor what's consuming your context window:
 - **Tool results** — File reads, search results add bulk
 
 ### Duplicate Instruction Detection
+
 Common sources of duplicate context:
 - Same rules in both `~/.claude/rules/` and project `.claude/rules/`
 - Skills that repeat CLAUDE.md instructions
 - Multiple skills covering overlapping domains
 
-### Context Optimization Tools
-- `token-optimizer` MCP — Automated 95%+ token reduction via content deduplication
-- `context-mode` — Context virtualization (315KB to 5.4KB demonstrated)
-
 ## Related
 
-- [The Longform Guide](https://x.com/affaanmustafa/status/2014040193557471352) — Token optimization section
-- Memory persistence hooks — For state that survives compaction
-- `continuous-learning` skill — Extracts patterns before session ends
+- `save-session` / `resume-session` skills — Save and restore session state across compactions
