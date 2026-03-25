@@ -167,20 +167,21 @@ export async function deleteUser(userId: string, requesterId: string) {
 }
 ```
 
-#### Row Level Security (Supabase)
-```sql
--- Enable RLS on all tables
-ALTER TABLE users ENABLE ROW LEVEL SECURITY;
+#### Database-Level Authorization
 
--- Users can only view their own data
-CREATE POLICY "Users view own data"
-  ON users FOR SELECT
-  USING (auth.uid() = id);
+```typescript
+// Always scope queries to the authenticated user's ID
+async function getUserData(requestedId: string, requesterId: string) {
+  if (requestedId !== requesterId) {
+    throw new Error('Forbidden')
+  }
+  return await db.user.findUnique({ where: { id: requestedId } })
+}
 
--- Users can only update their own data
-CREATE POLICY "Users update own data"
-  ON users FOR UPDATE
-  USING (auth.uid() = id);
+// Or enforce at the ORM layer with a mandatory filter
+const data = await db.record.findMany({
+  where: { ownerId: requesterId }  // Never omit this filter
+})
 ```
 
 #### Verification Steps
@@ -336,36 +337,7 @@ catch (error) {
 
 ### 9. Dependency Security
 
-#### Regular Updates
-```bash
-# Check for vulnerabilities
-npm audit
-
-# Fix automatically fixable issues
-npm audit fix
-
-# Update dependencies
-npm update
-
-# Check for outdated packages
-npm outdated
-```
-
-#### Lock Files
-```bash
-# ALWAYS commit lock files
-git add package-lock.json
-
-# Use in CI/CD for reproducible builds
-npm ci  # Instead of npm install
-```
-
-#### Verification Steps
-- [ ] Dependencies up to date
-- [ ] No known vulnerabilities (npm audit clean)
-- [ ] Lock files committed
-- [ ] Dependabot enabled on GitHub
-- [ ] Regular security updates
+Run `npm audit` before every release and keep lock files committed. For CI/CD pipeline scanning (OIDC, secret scanning, Dependabot, container image scanning), see the `cloud-infrastructure-security` skill.
 
 ## Security Testing
 
@@ -377,32 +349,11 @@ test('requires authentication', async () => {
   expect(response.status).toBe(401)
 })
 
-// Test authorization
-test('requires admin role', async () => {
-  const response = await fetch('/api/admin', {
-    headers: { Authorization: `Bearer ${userToken}` }
-  })
-  expect(response.status).toBe(403)
-})
-
-// Test input validation
-test('rejects invalid input', async () => {
-  const response = await fetch('/api/users', {
-    method: 'POST',
-    body: JSON.stringify({ email: 'not-an-email' })
-  })
-  expect(response.status).toBe(400)
-})
-
 // Test rate limiting
 test('enforces rate limits', async () => {
-  const requests = Array(101).fill(null).map(() =>
-    fetch('/api/endpoint')
-  )
-
+  const requests = Array(101).fill(null).map(() => fetch('/api/endpoint'))
   const responses = await Promise.all(requests)
   const tooManyRequests = responses.filter(r => r.status === 429)
-
   expect(tooManyRequests.length).toBeGreaterThan(0)
 })
 ```

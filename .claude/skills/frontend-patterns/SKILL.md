@@ -100,36 +100,22 @@ export function Tab({ id, children }: { id: string, children: React.ReactNode })
 ### Render Props Pattern
 
 ```typescript
-interface DataLoaderProps<T> {
-  url: string
-  children: (data: T | null, loading: boolean, error: Error | null) => React.ReactNode
+interface ListRendererProps<T> {
+  items: T[]
+  children: (item: T, index: number) => React.ReactNode
 }
 
-export function DataLoader<T>({ url, children }: DataLoaderProps<T>) {
-  const [data, setData] = useState<T | null>(null)
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState<Error | null>(null)
-
-  useEffect(() => {
-    fetch(url)
-      .then(res => res.json())
-      .then(setData)
-      .catch(setError)
-      .finally(() => setLoading(false))
-  }, [url])
-
-  return <>{children(data, loading, error)}</>
+export function ListRenderer<T>({ items, children }: ListRendererProps<T>) {
+  return <>{items.map((item, i) => children(item, i))}</>
 }
 
 // Usage
-<DataLoader<Market[]> url="/api/markets">
-  {(markets, loading, error) => {
-    if (loading) return <Spinner />
-    if (error) return <Error error={error} />
-    return <MarketList markets={markets!} />
-  }}
-</DataLoader>
+<ListRenderer items={products}>
+  {(product, i) => <ProductCard key={i} product={product} />}
+</ListRenderer>
 ```
+
+> For async data fetching, use React Query or SWR — not hand-rolled `useEffect` hooks. See the Data Fetching section below.
 
 ## Custom Hooks Patterns
 
@@ -171,23 +157,23 @@ const { data, isLoading, error } = useQuery({
 ### Context + Reducer Pattern
 
 ```typescript
-interface State {
-  markets: Market[]
-  selectedMarket: Market | null
+interface CartState {
+  items: CartItem[]
+  total: number
   loading: boolean
 }
 
-type Action =
-  | { type: 'SET_MARKETS'; payload: Market[] }
-  | { type: 'SELECT_MARKET'; payload: Market }
+type CartAction =
+  | { type: 'ADD_ITEM'; payload: CartItem }
+  | { type: 'REMOVE_ITEM'; payload: string }
   | { type: 'SET_LOADING'; payload: boolean }
 
-function reducer(state: State, action: Action): State {
+function cartReducer(state: CartState, action: CartAction): CartState {
   switch (action.type) {
-    case 'SET_MARKETS':
-      return { ...state, markets: action.payload }
-    case 'SELECT_MARKET':
-      return { ...state, selectedMarket: action.payload }
+    case 'ADD_ITEM':
+      return { ...state, items: [...state.items, action.payload] }
+    case 'REMOVE_ITEM':
+      return { ...state, items: state.items.filter(i => i.id !== action.payload) }
     case 'SET_LOADING':
       return { ...state, loading: action.payload }
     default:
@@ -195,28 +181,28 @@ function reducer(state: State, action: Action): State {
   }
 }
 
-const MarketContext = createContext<{
-  state: State
-  dispatch: Dispatch<Action>
+const CartContext = createContext<{
+  state: CartState
+  dispatch: Dispatch<CartAction>
 } | undefined>(undefined)
 
-export function MarketProvider({ children }: { children: React.ReactNode }) {
-  const [state, dispatch] = useReducer(reducer, {
-    markets: [],
-    selectedMarket: null,
+export function CartProvider({ children }: { children: React.ReactNode }) {
+  const [state, dispatch] = useReducer(cartReducer, {
+    items: [],
+    total: 0,
     loading: false
   })
 
   return (
-    <MarketContext.Provider value={{ state, dispatch }}>
+    <CartContext.Provider value={{ state, dispatch }}>
       {children}
-    </MarketContext.Provider>
+    </CartContext.Provider>
   )
 }
 
-export function useMarkets() {
-  const context = useContext(MarketContext)
-  if (!context) throw new Error('useMarkets must be used within MarketProvider')
+export function useCart() {
+  const context = useContext(CartContext)
+  if (!context) throw new Error('useCart must be used within CartProvider')
   return context
 }
 ```
@@ -297,76 +283,30 @@ export function VirtualMarketList({ markets }: { markets: Market[] }) {
 
 ## Form Handling Patterns
 
-### Controlled Form with Validation
+For forms with validation, prefer battle-tested libraries over manual state management:
+- **React Hook Form** — performant, minimal re-renders, built-in validation
+- **Zod + React Hook Form** — schema-based validation with full type safety
 
 ```typescript
-interface FormData {
-  name: string
-  description: string
-  endDate: string
-}
+import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { z } from 'zod'
 
-interface FormErrors {
-  name?: string
-  description?: string
-  endDate?: string
-}
+const schema = z.object({
+  name: z.string().min(1).max(200),
+  endDate: z.string().min(1),
+})
 
-export function CreateMarketForm() {
-  const [formData, setFormData] = useState<FormData>({
-    name: '',
-    description: '',
-    endDate: ''
+export function CreateItemForm() {
+  const { register, handleSubmit, formState: { errors } } = useForm({
+    resolver: zodResolver(schema),
   })
 
-  const [errors, setErrors] = useState<FormErrors>({})
-
-  const validate = (): boolean => {
-    const newErrors: FormErrors = {}
-
-    if (!formData.name.trim()) {
-      newErrors.name = 'Name is required'
-    } else if (formData.name.length > 200) {
-      newErrors.name = 'Name must be under 200 characters'
-    }
-
-    if (!formData.description.trim()) {
-      newErrors.description = 'Description is required'
-    }
-
-    if (!formData.endDate) {
-      newErrors.endDate = 'End date is required'
-    }
-
-    setErrors(newErrors)
-    return Object.keys(newErrors).length === 0
-  }
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-
-    if (!validate()) return
-
-    try {
-      await createMarket(formData)
-      // Success handling
-    } catch (error) {
-      // Error handling
-    }
-  }
-
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        value={formData.name}
-        onChange={e => setFormData(prev => ({ ...prev, name: e.target.value }))}
-        placeholder="Market name"
-      />
-      {errors.name && <span className="error">{errors.name}</span>}
-
-      {/* Other fields */}
-
-      <button type="submit">Create Market</button>
+    <form onSubmit={handleSubmit(data => submitItem(data))}>
+      <input {...register('name')} placeholder="Name" />
+      {errors.name && <span className="error">{errors.name.message}</span>}
+      <button type="submit">Create</button>
     </form>
   )
 }

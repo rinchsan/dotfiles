@@ -145,28 +145,6 @@ export function Button(props) {
 }
 ```
 
-### Custom Hooks
-
-```typescript
-// ✅ GOOD: Reusable custom hook
-export function useDebounce<T>(value: T, delay: number): T {
-  const [debouncedValue, setDebouncedValue] = useState<T>(value)
-
-  useEffect(() => {
-    const handler = setTimeout(() => {
-      setDebouncedValue(value)
-    }, delay)
-
-    return () => clearTimeout(handler)
-  }, [value, delay])
-
-  return debouncedValue
-}
-
-// Usage
-const debouncedQuery = useDebounce(searchQuery, 500)
-```
-
 ### State Management
 
 ```typescript
@@ -308,15 +286,13 @@ export function Dashboard() {
 
 ```typescript
 // ✅ GOOD: Select only needed columns
-const { data } = await supabase
-  .from('markets')
-  .select('id, name, status')
-  .limit(10)
+const users = await db.user.findMany({
+  select: { id: true, name: true, status: true },
+  take: 10,
+})
 
 // ❌ BAD: Select everything
-const { data } = await supabase
-  .from('markets')
-  .select('*')
+const users = await db.user.findMany()
 ```
 
 ## Testing Standards
