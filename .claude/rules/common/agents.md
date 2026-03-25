@@ -4,13 +4,13 @@
 
 Located in `~/.claude/agents/`:
 
-| Agent | Purpose | When to Use |
-|-------|---------|-------------|
-| planner | Implementation planning | Complex features, refactoring |
-| architect | System design | Architectural decisions |
-| tdd-developer | Test-driven development | New features, bug fixes |
-| code-reviewer | Code review | After writing code |
-| security-reviewer | Security analysis | Before commits |
+| Agent | Model | Purpose | When to Use |
+|-------|-------|---------|-------------|
+| planner | opus | Implementation planning | Complex features, refactoring |
+| architect | opus | System design | Architectural decisions |
+| code-reviewer | opus | Code review | After writing code |
+| tdd-developer | sonnet | Test-driven development | New features, bug fixes |
+| security-reviewer | sonnet | Security analysis | Before commits |
 
 ## Immediate Agent Usage
 

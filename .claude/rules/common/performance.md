@@ -6,13 +6,14 @@
 - Lightweight agents with frequent invocation
 - Pair programming and code generation
 - Worker agents in multi-agent systems
+- Note: 現時点では定義済みエージェントへの割り当てなし。将来のサブエージェント追加や API 自動化スクリプト向けの指針
 
 **Sonnet 4.6** (Best coding model):
 - Main development work
-- Orchestrating multi-agent workflows
+- Orchestrating multi-agent workflows（`/ship`, `/implement` 等のコマンド実行時のオーケストレーター）
 - Complex coding tasks
 
-**Opus 4.5** (Deepest reasoning):
+**Opus 4.6** (Deepest reasoning):
 - Complex architectural decisions
 - Maximum reasoning requirements
 - Research and analysis tasks
@@ -49,7 +50,6 @@ For complex tasks requiring deep reasoning:
 ## Build Troubleshooting
 
 If build fails:
-1. Use **build-error-resolver** agent
-2. Analyze error messages
-3. Fix incrementally
-4. Verify after each fix
+1. Analyze error messages carefully
+2. Fix incrementally
+3. Verify after each fix

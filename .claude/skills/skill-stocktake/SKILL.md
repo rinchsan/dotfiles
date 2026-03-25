@@ -73,11 +73,12 @@ Scanning:
 
 ### Phase 2 — Quality Evaluation
 
-Launch an Agent tool subagent (**general-purpose agent**) with the full inventory and checklist:
+Launch an Agent tool subagent (**general-purpose agent**, model: **sonnet**) with the full inventory and checklist:
 
 ```text
 Agent(
   subagent_type="general-purpose",
+  model="sonnet",
   prompt="
 Evaluate the following skill inventory against the checklist.
 
