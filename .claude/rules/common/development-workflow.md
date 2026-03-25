@@ -14,6 +14,33 @@ The Feature Implementation Workflow describes the development pipeline: research
    - **Search for adaptable implementations:** Look for open-source projects that solve 80%+ of the problem and can be forked, ported, or wrapped.
    - Prefer adopting or porting a proven approach over writing net-new code when it meets the requirement.
 
+   **Decision matrix:**
+
+   | Signal | Action |
+   |--------|--------|
+   | Exact match, well-maintained, MIT/Apache | **Adopt** — install and use directly |
+   | Partial match, good foundation | **Extend** — install + write thin wrapper |
+   | Multiple weak matches | **Compose** — combine 2-3 small packages |
+   | Nothing suitable found | **Build** — write custom, but informed by research |
+
+   **Search order (Quick Mode):**
+   0. Does this already exist in the repo? → `rg` through relevant modules/tests first
+   1. Is this a common problem? → Search npm/PyPI
+   2. Is there an MCP for this? → Check `~/.claude/settings.json` and search
+   3. Is there a skill for this? → Check `~/.claude/skills/`
+   4. Is there a GitHub implementation/template? → Run GitHub code search for maintained OSS
+
+   **Search shortcuts by category:**
+   - **Linting/Formatting** → `eslint`, `ruff`, `textlint`, `prettier`, `black`, `gofmt`, `markdownlint`
+   - **Testing** → `jest`, `pytest`, `go test`, `playwright`
+   - **Pre-commit** → `husky`, `lint-staged`, `pre-commit`
+   - **HTTP clients** → `httpx` (Python), `ky`/`got` (Node)
+   - **Validation** → `zod` (TS), `pydantic` (Python)
+   - **AI/LLM** → Claude SDK via Context7; document processing: `unstructured`, `pdfplumber`, `mammoth`
+   - **Markdown** → `remark`, `unified`, `markdown-it`
+   - **Image** → `sharp`, `imagemin`
+   - **Database** → Check for MCP servers first
+
 1. **Plan First**
    - Use **planner** agent to create implementation plan
    - Generate planning docs before coding: PRD, architecture, system_design, tech_doc, task_list

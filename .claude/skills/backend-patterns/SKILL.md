@@ -19,21 +19,6 @@ Backend architecture patterns and best practices for scalable server-side applic
 
 ## API Design Patterns
 
-### RESTful API Structure
-
-```typescript
-// ✅ Resource-based URLs
-GET    /api/markets                 # List resources
-GET    /api/markets/:id             # Get single resource
-POST   /api/markets                 # Create resource
-PUT    /api/markets/:id             # Replace resource
-PATCH  /api/markets/:id             # Update resource
-DELETE /api/markets/:id             # Delete resource
-
-// ✅ Query parameters for filtering, sorting, pagination
-GET /api/markets?status=active&sort=volume&limit=20&offset=0
-```
-
 ### Repository Pattern
 
 ```typescript
@@ -593,5 +578,170 @@ export async function GET(request: Request) {
   }
 }
 ```
+
+## HTTP Status Codes Reference
+
+```
+# Success
+200 OK                    — GET, PUT, PATCH (with response body)
+201 Created               — POST (include Location header)
+204 No Content            — DELETE, PUT (no response body)
+
+# Client Errors
+400 Bad Request           — Validation failure, malformed JSON
+401 Unauthorized          — Missing or invalid authentication
+403 Forbidden             — Authenticated but not authorized
+404 Not Found             — Resource doesn't exist
+409 Conflict              — Duplicate entry, state conflict
+422 Unprocessable Entity  — Semantically invalid (valid JSON, bad data)
+429 Too Many Requests     — Rate limit exceeded
+
+# Server Errors
+500 Internal Server Error — Unexpected failure (never expose details)
+502 Bad Gateway           — Upstream service failed
+503 Service Unavailable   — Temporary overload, include Retry-After
+```
+
+Common mistakes:
+
+```
+# BAD: 200 for everything
+{ "status": 200, "success": false, "error": "Not found" }
+
+# GOOD: Use HTTP status codes semantically
+HTTP/1.1 404 Not Found
+{ "error": { "code": "not_found", "message": "User not found" } }
+
+# BAD: 200 for created resources
+# GOOD: 201 with Location header
+HTTP/1.1 201 Created
+Location: /api/v1/users/abc-123
+```
+
+## Response Format
+
+### Success Response
+
+```json
+{
+  "data": {
+    "id": "abc-123",
+    "email": "alice@example.com",
+    "created_at": "2025-01-15T10:30:00Z"
+  }
+}
+```
+
+### Collection Response (with Pagination)
+
+```json
+{
+  "data": [
+    { "id": "abc-123", "name": "Alice" },
+    { "id": "def-456", "name": "Bob" }
+  ],
+  "meta": {
+    "total": 142,
+    "page": 1,
+    "per_page": 20,
+    "total_pages": 8
+  },
+  "links": {
+    "self": "/api/v1/users?page=1&per_page=20",
+    "next": "/api/v1/users?page=2&per_page=20"
+  }
+}
+```
+
+### Error Response
+
+```json
+{
+  "error": {
+    "code": "validation_error",
+    "message": "Request validation failed",
+    "details": [
+      { "field": "email", "message": "Must be a valid email address", "code": "invalid_format" }
+    ]
+  }
+}
+```
+
+## Pagination
+
+### Offset-Based (Simple)
+
+```
+GET /api/v1/users?page=2&per_page=20
+
+SELECT * FROM users ORDER BY created_at DESC LIMIT 20 OFFSET 20;
+```
+
+**Use for:** Admin dashboards, small datasets (<10K), search results (users expect page numbers).
+
+### Cursor-Based (Scalable)
+
+```
+GET /api/v1/users?cursor=eyJpZCI6MTIzfQ&limit=20
+
+SELECT * FROM users WHERE id > :cursor_id ORDER BY id ASC LIMIT 21;
+```
+
+```json
+{
+  "data": [],
+  "meta": { "has_next": true, "next_cursor": "eyJpZCI6MTQzfQ" }
+}
+```
+
+**Use for:** Infinite scroll, feeds, large datasets, public APIs. Consistent performance regardless of position.
+
+## Filtering, Sorting, and Sparse Fieldsets
+
+```
+# Filtering
+GET /api/v1/orders?status=active&customer_id=abc-123
+GET /api/v1/products?price[gte]=10&price[lte]=100
+
+# Sorting (prefix - for descending)
+GET /api/v1/products?sort=-created_at,price
+
+# Sparse fieldsets (reduce payload)
+GET /api/v1/users?fields=id,name,email
+```
+
+## API Versioning Strategy
+
+```
+# URL path versioning (recommended — explicit, cacheable)
+/api/v1/users
+/api/v2/users
+
+# Deprecation process:
+1. Start with /api/v1/ — don't version until you need to
+2. Maintain at most 2 active versions (current + previous)
+3. Announce deprecation 6 months ahead for public APIs
+4. Add Sunset header: Sunset: Sat, 01 Jan 2027 00:00:00 GMT
+5. Return 410 Gone after sunset date
+
+# Non-breaking (no new version needed): adding fields, new optional params, new endpoints
+# Breaking (new version required): removing/renaming fields, changing types, changing auth method
+```
+
+## API Endpoint Checklist
+
+Before shipping a new endpoint:
+
+- [ ] Resource URL: plural, kebab-case, no verbs
+- [ ] Correct HTTP method (GET/POST/PUT/PATCH/DELETE)
+- [ ] Appropriate status codes (not 200 for everything)
+- [ ] Input validated with schema (Zod, Pydantic, etc.)
+- [ ] Error responses follow standard format
+- [ ] Pagination for list endpoints (cursor or offset)
+- [ ] Authentication required (or explicitly marked public)
+- [ ] Authorization checked (resource ownership / RBAC)
+- [ ] Rate limiting configured
+- [ ] Response does not leak internals (stack traces, SQL errors)
+- [ ] Documented (OpenAPI/Swagger spec updated)
 
 **Remember**: Backend patterns enable scalable, maintainable server-side applications. Choose patterns that fit your complexity level.

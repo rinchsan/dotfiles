@@ -33,5 +33,6 @@ configstore
 .claude/policy-limits.json
 .claude/remote-settings.json
 .claude/stats-cache.json
+.claude/skills/skill-stocktake/results.json
 **/.claude/settings.local.json
 !.gitkeep
