@@ -44,16 +44,28 @@ go vet ./... 2>&1 | head -30
 
 Report all type errors. Fix critical ones before continuing.
 
-### Phase 3: Lint Check
+### Phase 3: Lint & Format Check
 ```bash
-# JavaScript/TypeScript
+# JavaScript/TypeScript — lint
 npm run lint 2>&1 | head -30
+
+# JavaScript/TypeScript — Prettier format check
+# For monorepo workspace projects:
+npx -w <workspace-name> prettier --check . 2>&1 | head -30
+# For standard projects:
+npx prettier --check . 2>&1 | head -30
 
 # Python
 ruff check . 2>&1 | head -30
 
 # Go
 golangci-lint run ./... 2>&1 | head -30
+```
+
+If Prettier check fails, auto-fix and re-verify:
+```bash
+npx -w <workspace-name> prettier --write .
+npx -w <workspace-name> prettier --check . 2>&1 | head -10
 ```
 
 ### Phase 4: Test Suite

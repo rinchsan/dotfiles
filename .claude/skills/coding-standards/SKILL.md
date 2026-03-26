@@ -326,6 +326,71 @@ test('works', () => { })
 test('test search', () => { })
 ```
 
+## Prettier Formatting
+
+### Mandatory: Run Prettier Check After Every JS/TS/Vue Change
+
+After modifying any `.js`, `.ts`, `.jsx`, `.tsx`, `.vue`, `.json`, `.css`, `.scss`, or `.html` file, **always** run a Prettier check before considering the task complete.
+
+```bash
+# Determine the correct command for the project:
+
+# Workspace project (e.g., monorepo with -w flag)
+npx -w <workspace-name> prettier --check .
+
+# Standard project
+npx prettier --check .
+
+# Or via package.json script if defined
+npm run format:check
+```
+
+**How to find the right command:**
+1. Check `package.json` for a `format:check` or `prettier` script
+2. Check if it's a monorepo/workspace — use `npx -w <workspace> prettier --check .`
+3. Fall back to `npx prettier --check .` in the project root
+
+**If Prettier check fails:**
+```bash
+# Auto-fix formatting issues
+npx -w <workspace-name> prettier --write .
+# OR
+npx prettier --write .
+```
+
+Then verify the fix with `--check` again.
+
+### Common Prettier-Compliant Patterns
+
+```typescript
+// ✅ GOOD: Prettier-friendly — consistent quotes, trailing commas, semicolons
+const config = {
+  name: 'my-app',
+  version: '1.0.0',
+  plugins: ['@typescript-eslint', 'prettier'],
+}
+
+// ✅ GOOD: Arrow functions with consistent formatting
+const fetchData = async (url: string): Promise<Response> => {
+  const response = await fetch(url)
+  return response
+}
+
+// ✅ GOOD: Object destructuring with proper line breaks
+const {
+  longPropertyNameOne,
+  longPropertyNameTwo,
+  longPropertyNameThree,
+} = someObject
+```
+
+### Pre-flight Checklist for JS/TS/Vue Changes
+
+Before marking any JS/TS/Vue task complete:
+- [ ] Run `prettier --check` and confirm no errors
+- [ ] If errors found, run `prettier --write` and re-check
+- [ ] Commit only after Prettier passes
+
 ## Code Smell Detection
 
 Watch for these anti-patterns:
