@@ -93,8 +93,7 @@ Store as `$BRANCH_NAME` and proceed immediately without user confirmation.
 
 ```bash
 git fetch origin main
-REPO_NAME="$(basename $(git rev-parse --show-toplevel))"
-WORKTREE_DIR="$(git rev-parse --show-toplevel)/../${REPO_NAME}-${BRANCH_NAME}"
+WORKTREE_DIR="$(git rev-parse --show-toplevel)/.claude/worktrees/${BRANCH_NAME}"
 git worktree add -b "$BRANCH_NAME" "$WORKTREE_DIR" origin/main
 WORKTREE_DIR="$(cd "$WORKTREE_DIR" && pwd)"
 git worktree list
@@ -115,7 +114,7 @@ Sub-agent instructions:
 - After implementation, commit inside the worktree:
   ```bash
   cd "$WORKTREE_DIR"
-  git add -p
+  git add .
   git commit -m "<conventional-commit-message>"
   ```
 - Return: confirmation of commit completion and a summary of the commit message
@@ -126,6 +125,8 @@ After the sub-agent completes, proceed to Phase 6.
 
 ## Phase 6: Self-review
 
+### 6-1. Delegate review to a sub-agent
+
 **Delegate to a sub-agent.**
 
 Sub-agent instructions:
@@ -135,9 +136,7 @@ Sub-agent instructions:
 - Review the diff following the code-reviewer checklist
 - Return: review summary with counts and details by severity (Critical/High/Medium/Low)
 
----
-
-## Phase 7: Fix issues and push (orchestrator runs directly)
+### 6-2. Fix issues (orchestrator runs directly)
 
 Based on the review results, fix files under `$WORKTREE_DIR`:
 
@@ -151,11 +150,11 @@ If there are fixes:
 
 ```bash
 cd "$WORKTREE_DIR"
-git add -p
+git add .
 git commit -m "fix: address self-review findings"
 ```
 
-Then push:
+### 6-3. Push to remote (orchestrator runs directly)
 
 ```bash
 cd "$WORKTREE_DIR"
@@ -164,7 +163,7 @@ git push origin "$BRANCH_NAME"
 
 ---
 
-## Phase 8: Create PR (orchestrator runs directly)
+## Phase 7: Create PR (orchestrator runs directly)
 
 In `$WORKTREE_DIR`:
 
@@ -198,7 +197,7 @@ Once the PR is merged, say "merged" and cleanup will run automatically.
 
 ---
 
-## Phase 9: Post-merge cleanup (run when user reports the PR is merged)
+## Phase 8: Post-merge cleanup (run when user reports the PR is merged)
 
 Run the following in order:
 
