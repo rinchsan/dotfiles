@@ -2,12 +2,13 @@
 # Status line command for Claude Code
 # Line 1: 🕐 datetime
 # Line 2: 📁 cwd | 🌿 git branch
-# Line 3: 🔖 claude version | 🤖 model | 💬 context usage
+# Line 3: 🔖 claude version | 🤖 model | 💬 context usage | 💰 cost
 
 input=$(cat)
 cwd=$(echo "$input" | jq -r '.cwd')
 model=$(echo "$input" | jq -r '.model.display_name')
 used_pct=$(echo "$input" | jq -r '.context_window.used_percentage // empty')
+total_cost=$(echo "$input" | jq -r '.cost.total_cost_usd // empty')
 
 # ANSI color codes
 white='\033[0;37m'
@@ -50,6 +51,12 @@ if [ -n "$used_pct" ]; then
     context_str="💬 ${ctx_color}${pct_int}%${reset}"
 fi
 
+# Cost display
+cost_str=""
+if [ -n "$total_cost" ]; then
+    cost_str="💰 ${white}$(printf '$%.4f' "$total_cost")${reset}"
+fi
+
 # Line 1: date and time
 line1="🕐 ${white}${datetime}${reset}"
 
@@ -59,7 +66,7 @@ if [ -n "$git_branch" ]; then
     line2="${line2}${sep}🌿 ${green}${git_branch}${reset}"
 fi
 
-# Line 3: claude version | model | context
+# Line 3: claude version | model | context | cost
 line3=""
 if [ -n "$claude_version" ]; then
     line3="🔖 ${white}${claude_version}${reset}${sep}🤖 ${cyan}${model}${reset}"
@@ -68,6 +75,9 @@ else
 fi
 if [ -n "$context_str" ]; then
     line3="${line3}${sep}${context_str}"
+fi
+if [ -n "$cost_str" ]; then
+    line3="${line3}${sep}${cost_str}"
 fi
 
 printf "%b\n" "$line1"
