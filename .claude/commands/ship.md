@@ -1,5 +1,6 @@
 ---
 description: Orchestrate the full development lifecycle: design -> plan -> implement -> self-review -> PR
+model: opus
 ---
 
 # /ship - Development Workflow
@@ -54,7 +55,7 @@ State your recommendation (design phase yes or no, with reasoning), then ask the
 
 ## Phase 2: Design (only if Yes in Phase 1)
 
-**Delegate to a sub-agent.**
+**Delegate to a sub-agent (model: opus).**
 
 Sub-agent instructions:
 - Follow the procedure in `.claude/commands/design.md`
@@ -69,7 +70,7 @@ After the sub-agent completes, store the design doc content as `$DESIGN_DOC` and
 
 ## Phase 3: Plan
 
-**Delegate to a sub-agent.**
+**Delegate to a sub-agent (model: opus).**
 
 Sub-agent instructions:
 - Follow the procedure in `.claude/commands/plan.md`
@@ -105,7 +106,7 @@ Store the absolute path of `$WORKTREE_DIR`.
 
 ## Phase 5: Implementation
 
-**Delegate to a sub-agent.**
+**Delegate to a sub-agent (model: sonnet).**
 
 Sub-agent instructions:
 - Follow the procedure in `.claude/commands/implement.md`
@@ -127,7 +128,7 @@ After the sub-agent completes, proceed to Phase 6.
 
 ### 6-1. Delegate review to a sub-agent
 
-**Delegate to a sub-agent.**
+**Delegate to a sub-agent (model: opus).**
 
 Sub-agent instructions:
 - Act as the `code-reviewer` agent

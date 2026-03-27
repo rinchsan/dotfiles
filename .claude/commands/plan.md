@@ -54,6 +54,8 @@ If splitting is needed, include a clear PR split plan section.
 
 ## Step 4: Risk Assessment
 
+**Enable Extended Thinking** before delegating. Risk assessment requires anticipating non-obvious failure modes — deeper reasoning surfaces risks that fast thinking misses.
+
 **Delegate to the `architect` agent** with:
 - The design doc content
 - The proposed task breakdown from Step 3

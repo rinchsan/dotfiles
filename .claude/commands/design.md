@@ -54,6 +54,8 @@ Based on exploration and clarified requirements, classify the work scale:
 
 ## Step 4: Design Document Creation
 
+**Enable Extended Thinking** before delegating. This step involves complex architectural reasoning — deeper thinking directly improves design quality.
+
 **Delegate to the `architect` agent** with:
 - The requirements and clarified goals from Step 2
 - The codebase context from Step 1 (existing patterns, conventions)
@@ -68,6 +70,8 @@ Present the design doc to the user for approval and iterate until approved.
 ## Step 5: ADR (if needed)
 
 When the scope is Large or an explicit architectural decision must be recorded:
+
+**Enable Extended Thinking** before delegating. ADRs capture irreversible decisions — thorough reasoning here prevents costly mistakes later.
 
 **Delegate to the `architect` agent** with:
 - The approved design doc content
