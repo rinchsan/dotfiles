@@ -91,5 +91,6 @@
   "sandbox": {
     "enabled": true,
     "autoAllowBashIfSandboxed": true
-  }
+  },
+  "defaultMode": "auto"
 }
