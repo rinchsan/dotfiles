@@ -34,6 +34,18 @@ if git -C "$cwd" rev-parse --git-dir > /dev/null 2>&1; then
     fi
 fi
 
+# PR for current branch
+pr_str=""
+if [ -n "$git_branch" ]; then
+    pr_info=$(cd "$cwd" && gh pr list --head "$git_branch" --state all \
+        --json number,isDraft,state \
+        --jq '.[0] | "#\(.number) (\(if .isDraft then "draft" else .state | ascii_downcase end))"' \
+        2>/dev/null)
+    if [ -n "$pr_info" ]; then
+        pr_str="🔀 ${cyan}${pr_info}${reset}"
+    fi
+fi
+
 # Claude Code version
 claude_version=$(claude --version 2>/dev/null | head -1)
 
@@ -64,6 +76,9 @@ line1="🕐 ${white}${datetime}${reset}"
 line2="📁 ${orange}${cwd}${reset}"
 if [ -n "$git_branch" ]; then
     line2="${line2}${sep}🌿 ${green}${git_branch}${reset}"
+fi
+if [ -n "$pr_str" ]; then
+    line2="${line2}${sep}${pr_str}"
 fi
 
 # Line 3: claude version | model | context | cost
