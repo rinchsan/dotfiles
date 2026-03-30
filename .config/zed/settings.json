@@ -28,4 +28,7 @@
     "light": "One Light",
     "dark": "One Dark",
   },
+  "file_scan_exclusions": [
+    "**/.claude/worktrees"
+  ],
 }
