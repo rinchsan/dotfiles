@@ -36,7 +36,8 @@ fi
 
 # PR for current branch
 pr_str=""
-if [ -n "$git_branch" ]; then
+default_branch=$(git -C "$cwd" remote show origin 2>/dev/null | grep 'HEAD branch' | awk '{print $NF}')
+if [ -n "$git_branch" ] && [ "$git_branch" != "$default_branch" ]; then
     pr_info=$(cd "$cwd" && gh pr list --head "$git_branch" --state all \
         --json number,isDraft,state \
         --jq '.[0] | "#\(.number) (\(if .isDraft then "draft" else .state | ascii_downcase end))"' \
