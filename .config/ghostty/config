@@ -40,17 +40,13 @@ palette = 13=#c397d8
 palette = 14=#70c0b1
 palette = 15=#eaeaea
 
-# cmd+c: new tab (Ghostty default: copy_to_clipboard → copy-on-select で代替)
 keybind = super+c=new_tab
-# cmd+[ / cmd+]: tab navigation (Ghostty default: goto_split:previous/next を上書き)
 keybind = super+[=previous_tab
 keybind = super+]=next_tab
-# cmd+t: 左右スプリット (Ghostty default: new_tab を上書き)
 keybind = super+t=new_split:right
-# cmd+n: 上下スプリット (Ghostty default: new_window を上書き)
 keybind = super+n=new_split:down
-# スプリット間移動
 keybind = super+up=goto_split:up
 keybind = super+down=goto_split:down
 keybind = super+ctrl+f=goto_split:right
 keybind = super+ctrl+b=goto_split:left
+keybind = ctrl+d=text:\x04
