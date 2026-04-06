@@ -93,17 +93,17 @@
     "autoAllowBashIfSandboxed": true,
     "allowUnsandboxedCommands": false,
     "filesystem": {
-        "allowRead": [
-            "$HOME/.config/gh/*"
-        ]
+      "allowRead": [
+        "$HOME/.config/gh/*"
+      ]
     },
     "network": {
-        "allowedDomains": [
-            "github.com",
-            "api.github.com",
-            "*.githubusercontent.com"
-        ],
-        "allowLocalBinding": true
+      "allowedDomains": [
+        "github.com",
+        "api.github.com",
+        "*.githubusercontent.com"
+      ],
+      "allowLocalBinding": true
     },
     "enableWeakerNetworkIsolation": true
   },
