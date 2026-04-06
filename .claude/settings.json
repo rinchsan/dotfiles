@@ -90,7 +90,22 @@
   },
   "sandbox": {
     "enabled": true,
-    "autoAllowBashIfSandboxed": true
+    "autoAllowBashIfSandboxed": true,
+    "allowUnsandboxedCommands": false,
+    "filesystem": {
+        "allowRead": [
+            "$HOME/.config/gh/*"
+        ]
+    },
+    "network": {
+        "allowedDomains": [
+            "github.com",
+            "api.github.com",
+            "*.githubusercontent.com"
+        ],
+        "allowLocalBinding": true
+    },
+    "enableWeakerNetworkIsolation": true
   },
   "defaultMode": "auto"
 }
