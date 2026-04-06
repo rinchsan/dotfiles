@@ -11,14 +11,14 @@ used_pct=$(echo "$input" | jq -r '.context_window.used_percentage // empty')
 total_cost=$(echo "$input" | jq -r '.cost.total_cost_usd // empty')
 
 # ANSI color codes
-white='\033[0;37m'
-orange='\033[38;2;255;164;0m'
-cyan='\033[0;36m'
-red='\033[0;31m'
-yellow='\033[0;33m'
-green='\033[0;32m'
-dim='\033[2;37m'
-reset='\033[0m'
+white=$'\033[0;37m'
+orange=$'\033[38;2;255;164;0m'
+cyan=$'\033[0;36m'
+red=$'\033[0;31m'
+yellow=$'\033[0;33m'
+green=$'\033[0;32m'
+dim=$'\033[2;37m'
+reset=$'\033[0m'
 
 sep="${dim} | ${reset}"
 
@@ -38,12 +38,15 @@ fi
 pr_str=""
 default_branch=$(git -C "$cwd" remote show origin 2>/dev/null | grep 'HEAD branch' | awk '{print $NF}')
 if [ -n "$git_branch" ] && [ "$git_branch" != "$default_branch" ]; then
-    pr_info=$(cd "$cwd" && gh pr list --head "$git_branch" --state all \
-        --json number,isDraft,state \
-        --jq '.[0] | "#\(.number) (\(if .isDraft then "draft" else .state | ascii_downcase end))"' \
+    pr_json=$(cd "$cwd" && gh pr list --head "$git_branch" --state all \
+        --json number,isDraft,state,url \
+        --jq '.[0] | {"text": "#\(.number) (\(if .isDraft then "draft" else .state | ascii_downcase end))", "url": .url}' \
         2>/dev/null)
-    if [ -n "$pr_info" ]; then
-        pr_str="🔀 ${cyan}${pr_info}${reset}"
+    if [ -n "$pr_json" ]; then
+        pr_text=$(echo "$pr_json" | jq -r '.text')
+        pr_url=$(echo "$pr_json" | jq -r '.url')
+        pr_link=$(printf '\033]8;;%s\033\\%s\033]8;;\033\\' "${pr_url}" "${cyan}${pr_text}${reset}")
+        pr_str="🔀 ${pr_link}"
     fi
 fi
 
