@@ -51,6 +51,11 @@ set visualbell t_vb=
 set noerrorbells
 set foldmethod=manual
 
+augroup json_indent
+  autocmd!
+  autocmd FileType json setlocal shiftwidth=2 tabstop=2
+augroup END
+
 function! EmacsCtrlK()
   let s:currentLine = getline('.')
   let s:nextLine = getline(line('.')+1)
