@@ -31,4 +31,11 @@
   "file_scan_exclusions": [
     "**/.claude/worktrees"
   ],
+  "lsp": {
+    "gopls": {
+      "initialization_options": {
+        "buildFlags": ["-tags=serial,parallel,integration,integration_parallel"]
+      }
+    }
+  },
 }
