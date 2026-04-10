@@ -668,6 +668,24 @@ type Counter struct{ n int }
 func (c Counter) Value() int { return c.n }    // Value receiver
 func (c *Counter) Increment() { c.n++ }        // Pointer receiver
 // Pick one style and be consistent
+
+// Bad: Redundant zero-value assignment to map entries
+// Accessing a missing key in a map already returns the zero value (0 for int, "" for string, etc.).
+// Pre-initializing entries to their zero value is unnecessary and misleads readers
+// into thinking there is intentional setup.
+m := make(map[string]int)
+for _, key := range keys {
+    m[key] = 0 // Redundant: map already returns 0 for missing keys
+}
+for _, item := range items {
+    m[item.Key] = item.Count
+}
+
+// Good: Let the zero value do its job
+m := make(map[string]int)
+for _, item := range items {
+    m[item.Key] = item.Count
+}
 ```
 
 **Remember**: Go code should be boring in the best way - predictable, consistent, and easy to understand. When in doubt, keep it simple.

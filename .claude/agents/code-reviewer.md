@@ -68,7 +68,9 @@ const result = await db.query(query, [userId]);
 - **Mutation patterns** — Prefer immutable operations (spread, map, filter)
 - **console.log statements** — Remove debug logging before merge
 - **Missing tests** — New code paths without test coverage
-- **Dead code** — Commented-out code, unused imports, unreachable branches
+- **Dead code** — Commented-out code, unused imports, unreachable branches. When a refactoring makes an existing method, type, or interface unused, flag it for deletion in the **same PR** — say "please delete this" explicitly, not just "verify if this is still needed"
+- **Semantic type coupling** — Even if two types are structurally identical today, reusing a type named after one concept (e.g. `FooRequest`, `FooView`) in a different concept's handler/view creates hidden coupling. When `Foo` is later deleted or modified, `Bar` is dragged along needlessly. Create dedicated types for each endpoint/feature, even if they start identical.
+- **Backward compatibility removal cost** — When keeping legacy code for backward compatibility, check whether new code references the legacy type/function by name. If new code uses `GetFooView` from a deprecated `GetFoo` endpoint, removing `GetFoo` later forces changes to `GetBar` too. New code should be independent of code scheduled for future deletion.
 
 ```typescript
 // BAD: Deep nesting + mutation
@@ -139,6 +141,7 @@ When reviewing backend code:
 - **Missing timeouts** — External HTTP calls without timeout configuration
 - **Error message leakage** — Sending internal error details to clients
 - **Missing CORS configuration** — APIs accessible from unintended origins
+- **Response field re-evaluation on endpoint split** — When splitting a broad endpoint into narrower, dedicated endpoints, question whether every response field still makes sense in the new, more specific context. Fields that were needed for a combined result set may become redundant, always-null, or semantically misleading when the endpoint is scoped to a single status, type, or category.
 
 ```typescript
 // BAD: N+1 query pattern
@@ -222,6 +225,14 @@ When available, also check project-specific conventions from `CLAUDE.md` or proj
 - State management conventions (Zustand, Redux, Context)
 
 Adapt your review to the project's established patterns. When in doubt, match what the rest of the codebase does.
+
+### Go Code
+
+When reviewing Go code, also apply the **golang-patterns** skill checklist. In particular, flag:
+
+- **Redundant zero-value assignments** — e.g., pre-initializing map entries to `0` or `""` before overwriting them (missing key access already returns the zero value)
+- **Inconsistent `WithContext(ctx)` usage** — if similar methods in the same PR use `WithContext` inconsistently, flag it
+- **`nolint` directives without an explanatory comment** — each suppression should state why
 
 ## v1.8 AI-Generated Code Review Addendum
 
