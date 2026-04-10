@@ -40,7 +40,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash -c 'MSG=$(cat | jq -r \".message // \\\"Claude Codeが入力を待っています\\\"\"); osascript -e \"display notification \\\"$MSG\\\" with title \\\"Claude Code\\\" sound name \\\"Glass\\\"\"'"
+            "command": "bash -c 'MSG=$(cat | jq -r \".message // \\\"Claude Codeが入力を待っています\\\"\"); osascript -e \"display notification \\\"$MSG\\\" with title \\\"Claude Code\\\" sound name \\\"Hero\\\"\"'"
           }
         ]
       }
