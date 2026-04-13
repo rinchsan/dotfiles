@@ -15,17 +15,18 @@ When invoked:
 2. **Understand scope** — Identify which files changed, what feature/fix they relate to, and how they connect.
 3. **Read surrounding code** — Don't review changes in isolation. Read the full file and understand imports, dependencies, and call sites.
 4. **Apply review checklist** — Work through each category below, from CRITICAL to LOW.
-5. **Report findings** — Use the output format below. Only report issues you are confident about (>80% sure it is a real problem).
+5. **Report findings** — Use the output format below. Report all findings you are >60% confident about; when in doubt, assign LOW priority rather than skip.
 
 ## Confidence-Based Filtering
 
-**IMPORTANT**: Do not flood the review with noise. Apply these filters:
+Report findings liberally — the goal is thorough coverage, not a short list. Apply these filters:
 
-- **Report** if you are >80% confident it is a real issue
-- **Skip** stylistic preferences unless they violate project conventions
+- **Report** if you are >60% confident it is a real issue
+- **When in doubt**, report at LOW priority rather than skip
 - **Skip** issues in unchanged code unless they are CRITICAL security issues
-- **Consolidate** similar issues (e.g., "5 functions missing error handling" not 5 separate findings)
-- **Prioritize** issues that could cause bugs, security vulnerabilities, or data loss
+- **Report each distinct instance** of an issue separately when they appear in different locations (e.g., two functions both missing error handling → two findings)
+- **Prioritize** issues that could cause bugs, security vulnerabilities, or data loss, but do not omit LOW/MEDIUM findings
+- A review with 10+ findings is acceptable and expected for non-trivial PRs
 
 ## Review Checklist
 
@@ -168,13 +169,28 @@ const usersWithPosts = await db.query(`
 - **Unoptimized images** — Large images without compression or lazy loading
 - **Synchronous I/O** — Blocking operations in async contexts
 
+### Design & Maintainability (MEDIUM)
+
+- **Boolean parameter anti-pattern** — A boolean parameter at the call site (`doSomething(true)`) is unreadable. Prefer an options struct, a named constant, or two separate functions
+- **Too many parameters** — Functions/constructors with >4 parameters are hard to call correctly; consider grouping into a struct or splitting the function
+- **Duplicate logic** — If the same logic appears twice or more in the PR (copy-paste), flag each occurrence and suggest extraction into a shared helper
+- **Hardcoded values** — Timeouts, limits, magic strings, or numeric thresholds that should be named constants or configuration
+- **Missing structured logging** — Key operations (creating/deleting resources, auth decisions, external calls) without log statements make debugging harder
+- **Missed reuse of existing utilities** — New code that reimplements a utility already available in the codebase; check imports and shared packages
+
 ### Best Practices (LOW)
 
 - **TODO/FIXME without tickets** — TODOs should reference issue numbers
-- **Missing JSDoc for public APIs** — Exported functions without documentation
+- **Missing doc comments for exported symbols** — Exported functions, types, or constants without documentation comments
 - **Poor naming** — Single-letter variables (x, tmp, data) in non-trivial contexts
 - **Magic numbers** — Unexplained numeric constants
 - **Inconsistent formatting** — Mixed semicolons, quote styles, indentation
+- **Inconsistent naming within the PR** — If similar fields or variables are named differently across files changed in the same PR (e.g., `userID` in one file, `userId` in another), flag it
+- **Parameter/field order inconsistency** — If similar structs or functions in the same PR have fields in a different order without reason, flag it for alignment
+- **Stale or inaccurate comments** — A comment that no longer matches what the code does after a refactor; misleading comments are worse than no comments
+- **Empty error context** — Errors returned or wrapped without any message that would help identify where they originated
+- **Test assertion messages** — Assertions that will print an unhelpful message on failure (e.g., `t.Errorf("failed")` without showing expected vs actual)
+- **Test case naming inconsistency** — Test case names that don't follow the project convention (e.g., mixing snake_case and spaces in the same test file)
 
 ## Review Output Format
 
@@ -230,9 +246,23 @@ Adapt your review to the project's established patterns. When in doubt, match wh
 
 When reviewing Go code, also apply the **golang-patterns** skill checklist. In particular, flag:
 
-- **Redundant zero-value assignments** — e.g., pre-initializing map entries to `0` or `""` before overwriting them (missing key access already returns the zero value)
-- **Inconsistent `WithContext(ctx)` usage** — if similar methods in the same PR use `WithContext` inconsistently, flag it
-- **`nolint` directives without an explanatory comment** — each suppression should state why
+**HIGH**
+- **Redundant zero-value assignments** — e.g., pre-initializing map entries to `0` or `""` before overwriting them; missing key access already returns the zero value, so `m[key] = 0` before setting the real value is noise that misleads readers
+- **Inconsistent `WithContext(ctx)` usage** — if similar methods in the same PR use `WithContext` inconsistently, flag each inconsistent call site separately
+- **Goroutine leak risk** — goroutines launched without a clear cancellation path (context cancellation, done channel, or WaitGroup) can leak; flag any `go func()` without a corresponding lifecycle control
+- **Error wrapping** — use `fmt.Errorf("...: %w", err)` to wrap errors so callers can use `errors.Is`/`errors.As`; using `%v` loses the error chain
+
+**MEDIUM**
+- **`defer` inside a loop** — `defer` runs at function return, not at loop iteration end; deferring resource cleanup (e.g., `defer rows.Close()`) inside a `for` loop means all closes happen at once at return, not after each iteration
+- **Variable shadowing** — `:=` inside an `if` or `for` block can shadow an outer variable silently; especially dangerous with `err`
+- **Named return values** — naked returns or named return values in non-trivial functions reduce readability; flag unless the function is very short or it meaningfully documents the return semantics
+- **Context not first parameter** — by convention, `ctx context.Context` must be the first parameter of any function that accepts it; flag deviations
+
+**LOW**
+- **`nolint` directives without an explanatory comment** — each suppression should state why the lint rule is being bypassed
+- **Exported symbol without godoc comment** — exported functions, types, and constants in non-test files should have a doc comment starting with the symbol name
+- **Interface naming** — single-method interfaces should be named with the `-er` suffix (e.g., `Reader`, `Writer`, `Closer`)
+- **Test table as slice instead of map** — per project convention, test tables must use `map[string]struct{...}` not `[]struct{...}` to enforce named subtests
 
 ## v1.8 AI-Generated Code Review Addendum
 
