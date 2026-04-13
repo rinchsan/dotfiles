@@ -94,7 +94,7 @@
     "allowUnsandboxedCommands": false,
     "filesystem": {
       "allowRead": [
-        "$HOME/.config/gh/*"
+        "~/.config/gh/*"
       ]
     },
     "network": {
