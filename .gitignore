@@ -37,5 +37,6 @@ configstore
 .claude/remote-settings.json
 .claude/stats-cache.json
 .claude/skills/skill-stocktake/results.json
+.claude/.genshijin-mode
 **/.claude/settings.local.json
 !.gitkeep
