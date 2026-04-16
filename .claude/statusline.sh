@@ -85,7 +85,17 @@ if [ -n "$pr_str" ]; then
     line2="${line2}${sep}${pr_str}"
 fi
 
-# Line 3: claude version | model | context | cost
+# Genshijin mode
+genshijin_str=""
+genshijin_flag="$HOME/.claude/.genshijin-mode"
+if [ -f "$genshijin_flag" ] && [ ! -L "$genshijin_flag" ]; then
+    mode=$(head -c 32 "$genshijin_flag" 2>/dev/null | tr -d '[:space:]')
+    if [ "$mode" = "丁寧" ] || [ "$mode" = "通常" ] || [ "$mode" = "極限" ]; then
+        genshijin_str="🗿 ${white}${mode}${reset}"
+    fi
+fi
+
+# Line 3: claude version | model | context | cost | genshijin mode
 line3=""
 if [ -n "$claude_version" ]; then
     line3="🔖 ${white}${claude_version}${reset}${sep}🤖 ${cyan}${model}${reset}"
@@ -94,6 +104,9 @@ else
 fi
 if [ -n "$context_str" ]; then
     line3="${line3}${sep}${context_str}"
+fi
+if [ -n "$genshijin_str" ]; then
+    line3="${line3}${sep}${genshijin_str}"
 fi
 if [ -n "$cost_str" ]; then
     line3="${line3}${sep}${cost_str}"
