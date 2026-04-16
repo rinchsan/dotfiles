@@ -134,7 +134,8 @@
     },
     "filesystem": {
       "allowRead": [
-        "~/.config/gh/*"
+        "~/.config/gh/*",
+        "~/.config/git/config"
       ]
     },
     "enableWeakerNetworkIsolation": true
