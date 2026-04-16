@@ -86,17 +86,21 @@
     "command": "bash \"$HOME/.claude/statusline.sh\""
   },
   "enabledPlugins": {
-    "gopls-lsp@claude-plugins-official": true
+    "gopls-lsp@claude-plugins-official": true,
+    "genshijin@genshijin": true
+  },
+  "extraKnownMarketplaces": {
+    "genshijin": {
+      "source": {
+        "source": "github",
+        "repo": "InterfaceX-co-jp/genshijin"
+      }
+    }
   },
   "sandbox": {
     "enabled": true,
     "autoAllowBashIfSandboxed": true,
     "allowUnsandboxedCommands": false,
-    "filesystem": {
-      "allowRead": [
-        "~/.config/gh/*"
-      ]
-    },
     "network": {
       "allowedDomains": [
         "github.com",
@@ -104,6 +108,11 @@
         "*.githubusercontent.com"
       ],
       "allowLocalBinding": true
+    },
+    "filesystem": {
+      "allowRead": [
+        "~/.config/gh/*"
+      ]
     },
     "enableWeakerNetworkIsolation": true
   },
