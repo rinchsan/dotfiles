@@ -129,7 +129,8 @@
       "allowedDomains": [
         "github.com",
         "api.github.com",
-        "*.githubusercontent.com"
+        "*.githubusercontent.com",
+        "otlp.datadoghq.com"
       ],
       "allowLocalBinding": true
     },
