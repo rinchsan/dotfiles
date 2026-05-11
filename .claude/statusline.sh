@@ -9,6 +9,7 @@ cwd=$(echo "$input" | jq -r '.cwd')
 model=$(echo "$input" | jq -r '.model.display_name')
 used_pct=$(echo "$input" | jq -r '.context_window.used_percentage // empty')
 total_cost=$(echo "$input" | jq -r '.cost.total_cost_usd // empty')
+session_id=$(echo "$input" | jq -r '.session_id // empty')
 
 # ANSI color codes
 white=$'\033[0;37m'
@@ -73,6 +74,25 @@ if [ -n "$total_cost" ]; then
     cost_str="💰 ${white}$(printf '$%.4f' "$total_cost")${reset}"
 fi
 
+# Daily cumulative cost
+daily_str=""
+if [ -n "$total_cost" ] && [ -n "$session_id" ]; then
+    usage_dir="$HOME/.claude/usage"
+    usage_file="$usage_dir/$(date +%Y-%m-%d).json"
+    mkdir -p "$usage_dir"
+    [ -f "$usage_file" ] || echo '{"sessions":{}}' > "$usage_file"
+    if jq --arg sid "$session_id" --argjson cost "$total_cost" \
+        '.sessions[$sid] = $cost' "$usage_file" > "$usage_file.tmp" 2>/dev/null; then
+        mv "$usage_file.tmp" "$usage_file"
+    else
+        rm -f "$usage_file.tmp"
+    fi
+    daily_total=$(jq '[.sessions[]] | add // 0' "$usage_file" 2>/dev/null)
+    if [ -n "$daily_total" ]; then
+        daily_str="📅 ${white}$(printf '$%.4f' "$daily_total")${reset}"
+    fi
+fi
+
 # Line 1: date and time
 line1="🕐 ${white}${datetime}${reset}"
 
@@ -110,6 +130,9 @@ if [ -n "$genshijin_str" ]; then
 fi
 if [ -n "$cost_str" ]; then
     line3="${line3}${sep}${cost_str}"
+fi
+if [ -n "$daily_str" ]; then
+    line3="${line3}${sep}${daily_str}"
 fi
 
 printf "%b\n" "$line1"
