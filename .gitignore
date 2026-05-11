@@ -31,6 +31,7 @@ configstore
 .claude/worktrees/
 .claude/tasks/
 .claude/paste-cache/
+.claude/usage/
 .claude/history.jsonl
 .claude/mcp-needs-auth-cache.json
 .claude/policy-limits.json
@@ -38,6 +39,7 @@ configstore
 .claude/stats-cache.json
 .claude/skills/skill-stocktake/results.json
 .claude/.genshijin-mode
+.claude/.last-cleanup
 **/.claude/settings.local.json
 !.gitkeep
 .config/fish/completions/docker.fish
