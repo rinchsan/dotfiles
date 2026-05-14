@@ -34,6 +34,7 @@
       "Read(**/.env.*)"
     ]
   },
+  "model": "sonnet",
   "hooks": {
     "SessionStart": [
       {
