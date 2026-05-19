@@ -11,6 +11,7 @@ tap "qmk/qmk"
 tap "rinchsan/tap"
 tap "Songmu/tap"
 
+brew "1password-cli"
 brew "alp"
 brew "ansible"
 brew "asdf"
