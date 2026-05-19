@@ -13,6 +13,7 @@ configstore
 .config/.android
 .config/swiftpm
 .config/zed/prompts/
+.config/op/
 .claude/docs/design/
 .claude/docs/adr/
 .claude/docs/plans/
