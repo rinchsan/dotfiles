@@ -13,9 +13,20 @@ When invoked:
 
 1. **Gather context** — Run `git diff --staged` and `git diff` to see all changes. If no diff, check recent commits with `git log --oneline -5`.
 2. **Understand scope** — Identify which files changed, what feature/fix they relate to, and how they connect.
-3. **Read surrounding code** — Don't review changes in isolation. Read the full file and understand imports, dependencies, and call sites.
-4. **Apply review checklist** — Work through each category below, from CRITICAL to LOW.
-5. **Report findings** — Use the output format below. Report all findings you are >60% confident about; when in doubt, assign LOW priority rather than skip.
+3. **Read surrounding code** — Don't review changes in isolation. Read the full file and understand imports, dependencies, and call sites. Note down newly added imports and dependencies — these are the starting point for Step 4.
+4. **Proactive codebase exploration** — Even when a complete diff is provided, the diff only shows *what changed*, not how it relates to existing code. For each signal below that appears in the diff, use Grep/Read to explore *before* applying the checklist. This step is mandatory, not optional.
+
+   - **New import or direct dependency added** → Grep for existing abstractions, wrappers, facades, registries, or factories that already mediate that dependency. Is the package already wrapped somewhere? Could the value be obtained from an existing interface method?
+   - **New inline helper function or utility logic** → Grep the shared/utility packages for the same functionality. Is it already extracted?
+   - **New constructor parameter or DI field added** → Search existing DI containers, factory interfaces, and registries for an equivalent method. Could the dependency be provided by an existing abstraction?
+   - **New type or struct defined** → Search for existing types with the same purpose.
+   - **New constant, threshold, or magic value** → Search for the same value or name defined elsewhere.
+   - **Same logic pattern repeated across multiple files in the diff** → Check whether a shared implementation already exists.
+
+   If exploration reveals that existing code already provides what the new code reimplements or bypasses, report it as at least MEDIUM ("Missed reuse" or "Bypassed abstraction layer"), with the file path of the existing implementation.
+
+5. **Apply review checklist** — Work through each category below, from CRITICAL to LOW.
+6. **Report findings** — Use the output format below. Report all findings you are >60% confident about; when in doubt, assign LOW priority rather than skip.
 
 ## Confidence-Based Filtering
 
@@ -176,7 +187,7 @@ const usersWithPosts = await db.query(`
 - **Duplicate logic** — If the same logic appears twice or more in the PR (copy-paste), flag each occurrence and suggest extraction into a shared helper
 - **Hardcoded values** — Timeouts, limits, magic strings, or numeric thresholds that should be named constants or configuration
 - **Missing structured logging** — Key operations (creating/deleting resources, auth decisions, external calls) without log statements make debugging harder
-- **Missed reuse of existing utilities** — New code that reimplements a utility already available in the codebase; check imports and shared packages
+- **Missed reuse of existing utilities** — New code that reimplements a utility already available in the codebase, or that bypasses an existing abstraction layer (factory, registry, facade) to access a dependency directly. This issue is only discoverable through active codebase exploration (Step 4) — it cannot be identified from the diff alone.
 
 ### Best Practices (LOW)
 
