@@ -145,5 +145,6 @@
     },
     "enableWeakerNetworkIsolation": true
   },
+  "effortLevel": "medium",
   "defaultMode": "auto"
 }
