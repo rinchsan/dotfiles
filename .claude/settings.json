@@ -36,29 +36,6 @@
   },
   "model": "sonnet",
   "hooks": {
-    "SessionStart": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "node \"$HOME/.claude/hooks/genshijin-activate.js\"",
-            "timeout": 5,
-            "statusMessage": "原始人モード起動中..."
-          }
-        ]
-      }
-    ],
-    "UserPromptSubmit": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "node \"$HOME/.claude/hooks/genshijin-mode-tracker.js\"",
-            "timeout": 5
-          }
-        ]
-      }
-    ],
     "Notification": [
       {
         "matcher": "permission_prompt",
@@ -111,16 +88,7 @@
     "command": "bash \"$HOME/.claude/statusline.sh\""
   },
   "enabledPlugins": {
-    "gopls-lsp@claude-plugins-official": true,
-    "genshijin@genshijin": true
-  },
-  "extraKnownMarketplaces": {
-    "genshijin": {
-      "source": {
-        "source": "github",
-        "repo": "InterfaceX-co-jp/genshijin"
-      }
-    }
+    "gopls-lsp@claude-plugins-official": true
   },
   "sandbox": {
     "enabled": true,
