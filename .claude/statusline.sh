@@ -93,6 +93,19 @@ if [ -n "$total_cost" ] && [ -n "$session_id" ]; then
     fi
 fi
 
+# Monthly cumulative cost
+monthly_str=""
+if [ -n "$total_cost" ]; then
+    usage_dir="$HOME/.claude/usage"
+    monthly_files=("$usage_dir"/$(date +%Y-%m)-*.json)
+    if [ -e "${monthly_files[0]}" ]; then
+        monthly_total=$(jq -s '[.[].sessions[]] | add // 0' "${monthly_files[@]}" 2>/dev/null)
+        if [ -n "$monthly_total" ]; then
+            monthly_str="📆 ${white}$(printf '$%.4f' "$monthly_total")${reset}"
+        fi
+    fi
+fi
+
 # Line 1: date and time
 line1="🕐 ${white}${datetime}${reset}"
 
@@ -120,6 +133,9 @@ if [ -n "$cost_str" ]; then
 fi
 if [ -n "$daily_str" ]; then
     line3="${line3}${sep}${daily_str}"
+fi
+if [ -n "$monthly_str" ]; then
+    line3="${line3}${sep}${monthly_str}"
 fi
 
 printf "%b\n" "$line1"
