@@ -1,8 +1,8 @@
 #!/bin/bash
 # Status line command for Claude Code
 # Line 1: 🕐 datetime
-# Line 2: 📁 cwd | 🌿 git branch
-# Line 3: 🔖 claude version | 🤖 model | 💬 context usage | 💰 cost
+# Line 2: 📁 cwd | 🌿 git branch | 🔀 PR
+# Line 3: 🔖 claude version | 🤖 model | 💬 context usage | 💰 cost | 📅 daily cost
 
 input=$(cat)
 cwd=$(echo "$input" | jq -r '.cwd')
