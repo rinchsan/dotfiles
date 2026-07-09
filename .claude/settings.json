@@ -114,5 +114,6 @@
     "enableWeakerNetworkIsolation": true
   },
   "effortLevel": "medium",
-  "defaultMode": "auto"
+  "defaultMode": "auto",
+  "advisorModel": "opus"
 }
