@@ -31,16 +31,9 @@ git ls-remote --exit-code origin $BRANCH
 
 If the remote branch does not exist, report the error and stop.
 
-### 3. Gather diff
+### 3. Gather commit history
 
-Use remote refs (`origin/`) for both sides so that no local checkout is required and the review always reflects the current state on the remote:
-
-```bash
-git diff origin/$BASE...origin/$BRANCH
-git diff --name-only origin/$BASE...origin/$BRANCH
-```
-
-Also capture recent commit history on the branch for context:
+Capture recent commit history on the branch for context (lightweight — the diff itself is gathered later by the review agent, not here):
 
 ```bash
 git log origin/$BASE..origin/$BRANCH --oneline
@@ -59,7 +52,7 @@ If a PR exists:
   - Cross-repo short reference: `org/other-repo#123`
   - Full URL: `https://github.com/owner/repo/issues/123`
 
-For each linked issue, fetch its content using the appropriate form:
+If there are multiple linked issues, fetch all of them in a single Bash call (loop or chain the commands with `;`) rather than one Bash call per issue:
 
 ```bash
 # Same-repo issue (short number)
@@ -76,19 +69,21 @@ Use the PR description, review comments, and issue bodies as specification conte
 
 ### 5. Delegate review to the code-reviewer agent
 
-Launch the **code-reviewer** agent using the **Opus** model (`model: "opus"`).
+Launch the **code-reviewer** agent.
 
-**CRITICAL: Always pass raw command output verbatim. Never manually transcribe, summarize, or paraphrase the diff or any other command output. Copy-paste the exact stdout from each command.**
+Do **not** fetch or paste the diff yourself. The agent has its own Bash tool and gathers the diff itself — pass it the ref range and let it run the command.
+
+**Pass raw PR/issue command output verbatim. Never manually transcribe, summarize, or paraphrase it.**
 
 Pass all of the following to the **code-reviewer** agent:
 
-- The full diff — copy the **exact raw output** of `git diff origin/$BASE...origin/$BRANCH` without any modification
-- The list of changed files — copy the **exact raw output** of `git diff --name-only origin/$BASE...origin/$BRANCH`
+- The ref range to review: `origin/$BASE...origin/$BRANCH` (state the resolved `$BRANCH` and `$BASE` values)
 - Commit history — copy the **exact raw output** of `git log origin/$BASE..origin/$BRANCH --oneline`
 - PR title, description, and comments (if available)
 - Linked issue titles, bodies, and comments (if available)
 
 Instruct the agent to:
+- Run `git diff origin/$BASE...origin/$BRANCH` itself (and `git diff --name-only` for the file list, if useful) before reviewing
 - Evaluate code changes against the specification captured in the PR and issues
 - Follow the review checklist in the agent definition (CRITICAL → HIGH → MEDIUM → LOW)
 - Produce a structured report with severity, file location, issue description, and suggested fix
