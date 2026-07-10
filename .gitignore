@@ -1,6 +1,7 @@
 *.backup
 configstore
 .Brewfile.lock.json
+.config/homebrew/
 .config/gh/hosts.yml
 .config/raycast
 .config/fish/ignored.fish
