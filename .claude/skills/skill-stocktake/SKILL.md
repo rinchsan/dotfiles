@@ -109,6 +109,7 @@ Each skill is evaluated against this checklist:
 - [ ] Overlap with MEMORY.md / CLAUDE.md checked
 - [ ] Freshness of technical references verified (use WebSearch if tool names / CLI flags / APIs are present)
 - [ ] Usage frequency considered
+- [ ] Action steps free of unnecessary explanatory rationale (parentheticals justifying why a default was left as-is or why something was NOT done, rather than stating the action)
 ```
 
 Verdict criteria:
