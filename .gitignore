@@ -34,6 +34,7 @@ configstore
 .claude/tasks/
 .claude/paste-cache/
 .claude/usage/
+.claude/image-cache/
 .claude/history.jsonl
 .claude/mcp-needs-auth-cache.json
 .claude/policy-limits.json
