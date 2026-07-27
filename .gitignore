@@ -15,6 +15,7 @@ configstore
 .config/swiftpm
 .config/zed/prompts/
 .config/op/
+.config/1Password/
 .claude/docs/design/
 .claude/docs/adr/
 .claude/docs/plans/
