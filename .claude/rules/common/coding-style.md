@@ -50,6 +50,33 @@ WRONG: "Launch the X agent (no longer pinning the model per your feedback)."
 CORRECT: "Launch the X agent."
 ```
 
+When a document grows through incremental edits and a new level of grouping emerges (a category within a category), promote it to a proper heading one level deeper — never fall back to a "Label:" line followed by a list under the same heading. A colon-terminated label is a substitute for a heading; using both a heading and a label for sibling levels produces an inconsistent hierarchy that breaks skimming and any heading-based navigation (TOC, outline view). Re-check the full heading hierarchy after each edit that adds a new grouping, not just the section being touched.
+
+```
+WRONG:
+### Expense Reports
+
+Common checks:
+- ...
+
+Per-line-item checks (append as new types are encountered):
+#### SaaS subscriptions
+- ...
+
+CORRECT:
+### Expense Reports
+
+#### Common Checks
+- ...
+
+#### Per-Line-Item Checks
+
+Append as new types are encountered.
+
+##### SaaS Subscriptions
+- ...
+```
+
 ## Code Quality Checklist
 
 Before marking work complete:
