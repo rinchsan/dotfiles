@@ -42,6 +42,7 @@ configstore
 .claude/remote-settings.json
 .claude/stats-cache.json
 .claude/skills/skill-stocktake/results.json
+.claude/skills/private-*/
 .claude/.genshijin-mode
 .claude/.last-cleanup
 .claude/.last-update-result.json
