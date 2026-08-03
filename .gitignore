@@ -45,6 +45,7 @@ configstore
 .claude/.genshijin-mode
 .claude/.last-cleanup
 .claude/.last-update-result.json
+.claude/chrome/chrome-native-host
 **/.claude/settings.local.json
 !.gitkeep
 .config/fish/completions/docker.fish
