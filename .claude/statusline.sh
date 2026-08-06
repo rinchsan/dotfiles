@@ -3,7 +3,7 @@
 # Line 1: 🕐 datetime
 # Line 2: 📁 cwd | 🌿 git branch | 🔀 PR
 # Line 3: 🔖 claude version | 🤖 model | 💬 context usage | 💰 cost | 📅 daily cost | 📆 monthly cost
-# Line 4: ⏱️ 5h rate limit | 🗓️ 7d rate limit
+# Line 4: ⏱️ 5h rate limit (progress bar) | 7️⃣ 7d rate limit (progress bar)
 
 input=$(cat)
 cwd=$(echo "$input" | jq -r '.cwd')
@@ -49,6 +49,27 @@ countdown_str() {
     diff=$((resets_at - now))
     [ "$diff" -lt 0 ] && diff=0
     printf '%d%s%d%s' "$((diff / unit_secs))" "$unit_label" "$(((diff % unit_secs) / subunit_secs))" "$subunit_label"
+}
+
+# eighth-block characters for sub-character bar resolution (index 0 = 1/8 filled ... index 6 = 7/8 filled)
+eighths=("▏" "▎" "▍" "▌" "▋" "▊" "▉")
+
+# render an eighths-resolution progress bar for a 0-100 percentage
+# usage: make_bar <pct_int> <width>
+make_bar() {
+    local pct=$1 width=$2
+    local total_eighths=$(( (pct * width * 8 + 50) / 100 ))
+    [ "$total_eighths" -gt $((width * 8)) ] && total_eighths=$((width * 8))
+    local full=$((total_eighths / 8))
+    local rem=$((total_eighths % 8))
+    local bar="" i
+    for ((i = 0; i < full; i++)); do bar+="█"; done
+    if [ "$rem" -gt 0 ]; then
+        bar+="${eighths[$((rem - 1))]}"
+        full=$((full + 1))
+    fi
+    for ((i = full; i < width; i++)); do bar+=" "; done
+    printf '%s' "$bar"
 }
 
 # date and time
@@ -133,7 +154,8 @@ five_hour_str=""
 if [ -n "$five_hour_pct" ]; then
     pct_int=$(printf "%.0f" "$five_hour_pct")
     rl_color=$(color_for_pct "$pct_int")
-    five_hour_str="⏱️ ${rl_color}${pct_int}%${reset}"
+    bar=$(make_bar "$pct_int" 10)
+    five_hour_str="⏱️ [${rl_color}${bar}${reset}] ${rl_color}${pct_int}%${reset}"
     if [ -n "$five_hour_resets_at" ]; then
         remaining=$(countdown_str "$five_hour_resets_at" 3600 h 60 m)
         five_hour_str="${five_hour_str} ${dim}(${remaining} left)${reset}"
@@ -145,7 +167,8 @@ seven_day_str=""
 if [ -n "$seven_day_pct" ]; then
     pct_int=$(printf "%.0f" "$seven_day_pct")
     rl_color=$(color_for_pct "$pct_int")
-    seven_day_str="🗓️ ${rl_color}${pct_int}%${reset}"
+    bar=$(make_bar "$pct_int" 10)
+    seven_day_str="7️⃣ [${rl_color}${bar}${reset}] ${rl_color}${pct_int}%${reset}"
     if [ -n "$seven_day_resets_at" ]; then
         remaining=$(countdown_str "$seven_day_resets_at" 86400 d 3600 h)
         seven_day_str="${seven_day_str} ${dim}(${remaining} left)${reset}"
