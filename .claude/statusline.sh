@@ -175,6 +175,56 @@ if [ -n "$seven_day_pct" ]; then
     fi
 fi
 
+# Fable-specific weekly quota (undocumented Anthropic account endpoint, best-effort).
+# Always attempted regardless of the active model, and reported visibly on failure
+# instead of being silently hidden, since this data source can vanish or change shape
+# without notice (unlike the documented rate_limits.* fields above).
+fable_cache_dir="$HOME/.claude/cache"
+fable_cache_file="$fable_cache_dir/fable-weekly.json"
+mkdir -p "$fable_cache_dir"
+
+fable_cache_fresh=false
+if [ -f "$fable_cache_file" ]; then
+    cache_ts=$(jq -r '.ts // 0' "$fable_cache_file" 2>/dev/null)
+    now_ts=$(date +%s)
+    if [ -n "$cache_ts" ] && [ $((now_ts - cache_ts)) -lt 300 ]; then
+        fable_cache_fresh=true
+    fi
+fi
+
+if [ "$fable_cache_fresh" = false ]; then
+    fable_pct=""
+    if command -v security > /dev/null 2>&1; then
+        fable_token=$(security find-generic-password -s "Claude Code-credentials" -w 2>/dev/null \
+            | jq -r '.claudeAiOauth.accessToken // empty' 2>/dev/null)
+        if [ -n "$fable_token" ]; then
+            fable_response=$(curl -s --max-time 3 "https://api.anthropic.com/api/oauth/usage" \
+                -H "Authorization: Bearer ${fable_token}" \
+                -H "anthropic-beta: oauth-2025-04-20" \
+                -H "Content-Type: application/json" 2>/dev/null)
+            if [ -n "$fable_response" ]; then
+                fable_pct=$(echo "$fable_response" \
+                    | jq -r '[.limits[]? | select(.kind=="weekly_scoped" and ((.scope.model.display_name // "") | test("Fable"; "i")))][0].percent // empty' 2>/dev/null)
+            fi
+        fi
+    fi
+    jq -n --argjson ts "$(date +%s)" --arg pct "$fable_pct" \
+        '{ts: $ts, pct: (if $pct == "" then null else ($pct | tonumber) end)}' \
+        > "$fable_cache_file" 2>/dev/null
+fi
+
+fable_pct=$(jq -r '.pct // empty' "$fable_cache_file" 2>/dev/null)
+
+fable_str=""
+if [ -n "$fable_pct" ]; then
+    pct_int=$(printf "%.0f" "$fable_pct")
+    rl_color=$(color_for_pct "$pct_int")
+    bar=$(make_bar "$pct_int" 10)
+    fable_str="📖 [${rl_color}${bar}${reset}] ${rl_color}${pct_int}%${reset} ${dim}(Fable)${reset}"
+else
+    fable_str="📖 ${red}unavailable${reset} ${dim}(Fable)${reset}"
+fi
+
 # Line 1: date and time
 line1="🕐 ${white}${datetime}${reset}"
 
@@ -207,18 +257,17 @@ if [ -n "$monthly_str" ]; then
     line3="${line3}${sep}${monthly_str}"
 fi
 
-# Line 4: 5h rate limit | 7d rate limit
+# Line 4: 5h rate limit | 7d rate limit | Fable weekly quota
 line4=""
-if [ -n "$five_hour_str" ]; then
-    line4="$five_hour_str"
-fi
-if [ -n "$seven_day_str" ]; then
-    if [ -n "$line4" ]; then
-        line4="${line4}${sep}${seven_day_str}"
-    else
-        line4="$seven_day_str"
+for seg in "$five_hour_str" "$seven_day_str" "$fable_str"; do
+    if [ -n "$seg" ]; then
+        if [ -n "$line4" ]; then
+            line4="${line4}${sep}${seg}"
+        else
+            line4="$seg"
+        fi
     fi
-fi
+done
 
 printf "%b\n" "$line1"
 printf "%b\n" "$line2"
