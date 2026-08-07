@@ -123,9 +123,10 @@ if [ -n "$total_cost" ] && [ -n "$session_id" ]; then
     usage_dir="$HOME/.claude/usage"
     usage_file="$usage_dir/$(date +%Y-%m-%d).json"
     mkdir -p "$usage_dir"
-    [ -f "$usage_file" ] || echo '{"sessions":{}}' > "$usage_file"
+    jq -e . "$usage_file" > /dev/null 2>&1 || echo '{"sessions":{}}' > "$usage_file"
     if jq --arg sid "$session_id" --argjson cost "$total_cost" \
-        '.sessions[$sid] = $cost' "$usage_file" > "$usage_file.tmp" 2>/dev/null; then
+        '.sessions[$sid] = $cost' "$usage_file" > "$usage_file.tmp" 2>/dev/null \
+        && [ -s "$usage_file.tmp" ]; then
         mv "$usage_file.tmp" "$usage_file"
     else
         rm -f "$usage_file.tmp"
