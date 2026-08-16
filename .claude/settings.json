@@ -55,19 +55,6 @@
           {
             "type": "command",
             "command": "node \"$HOME/.claude/hooks/doc-file-warning.js\""
-          },
-          {
-            "type": "command",
-            "command": "bash \"$HOME/.claude/skills/strategic-compact/suggest-compact.sh\""
-          }
-        ]
-      },
-      {
-        "matcher": "Edit",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "bash \"$HOME/.claude/skills/strategic-compact/suggest-compact.sh\""
           }
         ]
       }
