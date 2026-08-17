@@ -192,7 +192,7 @@ PR URL   : $PR_URL
 Branch   : $BRANCH_NAME
 Worktree : $WORKTREE_DIR
 
-To address review comments, use /address-review.
+To address review comments, use the review-response skill.
 Once the PR is merged, say "merged" and cleanup will run automatically.
 ```
 

@@ -1,19 +1,17 @@
 ---
-description: Review PRD quality. Usage: /review-prd <branch> [base-branch]
+name: prd-review
+description: Use this skill when reviewing PRD/spec quality on a branch or PR before implementation begins — e.g. "review this PRD", "check spec completeness for this branch". Diffs a branch against its base, locates PRD/spec files, gathers PR and linked-issue context, and delegates to the prd-reviewer agent for a structured verdict.
 ---
 
 # PRD Review
 
-Usage: /review-prd <branch> [base-branch]
-
-- `<branch>`: Review target branch (required)
-- `[base-branch]`: Base branch for diff (optional, default: `main`)
+Given a target branch (and optionally a base branch, default `main`), review the quality of any PRD/spec documents changed on that branch.
 
 ## Steps
 
-### 1. Parse arguments
+### 1. Resolve arguments
 
-Extract `$BRANCH` and `$BASE` (default `main`) from `$ARGUMENTS`.
+Determine `$BRANCH` (required) and `$BASE` (default `main`) from the request.
 
 ### 2. Fetch latest remote state
 

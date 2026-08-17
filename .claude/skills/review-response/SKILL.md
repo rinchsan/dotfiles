@@ -1,16 +1,17 @@
 ---
-description: Check PR review comments and address them with fixes or replies
+name: review-response
+description: Use this skill when the user wants to check PR review comments and address them — e.g. "there are comments on the PR", "address the review feedback", "reply to reviewers". Fetches inline and general PR comments, proposes fixes or replies, and commits per fix with a linked commit reference.
 allowed-tools: Bash(gh:*), Bash(git commit:*), Bash(git push:*), Edit
 ---
 
-# Address Review Comments
+# Review Response
 
 Check the review comments on the current branch's PR and address them.
 
 ## Steps
 
 1. **Identify PR number**
-   - If provided as an argument: `$ARGUMENTS` (must be a positive integer; reject non-numeric input)
+   - If given explicitly (e.g. a PR number in the request): use it directly (must be a positive integer; reject non-numeric input)
    - Otherwise: `gh pr view --json number` to get the PR for the current branch
 
 2. **Get repository info**
