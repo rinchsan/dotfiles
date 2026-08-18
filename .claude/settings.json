@@ -102,5 +102,5 @@
     "enableWeakerNetworkIsolation": true
   },
   "effortLevel": "high",
-  "advisorModel": "fable"
+  "advisorModel": "opus"
 }
