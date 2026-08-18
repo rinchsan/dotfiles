@@ -101,6 +101,6 @@
     },
     "enableWeakerNetworkIsolation": true
   },
-  "effortLevel": "medium",
-  "advisorModel": "opus"
+  "effortLevel": "high",
+  "advisorModel": "fable"
 }
