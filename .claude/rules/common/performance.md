@@ -2,21 +2,27 @@
 
 ## Model Selection Strategy
 
-**Haiku 4.5** (90% of Sonnet capability, 3x cost savings):
-- Lightweight agents with frequent invocation
-- Pair programming and code generation
-- Worker agents in multi-agent systems
-- Note: 現時点では定義済みエージェントへの割り当てなし。将来のサブエージェント追加や API 自動化スクリプト向けの指針
+Opus is the default model for the main session (`repl_main`). Opus always acts as the lead/orchestrator: it interprets the user's request, decides how to break it down, and delegates concrete work to sub-agents running the cheapest model that can do the job well. The user does not need to specify model policy per request — this selection happens automatically on every delegation.
 
-**Sonnet 4.6** (Best coding model):
-- Main development work
-- Orchestrating multi-agent workflows（`/ship`, `/implement` 等のコマンド実行時のオーケストレーター）
-- Complex coding tasks
+### Lead Agent (Opus) — Orchestration Only
 
-**Opus 4.6** (Deepest reasoning):
-- Complex architectural decisions
-- Maximum reasoning requirements
-- Research and analysis tasks
+- Interpret requests, break work into sub-tasks, choose which agent and which model each sub-task needs
+- Do complex reasoning itself: architecture/design decisions, cross-cutting judgment calls, final synthesis and review of sub-agent output
+- Avoid doing routine execution itself (file search, boilerplate edits, running tests) — delegate those to a cheaper sub-agent instead of spending Opus tokens on them
+- Excessive Opus usage most often comes from the lead doing execution work directly instead of delegating — watch for this
+
+### Sub-Agent Model Selection (by task complexity)
+
+| Complexity | Model | Examples |
+|---|---|---|
+| Simple / mechanical | **Haiku** | File search, simple lookups, boilerplate/repetitive edits, running a known command and reporting output |
+| Simple design & implementation | **Sonnet** | Standard feature implementation, straightforward bug fixes, TDD on well-scoped work, routine code review |
+| Complex research & design | **Opus** | Architecture decisions, ambiguous/high-risk changes, multi-file refactors, planning |
+| Exceptionally complex | **Fable** | Only when a task exceeds what Opus reliably handles alone — genuinely novel research/design with no established pattern to follow. Use sparingly; explicitly justify before invoking. |
+
+When launching a sub-agent, override its default model with the `model` parameter on the Agent tool call if the task's actual complexity differs from that agent's typical default (e.g., escalate a normally-Sonnet agent to Opus for an unusually hard instance, or invoke Fable explicitly for the rare exceptionally-complex case). Otherwise rely on the agent's own pinned default — see [agents.md](./agents.md) for the per-agent table.
+
+Default to the cheapest model that can complete the sub-task correctly; escalate only when the task's actual demands justify it.
 
 ## Context Window Management
 
