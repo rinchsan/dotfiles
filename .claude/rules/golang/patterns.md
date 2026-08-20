@@ -40,6 +40,23 @@ func NewUserService(repo UserRepository, logger Logger) *UserService {
 }
 ```
 
+## JSON Encoding (Go 1.27+)
+
+Use `encoding/json/v2` for new code — it rejects invalid UTF-8 and duplicate object names by default, and unmarshals significantly faster than `encoding/json`:
+
+```go
+import "encoding/json/v2"
+
+data, err := json.Marshal(v)
+err = json.Unmarshal(data, &v)
+```
+
+For streaming or token-level control, use `encoding/json/jsontext` instead of hand-rolling a state machine.
+
+## UUIDs (Go 1.27+)
+
+Use the standard library `uuid` package instead of third-party modules (e.g. `google/uuid`) in new code. Existing dependencies on third-party UUID packages do not need to be migrated proactively.
+
 ## Reference
 
 See skill: `golang-patterns` for comprehensive Go patterns including concurrency, error handling, and package organization.

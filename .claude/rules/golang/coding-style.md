@@ -17,6 +17,16 @@ paths:
 - Accept interfaces, return structs
 - Keep interfaces small (1-3 methods)
 
+## Generic Methods (Go 1.27+)
+
+Methods may declare their own type parameters, independent of the receiver's:
+
+```go
+func (r *Rand) N[Int intType](n Int) Int
+```
+
+Interface methods cannot declare type parameters — keep generic behavior on concrete types.
+
 ## Error Handling
 
 Always wrap errors with context:
