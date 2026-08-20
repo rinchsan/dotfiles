@@ -40,6 +40,17 @@ func NewUserService(repo UserRepository, logger Logger) *UserService {
 }
 ```
 
+## Error Type Assertions (Go 1.26+)
+
+Prefer `errors.AsType[T]()` over `errors.As()` for type-safe, allocation-free error unwrapping:
+
+```go
+var pathErr *fs.PathError
+if pathErr, ok := errors.AsType[*fs.PathError](err); ok {
+    // use pathErr
+}
+```
+
 ## JSON Encoding (Go 1.27+)
 
 Use `encoding/json/v2` for new code — it rejects invalid UTF-8 and duplicate object names by default, and unmarshals significantly faster than `encoding/json`:
