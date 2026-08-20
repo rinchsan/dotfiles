@@ -2,14 +2,31 @@
 
 ## Model Selection Strategy
 
-Opus is the default model for the main session (`repl_main`). Opus always acts as the lead/orchestrator: it interprets the user's request, decides how to break it down, and delegates concrete work to sub-agents running the cheapest model that can do the job well. The user does not need to specify model policy per request — this selection happens automatically on every delegation.
+The session's default model is whatever is configured in `~/.claude/settings.json` (currently Sonnet). For simple requests, the session model handles the work directly — no delegation or orchestration overhead is needed.
 
-### Lead Agent (Opus) — Orchestration Only
+For complex or high-effort requests, switch to a lead/orchestrator pattern: the lead interprets the request, breaks it into sub-tasks, and delegates concrete work to sub-agents running the cheapest model that can do the job well.
+
+### When to Use Lead/Orchestrator Mode
+
+Use full orchestration (delegate + review) when the request meets one or more of:
+- Spans multiple files or multiple layers (UI/domain/data, etc.)
+- Requires an architecture or design decision — no established pattern to follow, direction must be chosen
+- Has broad impact or is hard to reverse (large-scale refactor, breaking change)
+- Requires exploratory research or comparing approaches — no clear implementation pattern exists
+
+Handle the request directly in the session, without spinning up sub-agents, when it looks like:
+- A single-file or small-scope fix
+- Implementation that follows an existing pattern as-is
+- Answering a question, explaining code, or light investigation
+
+If the session isn't running Opus and the request warrants orchestration, propose that the user switch models (e.g. `/model opus`) before starting the orchestration flow — don't silently orchestrate on a weaker lead model.
+
+### Lead Agent — Orchestration Only
 
 - Interpret requests, break work into sub-tasks, choose which agent and which model each sub-task needs
 - Do complex reasoning itself: architecture/design decisions, cross-cutting judgment calls, final synthesis and review of sub-agent output
-- Avoid doing routine execution itself (file search, boilerplate edits, running tests) — delegate those to a cheaper sub-agent instead of spending Opus tokens on them
-- Excessive Opus usage most often comes from the lead doing execution work directly instead of delegating — watch for this
+- Avoid doing routine execution itself (file search, boilerplate edits, running tests) — delegate those to a cheaper sub-agent instead of spending lead-model tokens on them
+- Excessive lead-model usage most often comes from the lead doing execution work directly instead of delegating — watch for this
 
 ### Sub-Agent Model Selection (by task complexity)
 
