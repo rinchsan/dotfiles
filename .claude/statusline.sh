@@ -101,7 +101,7 @@ if [ -n "$git_branch" ] && [ "$git_branch" != "$default_branch" ]; then
 fi
 
 # Claude Code version
-claude_version=$(claude --version 2>/dev/null | head -1)
+claude_version=$(claude --version 2>/dev/null | head -1 | awk '{print $1}')
 
 # Context usage with color based on level
 context_str=""
