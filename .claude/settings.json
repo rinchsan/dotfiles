@@ -8,6 +8,7 @@
       "Edit",
       "Write",
       "Bash(ls *)",
+      "Bash(cd *)",
       "Bash(grep *)",
       "Bash(head *)",
       "Bash(curl *)",
