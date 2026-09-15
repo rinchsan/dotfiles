@@ -42,7 +42,7 @@ Applies to any document describing steps or instructions — README, design docs
 
 State the action only. Do not add a parenthetical justifying why a default was left as-is, why something was NOT done, or why an omission is fine — a reader executing the step doesn't need that reasoning. Only add an explanation when the reader must make a non-obvious judgment call at that step (e.g. choosing between two valid options).
 
-Never bake in meta-commentary about the edit itself — e.g. "per your request", "as discussed", "removed per feedback", "no longer specifying X since you asked". If the surrounding conversation prompted a change, that belongs in the chat reply or commit message, never in the document body — the document should read the same whether it was authored fresh or edited ten times.
+Never bake in meta-commentary about the edit itself — e.g. "per your request", "as discussed", "removed per feedback", "no longer specifying X since you asked", or an unexplained reference to an option that was tried, rejected, or removed. If the surrounding conversation prompted a change, that belongs in the chat reply or commit message, never in the document body. Test each edited sentence against this: would it make sense to someone who has never seen this document before and knows nothing about how it got here? If not, cut it or make it stand alone.
 
 ```
 WRONG: "Launch the X agent (its own definition already pins the model — do not override it here)."
