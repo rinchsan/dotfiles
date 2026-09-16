@@ -38,17 +38,6 @@
   },
   "model": "sonnet",
   "hooks": {
-    "Notification": [
-      {
-        "matcher": "permission_prompt",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "bash -c 'MSG=$(cat | jq -r \".message // \\\"Claude Codeが入力を待っています\\\"\"); osascript -e \"display notification \\\"$MSG\\\" with title \\\"Claude Code\\\" sound name \\\"Hero\\\"\"'"
-          }
-        ]
-      }
-    ],
     "PreToolUse": [
       {
         "matcher": "Write",
