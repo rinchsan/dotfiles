@@ -1,6 +1,6 @@
 ---
 name: prd-review
-description: Use this skill when reviewing PRD/spec quality on a branch or PR before implementation begins — e.g. "review this PRD", "check spec completeness for this branch". Diffs a branch against its base, locates PRD/spec files, gathers PR and linked-issue context, and delegates to the prd-reviewer agent for a structured verdict.
+description: Use this skill when reviewing PRD/spec quality on a branch or PR before implementation begins — e.g. "review this PRD", "check spec completeness for this branch". Diffs a branch against its base, locates PRD/spec files, gathers PR and linked-issue context, and delegates to the rinchsan-prd-reviewer agent for a structured verdict.
 ---
 
 # PRD Review
@@ -85,13 +85,13 @@ gh issue view <number> --repo org/other-repo --json title,body,comments 2>/dev/n
 
 Use the PR description, review comments, and issue bodies as supplementary context during the review. Issue content often contains background, business objectives, or stakeholder discussions that help evaluate PRD completeness.
 
-### 6. Delegate review to the prd-reviewer agent
+### 6. Delegate review to the rinchsan-prd-reviewer agent
 
-Launch the **prd-reviewer** agent using the **Opus** model (`model: "opus"`).
+Launch the **rinchsan-prd-reviewer** agent using the **Opus** model (`model: "opus"`).
 
 **CRITICAL: Always pass raw content verbatim. Never manually transcribe, summarize, or paraphrase the PRD content or any other command output. Copy-paste the exact content from each command.**
 
-Pass all of the following to the **prd-reviewer** agent:
+Pass all of the following to the **rinchsan-prd-reviewer** agent:
 
 - The PRD file content — copy the **exact raw output** of `git show origin/$BRANCH:<path>` without any modification
 - Commit history — copy the **exact raw output** of `git log origin/$BASE..origin/$BRANCH --oneline`
@@ -106,4 +106,4 @@ Instruct the agent to:
 
 ### 7. Report verdict
 
-Relay the prd-reviewer agent's full output, including the summary table and verdict.
+Relay the rinchsan-prd-reviewer agent's full output, including the summary table and verdict.

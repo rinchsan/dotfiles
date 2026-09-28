@@ -1,5 +1,5 @@
 ---
-name: prd-reviewer
+name: rinchsan-prd-reviewer
 description: PRD quality reviewer for spec-driven development. Reviews Product Requirement Documents for completeness, clarity, edge case coverage, and implementation readiness. Use when reviewing PRDs before design or implementation begins.
 tools: ["Read"]
 model: opus

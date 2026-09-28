@@ -56,14 +56,14 @@ Based on exploration and clarified requirements, classify the work scale:
 
 **Enable Extended Thinking** before delegating. This step involves complex architectural reasoning — deeper thinking directly improves design quality.
 
-**Delegate to the `architect` agent** with:
+**Delegate to the `rinchsan-architect` agent** with:
 - The requirements and clarified goals from Step 2
 - The codebase context from Step 1 (existing patterns, conventions)
 - The scope classification from Step 3
 - The template at `.claude/docs/templates/design.md`
 - Instructions to produce a complete design doc covering: problem statement, proposed solution, alternatives considered, trade-offs, and any open questions
 
-After the architect agent returns its output, save the design doc to `$DESIGN_DIR/<NNN>-<title>.md`.
+After the rinchsan-architect agent returns its output, save the design doc to `$DESIGN_DIR/<NNN>-<title>.md`.
 
 Present the design doc to the user for approval and iterate until approved.
 
@@ -73,20 +73,20 @@ When the scope is Large or an explicit architectural decision must be recorded:
 
 **Enable Extended Thinking** before delegating. ADRs capture irreversible decisions — thorough reasoning here prevents costly mistakes later.
 
-**Delegate to the `architect` agent** with:
+**Delegate to the `rinchsan-architect` agent** with:
 - The approved design doc content
 - The specific architectural decision to record
 - The template at `.claude/docs/templates/adr.md`
 - Instructions to draft an ADR covering: context, decision, consequences (positive/negative), and alternatives considered
 
-After the architect agent returns its output, save the ADR to `$ADR_DIR/<NNN>-<title>.md`.
+After the rinchsan-architect agent returns its output, save the ADR to `$ADR_DIR/<NNN>-<title>.md`.
 
 ## ⚠️ Responsibility Boundaries
 
 ### ✅ Do in this phase
 - Requirements analysis and clarification
 - Codebase exploration to inform design
-- Creating design docs and ADRs (via architect agent)
+- Creating design docs and ADRs (via rinchsan-architect agent)
 - Obtaining user approval
 
 ### ❌ Do NOT in this phase

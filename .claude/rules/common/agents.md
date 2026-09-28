@@ -8,19 +8,19 @@ Located in `~/.claude/agents/`:
 
 | Agent | Model | Purpose | When to Use |
 |-------|-------|---------|-------------|
-| planner | opus | Implementation planning | Complex features, refactoring |
-| architect | opus | System design | Architectural decisions |
+| rinchsan-planner | opus | Implementation planning | Complex features, refactoring |
+| rinchsan-architect | opus | System design | Architectural decisions |
 | rinchsan-code-reviewer | opus | Code review | After writing code |
-| tdd-developer | sonnet | Test-driven development | New features, bug fixes |
-| security-reviewer | sonnet | Security analysis | Before commits |
+| rinchsan-tdd-developer | sonnet | Test-driven development | New features, bug fixes |
+| rinchsan-security-reviewer | sonnet | Security analysis | Before commits |
 
 ## Immediate Agent Usage
 
 No user prompt needed:
-1. Complex feature requests - Use **planner** agent
+1. Complex feature requests - Use **rinchsan-planner** agent
 2. Code just written/modified - Use **rinchsan-code-reviewer** agent
-3. Bug fix or new feature - Use **tdd-developer** agent
-4. Architectural decision - Use **architect** agent
+3. Bug fix or new feature - Use **rinchsan-tdd-developer** agent
+4. Architectural decision - Use **rinchsan-architect** agent
 
 ## Parallel Task Execution
 

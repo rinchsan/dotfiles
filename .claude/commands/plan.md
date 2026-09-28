@@ -56,13 +56,13 @@ If splitting is needed, include a clear PR split plan section.
 
 **Enable Extended Thinking** before delegating. Risk assessment requires anticipating non-obvious failure modes — deeper reasoning surfaces risks that fast thinking misses.
 
-**Delegate to the `architect` agent** with:
+**Delegate to the `rinchsan-architect` agent** with:
 - The design doc content
 - The proposed task breakdown from Step 3
 - The codebase context gathered in Step 2
 - Instructions to identify: technical risks, unknowns, dependencies on external systems, scalability concerns, and rollback strategies for each phase
 
-After the architect agent returns its output, incorporate the risk findings into the work plan.
+After the rinchsan-architect agent returns its output, incorporate the risk findings into the work plan.
 
 ## Step 5: Obtain Approval
 
@@ -77,7 +77,7 @@ Save the final plan to `$PLANS_DIR/<NNN>-<title>.md`.
 - Exploring the codebase to identify affected files
 - Creating the work plan with concrete file paths
 - Defining tasks, dependencies, and completion criteria
-- Risk assessment and mitigation strategies (via architect agent)
+- Risk assessment and mitigation strategies (via rinchsan-architect agent)
 
 ### ❌ Do NOT in this phase
 - Write any implementation code

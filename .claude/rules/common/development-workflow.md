@@ -42,13 +42,13 @@ The Feature Implementation Workflow describes the development pipeline: research
    - **Database** → Check for MCP servers first
 
 1. **Plan First**
-   - Use **planner** agent to create implementation plan
+   - Use **rinchsan-planner** agent to create implementation plan
    - Generate planning docs before coding: PRD, architecture, system_design, tech_doc, task_list
    - Identify dependencies and risks
    - Break down into phases
 
 2. **TDD Approach**
-   - Use **tdd-developer** agent
+   - Use **rinchsan-tdd-developer** agent
    - Write tests first (RED)
    - Implement to pass tests (GREEN)
    - Refactor (IMPROVE)
@@ -71,8 +71,8 @@ The optional `--docs` flag sets the directory where design docs, ADRs, and plans
 
 ```
 1. Pre-flight    — recommend whether design phase is needed, get user confirmation
-2. Design        — /design (optional, creates design doc + ADR via architect agent)
-3. Plan          — /plan (creates work plan with risk assessment via architect agent)
+2. Design        — /design (optional, creates design doc + ADR via rinchsan-architect agent)
+3. Plan          — /plan (creates work plan with risk assessment via rinchsan-architect agent)
 4. Worktree      — creates isolated git worktree for the branch
 5. Implement     — /implement (executes planned tasks, commits)
 6. Self-review   — rinchsan-code-reviewer agent reviews git diff main...HEAD
@@ -84,8 +84,8 @@ Individual phase commands can also be run standalone:
 
 | Command | Purpose |
 | --- | --- |
-| `/design` | Requirements analysis and design doc creation (architect agent for docs/ADRs) |
-| `/plan` | Work plan creation from design docs (architect agent for risk assessment) |
+| `/design` | Requirements analysis and design doc creation (rinchsan-architect agent for docs/ADRs) |
+| `/plan` | Work plan creation from design docs (rinchsan-architect agent for risk assessment) |
 | `/implement` | Implementation from a work plan |
 
 Document templates are located in `.claude/docs/templates/`:

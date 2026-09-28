@@ -19,11 +19,11 @@ MANDATORY workflow:
 
 ## Troubleshooting Test Failures
 
-1. Use **tdd-developer** agent
+1. Use **rinchsan-tdd-developer** agent
 2. Check test isolation
 3. Verify mocks are correct
 4. Fix implementation, not tests (unless tests are wrong)
 
 ## Agent Support
 
-- **tdd-developer** - Use PROACTIVELY for new features, enforces write-tests-first
+- **rinchsan-tdd-developer** - Use PROACTIVELY for new features, enforces write-tests-first
