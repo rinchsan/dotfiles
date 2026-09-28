@@ -116,7 +116,7 @@ Instruct the agent to:
 - Run `git -C $REPO_PATH diff origin/$BASE...origin/$BRANCH` itself (and `git -C $REPO_PATH diff --name-only` for the file list, if useful) before reviewing
 - Evaluate code changes against the specification captured in the PR and issues
 - Follow the review checklist in the agent definition (CRITICAL → HIGH → MEDIUM → LOW)
-- Produce a structured report with severity, file location, issue description, and suggested fix
+- Produce a structured report with severity, file location (path, line number, and function/method name), issue description, and suggested fix
 - End with the standard Review Summary table and verdict
 
 ### 7. Report verdict
