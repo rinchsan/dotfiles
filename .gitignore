@@ -51,6 +51,7 @@ configstore
 .claude/shell-snapshots/
 .claude/skills/skill-stocktake/results.json
 .claude/skills/synced/
+.claude/state/
 .claude/stats-cache.json
 .claude/statsig/
 .claude/tasks/
