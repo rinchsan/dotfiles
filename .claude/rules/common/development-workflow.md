@@ -55,7 +55,7 @@ The Feature Implementation Workflow describes the development pipeline: research
    - Verify 80%+ coverage
 
 3. **Code Review**
-   - Use **code-reviewer** agent immediately after writing code
+   - Use **rinchsan-code-reviewer** agent immediately after writing code
    - Address CRITICAL and HIGH issues
    - Fix MEDIUM issues when possible
 
@@ -75,7 +75,7 @@ The optional `--docs` flag sets the directory where design docs, ADRs, and plans
 3. Plan          — /plan (creates work plan with risk assessment via architect agent)
 4. Worktree      — creates isolated git worktree for the branch
 5. Implement     — /implement (executes planned tasks, commits)
-6. Self-review   — code-reviewer agent reviews git diff main...HEAD
+6. Self-review   — rinchsan-code-reviewer agent reviews git diff main...HEAD
 7. Fix + Push    — fixes Critical/High issues, pushes branch
 8. PR            — creates draft PR via gh
 ```

@@ -96,15 +96,15 @@ gh issue view <number> --repo org/other-repo --json title,body,comments 2>/dev/n
 
 Use the PR description, review comments, and issue bodies as specification context during the review. Issue content often contains PRDs, acceptance criteria, and design decisions that are essential for evaluating correctness.
 
-### 6. Delegate review to the code-reviewer agent
+### 6. Delegate review to the rinchsan-code-reviewer agent
 
-Launch the **code-reviewer** agent.
+Launch the **rinchsan-code-reviewer** agent.
 
 Do **not** fetch or paste the diff yourself. The agent has its own Bash tool and gathers the diff itself — pass it the repository path and ref range and let it run the command.
 
 **Pass raw PR/issue command output verbatim. Never manually transcribe, summarize, or paraphrase it.**
 
-Pass all of the following to the **code-reviewer** agent:
+Pass all of the following to the **rinchsan-code-reviewer** agent:
 
 - The repository path to operate in: `$REPO_PATH`
 - The ref range to review: `origin/$BASE...origin/$BRANCH` (state the resolved `$BRANCH` and `$BASE` values)
@@ -121,4 +121,4 @@ Instruct the agent to:
 
 ### 7. Report verdict
 
-Relay the code-reviewer agent's full output, including the summary table and verdict.
+Relay the rinchsan-code-reviewer agent's full output, including the summary table and verdict.

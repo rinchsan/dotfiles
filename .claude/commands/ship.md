@@ -131,10 +131,10 @@ After the sub-agent completes, proceed to Phase 6.
 **Delegate to a sub-agent (model: opus).**
 
 Sub-agent instructions:
-- Act as the `code-reviewer` agent
+- Act as the `rinchsan-code-reviewer` agent
 - Working directory: `$WORKTREE_DIR`
 - Run: `git diff main...HEAD` to get the full diff for this branch
-- Review the diff following the code-reviewer checklist
+- Review the diff following the rinchsan-code-reviewer checklist
 - Return: review summary with counts and details by severity (Critical/High/Medium/Low)
 
 ### 6-2. Fix issues (orchestrator runs directly)

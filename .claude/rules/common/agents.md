@@ -10,7 +10,7 @@ Located in `~/.claude/agents/`:
 |-------|-------|---------|-------------|
 | planner | opus | Implementation planning | Complex features, refactoring |
 | architect | opus | System design | Architectural decisions |
-| code-reviewer | opus | Code review | After writing code |
+| rinchsan-code-reviewer | opus | Code review | After writing code |
 | tdd-developer | sonnet | Test-driven development | New features, bug fixes |
 | security-reviewer | sonnet | Security analysis | Before commits |
 
@@ -18,7 +18,7 @@ Located in `~/.claude/agents/`:
 
 No user prompt needed:
 1. Complex feature requests - Use **planner** agent
-2. Code just written/modified - Use **code-reviewer** agent
+2. Code just written/modified - Use **rinchsan-code-reviewer** agent
 3. Bug fix or new feature - Use **tdd-developer** agent
 4. Architectural decision - Use **architect** agent
 
