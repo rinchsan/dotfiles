@@ -19,6 +19,7 @@ configstore
 .config/nvim/projects/*
 .config/nvim/undo/*
 .config/op/
+.config/pup/
 .config/raycast
 .config/swiftpm
 .config/tool_state
