@@ -14,6 +14,7 @@ configstore
 .config/fish/completions/orbctl.fish
 .config/fish/ignored.fish
 .config/gh/hosts.yml
+.config/herdr/
 .config/homebrew/
 .config/karabiner/automatic_backups/*
 .config/nvim/projects/*
